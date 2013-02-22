@@ -1,0 +1,35 @@
+<head>
+	<meta charset="UTF-8" />
+	{% if page.title %}
+		<title>{{ page.title | strip_html }} | Open Blog</title>
+	{% else %}
+		<title>Open Blog</title>
+	{% endif %}
+	{% if page.author %}
+		<meta name="author" content="{{ page.author }}" />
+	{% else %}
+		<meta name="author" content="Vagner Santana" />
+	{% endif %}
+	{% if page.keywords %}
+		<meta name="keywords" content="{{ page.keywords }}" />
+	{% else %}
+		<meta name="keywords" content="html, html5, css, css3, js, javascript, jquery, open, web, blog, frontend" />
+	{% endif %}
+	{% if page.resumo %}
+		<meta name="description" content="{{ page.resumo | markdownify | strip_html | escape }}" />
+	{% else %}
+		<meta name="description" content="Open blog, open web, open world!" />
+	{% endif %}
+	<meta name="language" content="pt" />
+	<meta name="content-language" content="pt-BR" />
+	<meta name="robots" content="all" />
+	<meta name="distribution" content="Global" />
+	<meta name="resource-type" content="document" />
+
+	<link rel="icon" type="image/png" href="/assets/img/favicon.png" />
+    <link href="/assets/css/screen.css?{{ site.time | date: "%Y-%m-%d" }}" media="screen, projection" rel="stylesheet" type="text/css" />
+    <!--[if IE]>
+    	<link href="/assets/css/ie.css?{{ site.time | date: "%Y-%m-%d" }}" media="screen, projection" rel="stylesheet" type="text/css" />
+  	<![endif]-->
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
+</head>

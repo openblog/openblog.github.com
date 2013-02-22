@@ -6,9 +6,9 @@ baseurl:    /
 url: 
 paginate: 5
 
-source:      ./_source
+source:      ./
 destination: ./site
-plugins:     ./_source/_plugins
+plugins:     ./_plugins
 
 future:      true
 lsi:         false
