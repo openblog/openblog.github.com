@@ -1,0 +1,42 @@
+---
+layout: home
+---
+{% for post in paginator.posts %}
+<section class="post-container" itemscope itemtype="http://schema.org/BlogPosting">
+	<span class="hidden" itemprop="publisher">Open Blog</span>
+	<article>
+		<header>
+			<h1><a href="{{ post.url }}" itemprop="headline">{{ post.title }}</a></h1>
+		</header>
+		<section>
+			{% if post.image %}
+			<figure>
+				<a href="{{ post.url }}">
+					<img itemprop="thumbnailUrl" src="/{{ post.image }}" class="post-image" alt="{{ post.title | strip_html }}" title="{{ post.title | strip_html }}" width="700" height="432" />
+				</a>
+			</figure>
+			{% endif %}
+			<p itemprop="description">{{ post.resumo | markdownify }}</p>
+			<a href="{{ post.url }}" class="leia-mais" itemprop="url">Continue lendo →</a>
+		</section>
+	</article>
+</section>
+{% endfor %}
+
+<div id="post-pagination">
+  {% if paginator.previous_page %}
+  <p class="antigos">
+    {% if paginator.previous_page == 1 %}
+    <a href="/">Recentes →</a>
+    {% else %}
+    <a href="/page{{paginator.previous_page}}">Recentes →</a>
+    {% endif %}
+  </p>
+  {% endif %}
+
+  {% if paginator.next_page %}
+  <p class="recentes">
+    <a href="/page{{paginator.next_page}}">← Antigos</a>
+  </p>
+  {% endif %}
+</div>

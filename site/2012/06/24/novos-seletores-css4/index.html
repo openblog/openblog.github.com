@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+	<meta charset="UTF-8" />
+	
+		<title>Novos seletores CSS4 | Open Blog</title>
+	
+	
+		<meta name="author" content="Caio Gondim" />
+	
+	
+		<meta name="keywords" content="css, css3, css4, stylesheet, style, webdev, html5, web, development, front-end
+" />
+	
+	
+		<meta name="description" content="Imagino que nem metade da especificação do CSS3 foi implementada e já estamos falando de CSS4, mas temos que estar cientes do que está por vir. Afinal, pior que um navegador ultrapassado é um programador desatualizado." />
+	
+	<meta name="language" content="pt" />
+	<meta name="content-language" content="pt-BR" />
+	<meta name="robots" content="all" />
+	<meta name="distribution" content="Global" />
+	<meta name="resource-type" content="document" />
+
+	<link rel="icon" type="image/png" href="/assets/img/favicon.png" />
+    <link href="/assets/css/screen.css?2013-02-22" media="screen, projection" rel="stylesheet" type="text/css" />
+    <!--[if IE]>
+    	<link href="/assets/css/ie.css?2013-02-22" media="screen, projection" rel="stylesheet" type="text/css" />
+  	<![endif]-->
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+
+	<div id="wrapper">
+		
+		<header id="main">
+	<h1><a href="/" id="logo">.openBlog()</a></h1>
+</header>
+		
+		<section id="content">
+
+			<section class="post-container" itemscope itemtype="http://schema.org/BlogPosting">
+				<span class="hidden" itemprop="publisher">Open Blog</span>
+				<article>
+					<header>
+						<h1><a href="/2012/06/24/novos-seletores-css4/" itemprop="headline">Novos seletores <span>CSS4</span></a></h1>
+					</header>
+					<section itemprop="articleBody">
+						
+						<figure>
+							<img itemprop="thumbnailUrl" src="/images/posts/2012-06-24-novos-seletores-css4.jpg" class="post-image" alt="Novos seletores CSS4" title="Novos seletores CSS4" width="700" height="432" />
+						</figure>
+						
+						<p>Imagino que nem metade da especificação do CSS3 foi implementada e já estamos falando de CSS4, mas temos que estar cientes do que está por vir. Afinal, pior que um navegador ultrapassado é um desenvolvedor desatualizado.</p>
+
+<h2 id='e__f'>$E &gt; F</h2>
+
+<p>Um dos novos seletores mais empolgantes e poderosos. Com ele, podemos estilizar um elemento (<code>$E</code>) em relação aos seus filhos (<code>F</code>). Com o símbolo <code>$</code> declaramos em que elemento iremos aplicar os estilos.</p>
+
+<p>No exemplo abaixo, iremos selecionar apenas as tags <code>div</code> que possuem uma <code>ul</code> com a classe <em>menu</em>.</p>
+<div class='highlight'><pre><code class='css'><span class='c'>/* seleciona a &lt;div&gt;, e não a &lt;ul&gt; */</span>
+<span class='err'>$</span><span class='nt'>div</span> <span class='nt'>ul</span><span class='nc'>.menu</span> <span class='p'>{</span> <span class='o'>...</span> <span class='p'>}</span>
+</code></pre></div>
+<p>Podemos misturá-lo com outros e assim ter mais poder para selecionar exatamente os elementos que queremos, sem a necessidade de marcação adicional.</p>
+<div class='highlight'><pre><code class='css'><span class='c'>/* estiliza o &lt;h2&gt; que possui um elemento &lt;a&gt; como filho direto */</span>
+<span class='err'>$</span><span class='nt'>h2</span> <span class='o'>&gt;</span> <span class='nt'>a</span> <span class='p'>{</span> <span class='o'>...</span> <span class='p'>}</span>
+
+<span class='c'>/* estiliza as &lt;ul&gt; que possuem apenas uma &lt;li&gt; */</span>
+<span class='err'>$</span><span class='nt'>ul</span> <span class='o'>&gt;</span> <span class='nt'>li</span><span class='nd'>:only-child</span> <span class='p'>{</span> <span class='o'>...</span> <span class='p'>}</span>
+
+<span class='c'>/* estiliza a &lt;div&gt; que possui um &lt;h2&gt; e &lt;p&gt; como descendentes */</span>
+<span class='err'>$</span><span class='nt'>div</span> <span class='nt'>h2</span> <span class='o'>~</span> <span class='nt'>p</span> <span class='p'>{</span> <span class='o'>...</span> <span class='p'>}</span>
+</code></pre></div>
+<h2 id='enots1_s2'>E:not(s1, s2)</h2>
+
+<p>Já presente no CSS3, agora a pseudo-classe <code>:not()</code> pode receber mais de um seletor. Combinadores como <code>+</code>, <code>~</code> e <code>&gt;</code> não são suportados.</p>
+<div class='highlight'><pre><code class='css'><span class='c'>/* seleciona todos os elementos, menos os &lt;p&gt; e &lt;a&gt; */</span>
+<span class='o'>*</span><span class='nd'>:not</span><span class='o'>(</span><span class='nt'>p</span><span class='o'>,</span> <span class='nt'>a</span><span class='o'>)</span> <span class='p'>{</span> <span class='o'>...</span> <span class='p'>}</span>
+
+<span class='c'>/* seleciona todos os &lt;input&gt;, com exceção dos checked */</span>
+<span class='nt'>input</span><span class='nd'>:not</span><span class='o'>(</span><span class='nd'>:checked</span><span class='o'>)</span> <span class='p'>{</span> <span class='o'>...</span> <span class='p'>}</span>
+
+<span class='c'>/* seletor não válido */</span>
+<span class='nt'>a</span><span class='nd'>:not</span><span class='o'>(</span><span class='nt'>p</span> <span class='o'>&gt;</span> <span class='nt'>a</span><span class='o'>)</span> <span class='p'>{</span> <span class='o'>...</span> <span class='p'>}</span>
+</code></pre></div>
+<h2 id='ematchess1_s2'>E:matches(s1, s2)</h2>
+
+<p>Meu segundo seletor favorito. Com ele podemos expressar em um único seletor o que antes era necessário declarar em várias linhas.</p>
+<div class='highlight'><pre><code class='css'><span class='c'>/* seleciona todos os &lt;a&gt; e &lt;p&gt; que estão dentro de um &lt;section&gt; */</span>
+<span class='nt'>section</span> <span class='nd'>:matches</span><span class='o'>(</span><span class='nt'>a</span><span class='o'>,</span> <span class='nt'>p</span><span class='o'>)</span> <span class='p'>{</span> <span class='o'>...</span> <span class='p'>}</span>
+
+<span class='c'>/* seleciona as &lt;img&gt; que estão dentro de &lt;figure&gt; ou &lt;div class=&quot;foto-principal&quot;&gt; */</span>
+<span class='nd'>:matches</span><span class='o'>(</span><span class='nt'>figure</span><span class='o'>,</span> <span class='nt'>div</span><span class='nc'>.foto-principal</span><span class='o'>)</span> <span class='nt'>img</span> <span class='p'>{</span> <span class='o'>...</span> <span class='p'>}</span>
+
+<span class='c'>/* seleciona os &lt;input&gt; nos estados de focus e hover  */</span>
+<span class='nt'>input</span><span class='nd'>:matches</span><span class='o'>(</span><span class='nd'>:focus</span><span class='o'>,</span> <span class='nd'>:hover</span><span class='o'>)</span> <span class='p'>{</span> <span class='o'>...</span> <span class='p'>}</span>
+</code></pre></div>
+<h2 id='efoobar_i'>E[foo=&#8221;bar&#8221; i]</h2>
+
+<p>O mesmo que <code>E\[foo=&quot;bar&quot;\]</code>, porém este é <em>case-insensitive</em>. Reparem o <code>i</code> adicional. Não me vejo utilizando, mas se algum dia for necessário é bom saber que existe.</p>
+<div class='highlight'><pre><code class='css'><span class='c'>/* seleciona os elementos &lt;div data-user=&quot;JoAo&quot;&gt;, &lt;div data-user=&quot;JOAO&quot;&gt; e &lt;div data-user=&quot;joao&quot;&gt; */</span>
+<span class='nt'>div</span><span class='o'>[</span><span class='nt'>data-user</span><span class='o'>=</span><span class='s2'>&quot;joao&quot;</span> <span class='nt'>i</span><span class='o'>]</span> <span class='p'>{</span> <span class='o'>...</span> <span class='p'>}</span>
+
+<span class='c'>/* seleciona apenas &lt;div data-user=&quot;joao&quot;&gt; */</span>
+<span class='nt'>div</span><span class='o'>[</span><span class='nt'>data-user</span><span class='o'>=</span><span class='s2'>&quot;joao&quot;</span><span class='o'>]</span> <span class='p'>{</span> <span class='o'>...</span> <span class='p'>}</span>
+</code></pre></div>
+<h2 id='elocallink'>E:local-link</h2>
+
+<p>Fácil e útil. Seleciona apenas os links que apontam para dentro da página atual.</p>
+<div class='highlight'><pre><code class='css'><span class='c'>/* seleciona todos os links que apontam para um elemento dentro do documento */</span>
+<span class='nt'>a</span><span class='nd'>:local-link</span> <span class='p'>{</span> <span class='o'>...</span> <span class='p'>}</span>
+
+<span class='c'>/* seleciona todos os links que apontam para fora do documento atual */</span>
+<span class='nt'>a</span><span class='nd'>:not</span><span class='o'>(</span><span class='nd'>:local-link</span><span class='o'>)</span> <span class='p'>{</span> <span class='o'>...</span> <span class='p'>}</span>
+</code></pre></div>
+<h2 id='elocallink0'>E:local-link(0)</h2>
+
+<p>Semelhante ao <code>:local-link</code>, porém seleciona todos os links que apontam para o domínio atual.</p>
+<div class='highlight'><pre><code class='css'><span class='c'>/* seleciona todos os links que apontam para o mesmo domínio atual */</span>
+<span class='nt'>a</span><span class='nd'>:local-link</span><span class='o'>(</span><span class='nt'>0</span><span class='o'>)</span> <span class='p'>{</span> <span class='o'>...</span> <span class='p'>}</span>
+
+<span class='c'>/* seleciona todos os links que apontam para um domínio diferente do atual */</span>
+<span class='nt'>a</span><span class='nd'>:not</span><span class='o'>(</span><span class='nd'>:local-link</span><span class='o'>(</span><span class='nt'>0</span><span class='o'>))</span> <span class='p'>{</span> <span class='o'>...</span> <span class='p'>}</span>
+</code></pre></div>
+<h2 id='e_foo_f'>E /foo/ F</h2>
+
+<p>Este seletor é um pouco mais complexo. No código <code>E /foo/ F</code>, selecionamos o elemento <code>F</code> cujo ID esteja no atributo <code>/foo/</code> de <code>E</code>. OK, melhor um exemplo.</p>
+<div class='highlight'><pre><code class='css'><span class='c'>/* selecionamos o &lt;input&gt; quando o seu &lt;label&gt; estiver no estado hover ou focus */</span>
+<span class='nt'>label</span><span class='nd'>:matches</span><span class='o'>(</span><span class='nd'>:hover</span><span class='o'>,</span> <span class='nd'>:focus</span><span class='o'>)</span> <span class='o'>/</span><span class='nt'>for</span><span class='o'>/</span> <span class='nt'>input</span> <span class='p'>{</span> <span class='o'>...</span> <span class='p'>}</span>
+</code></pre></div>
+<p>No exemplo acima, aplicamos uma regra ao <code>input</code> quando o seu <code>label</code> estiver <code>:hover</code> ou <code>:focus</code>. Fazemos a relação entre <code>label</code> e <code>input</code> através de um atributo que ficará entre as barras, no caso o atributo <code>for</code>. Este atributo deve conter o ID do elemento a direita como valor. No exemplo acima um <code>input</code>.</p>
+
+<p>O interessante deste seletor é que o elemento a direita não precisa estar dentro do elemento a esquerda (como acontece com os seletores compostos) ou ser irmão (como acontece com os combinadores <code>+</code> ou <code>~</code>). É um novo tipo de combinador que faz uma referência a um outro elemento independente de seu parentesco na árvore HTML. Chamamos este novo combinador de <strong>combinador de referência</strong>.</p>
+
+<h2 id='_css3_'>/* CSS3++ */</h2>
+
+<p>A especificação dos seletores CSS4 ainda está em fase de <a href='http://www.w3.org/TR/2011/WD-selectors4-20110929'>rascunho</a> e podem ocorrer mudanças até a versão final. Mas é interessante acompanhá-la e saber como será o futuro da nossa querida linguagem e o que este futuro tem a nos oferecer.</p>
+
+<p>E vocês, o que acharam dos novos seletores? Conseguem se imaginar usando? Ou acham que é apenas mais uma nova tecnologia que o IE não vai nos permitir usar tão cedo?</p>
+<h2 id='atualizacoes'>Atualizações</h2><div class='update'>
+	<h3>20/11/2012</h3>
+	<p>
+		Uma correção ao post. <strong>Não existe CSS4</strong>.
+	</p>
+	<p>
+		Com o HTML5, o CSS foi dividido em módulos e este que tratamos aqui no post é
+		o <a href='http://dev.w3.org/csswg/selectors4/'>módulo de seletores level 4</a>.
+	</p>
+</div><aside class='fonte'>
+	<h3>Referência</h3>
+	<ul>
+		<li>→<a alt='W3C Selectors Level 4' href='http://www.w3.org/TR/2011/WD-selectors4-20110929/#overview' title='W3C Selectors Level 4'>W3C Selectors Level 4</a></li>
+		<li>→<a alt='David Walsh: CSS4 preview' href='http://davidwalsh.name/css4-preview' title='David Walsh: CSS4 preview'>David Walsh: CSS4 preview</a></li>
+	</ul>
+</aside>
+					</section>
+				</article>
+			</section>
+
+		</section><!-- end #content -->
+
+	</div><!-- end #wrapper -->
+
+</body>
+</html>

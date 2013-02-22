@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+	<meta charset="UTF-8" />
+	
+		<title>Sou DOM, Shadow DOM | Open Blog</title>
+	
+	
+		<meta name="author" content="Almir Filho" />
+	
+	
+		<meta name="keywords" content="shadow-dom, shadow dom, web-components, web components, html, html5, component, widget, encapsulamento, componente
+" />
+	
+	
+		<meta name="description" content="Shadow DOM é uma especificação (ainda em status de rascunho) que faz parte do recente trabalho Web Components da W3C. Neste post vamos entender o que é, como funciona e o que muda com esta novidade." />
+	
+	<meta name="language" content="pt" />
+	<meta name="content-language" content="pt-BR" />
+	<meta name="robots" content="all" />
+	<meta name="distribution" content="Global" />
+	<meta name="resource-type" content="document" />
+
+	<link rel="icon" type="image/png" href="/assets/img/favicon.png" />
+    <link href="/assets/css/screen.css?2013-02-22" media="screen, projection" rel="stylesheet" type="text/css" />
+    <!--[if IE]>
+    	<link href="/assets/css/ie.css?2013-02-22" media="screen, projection" rel="stylesheet" type="text/css" />
+  	<![endif]-->
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+
+	<div id="wrapper">
+		
+		<header id="main">
+	<h1><a href="/" id="logo">.openBlog()</a></h1>
+</header>
+		
+		<section id="content">
+
+			<section class="post-container" itemscope itemtype="http://schema.org/BlogPosting">
+				<span class="hidden" itemprop="publisher">Open Blog</span>
+				<article>
+					<header>
+						<h1><a href="/2012/07/17/sou-dom-shadow-dom/" itemprop="headline">Sou DOM, <span>Shadow DOM</span></a></h1>
+					</header>
+					<section itemprop="articleBody">
+						
+						<figure>
+							<img itemprop="thumbnailUrl" src="/images/posts/2012-07-17-shadow-dom.jpg" class="post-image" alt="Sou DOM, Shadow DOM" title="Sou DOM, Shadow DOM" width="700" height="432" />
+						</figure>
+						
+						<style>
+.back {
+	transition: fill 0.3s ease;
+	-o-transition: fill 0.3s ease;
+	-ms-transition: fill 0.3s ease;
+	-moz-transition: fill 0.3s ease;
+	-khtml-transition: fill 0.3s ease;
+	-webkit-transition: fill 0.3s ease;
+}
+.node:hover .back {
+	fill: #ccc;
+}
+.node:hover rect.back {
+	fill: #999;
+}
+</style>
+<p>Shadow DOM é uma especificação (ainda em status de rascunho) que faz parte do recente trabalho <strong><a href='http://www.w3.org/TR/components-intro/'>Web Components</a></strong> da W3C, que é composto por mais 3 partes: <em>templates</em>, <em>decorators</em> e <em>custom elements</em> – falaremos mais sobre estes novíssimos recursos futuramente por aqui no Loop Infinito. Corrijam-me se eu estiver falando besteira, mas acredito que o Web Components será um trabalho estável apenas quem sabe num suposto <strong>HTML6</strong>.</p>
+
+<p>Shadow DOM é simplesmente uma sub-árvore de elementos DOM que pode ser aninhada dentro de outro elemento (host). A diferença é que, quando um elemento qualquer possui uma shadow DOM, seus elementos filhos comuns não são renderizados, em vez disso, o conteúdo da shadow DOM que é renderizado.</p>
+
+<p>Na verdade, a shadow DOM existe desde os primórdios da web, e sempre esteve presente em nossos navegadores para que a componentização viesse a se tornar possível. A novidade aqui é que este recurso agora torna-se acessível a nós, desenvolvedores. Agora vamos entender como funciona.</p>
+
+<h2 id='viso_estrutural'>Visão estrutural</h2>
+<svg class='img' height='432px' width='700px'>
+	<g>
+		<line fill='none' stroke='#CCCCCC' stroke-miterlimit='10' x1='169.896' x2='169.457' y1='0' y2='86.315' />
+		<line fill='none' stroke='#CCCCCC' stroke-miterlimit='10' x1='229.795' x2='230.444' y1='227.043' y2='347.14' />
+		<line fill='none' stroke='#CCCCCC' stroke-miterlimit='10' x1='109.999' x2='149.853' y1='227.043' y2='347.14' />
+		<line fill='none' stroke='#CCCCCC' stroke-miterlimit='10' x1='109.999' x2='70.352' y1='227.043' y2='347.14' />
+		<line fill='none' stroke='#CCCCCC' stroke-miterlimit='10' x1='169.897' x2='231.533' y1='108.334' y2='228.431' />
+		<line fill='none' stroke='#CCCCCC' stroke-miterlimit='10' x1='169.897' x2='108.469' y1='108.334' y2='228.431' />
+		<g class='node'>
+			<circle class='back' cx='170.222' cy='102.308' fill='#EEEEEE' r='31.99' stroke='#CCCCCC' stroke-miterlimit='10' />
+			<text enable-background='new' transform='matrix(1 0 0 1 148.6968 101.5366)'>
+				<tspan font-size='12.3385' x='0' y='0'>shadow</tspan>
+				<tspan font-size='12.3385' x='9.939' y='14.806'>host</tspan>
+			</text>
+		</g>
+		<g class='node'>
+			<circle class='back' cx='109.541' cy='227.737' fill='#EEEEEE' r='31.99' stroke='#CCCCCC' stroke-miterlimit='10' />
+			<text font-size='12.3385' transform='matrix(1 0 0 1 96.2451 232.4102)'>child</text>
+		</g>
+		<g class='node'>
+			<circle class='back' cx='230.427' cy='227.737' fill='#EEEEEE' r='31.99' stroke='#CCCCCC' stroke-miterlimit='10' />
+			<text font-size='12.3385' transform='matrix(1 0 0 1 217.1318 232.4102)'>child</text>
+		</g>
+		<g class='node'>
+			<circle class='back' cx='71.423' cy='346.445' fill='#EEEEEE' r='25.184' stroke='#CCCCCC' stroke-miterlimit='10' />
+			<text font-size='9.7132' transform='matrix(1 0 0 1 60.9565 350.124)'>child</text>
+		</g>
+		<g class='node'>
+			<circle class='back' cx='147.658' cy='346.445' fill='#EEEEEE' r='25.184' stroke='#CCCCCC' stroke-miterlimit='10' />
+			<text font-size='9.7132' transform='matrix(1 0 0 1 137.1914 350.124)'>child</text>
+		</g>
+		<g class='node'>
+			<circle class='back' cx='230.427' cy='346.445' fill='#EEEEEE' r='25.184' stroke='#CCCCCC' stroke-miterlimit='10' />
+			<text font-size='9.7132' transform='matrix(1 0 0 1 219.9609 350.124)'>child</text>
+		</g>
+	</g>
+	<g>
+		<rect fill='#EEEEEE' height='349' stroke='#CCCCCC' stroke-miterlimit='10' width='276' x='386.5' y='64.5' />
+		<rect fill='#EEEEEE' height='348' stroke='#CCCCCC' stroke-miterlimit='10' width='277' x='379.5' y='58.5' />
+		<rect fill='#EEEEEE' height='349' stroke='#CCCCCC' stroke-miterlimit='10' width='276' x='373.5' y='51.5' />
+		<line fill='none' stroke='#ABACAD' stroke-miterlimit='10' x1='523.845' x2='585.481' y1='110.512' y2='230.608' />
+		<line fill='none' stroke='#ABACAD' stroke-miterlimit='10' x1='523.845' x2='462.417' y1='110.512' y2='230.608' />
+		<line fill='none' stroke='#ABACAD' stroke-miterlimit='10' x1='463.946' x2='503.801' y1='229.221' y2='349.317' />
+		<line fill='none' stroke='#ABACAD' stroke-miterlimit='10' x1='463.946' x2='424.299' y1='229.221' y2='349.317' />
+		<g class='node'>
+			<rect class='back' fill='#CACBCB' height='49' stroke='#9D9D9E' stroke-miterlimit='10' width='49' x='478.5' y='323.5' />
+			<text font-size='9.7132' transform='matrix(1 0 0 1 493.3174 352.3027)'>child</text>
+		</g>
+		<g class='node'>
+			<rect class='back' fill='#CACBCB' height='49' stroke='#9D9D9E' stroke-miterlimit='10' width='49' x='400.5' y='323.5' />
+			<text font-size='9.7132' transform='matrix(1 0 0 1 414.9043 352.3027)'>child</text>
+		</g>
+		<g class='node'>
+			<rect class='back' fill='#CACBCB' height='61' stroke='#9D9D9E' stroke-miterlimit='10' width='63' x='552.5' y='197.5' />
+			<text font-size='12.3385' transform='matrix(1 0 0 1 571.0811 232.4102)'>child</text>
+		</g>
+		<g class='node'>
+			<rect class='back' fill='#CACBCB' height='61' stroke='#9D9D9E' stroke-miterlimit='10' width='62' x='432.5' y='197.5' />
+			<text font-size='12.3385' transform='matrix(1 0 0 1 450.1943 232.4102)'>child</text>
+		</g>
+		<g class='node'>
+			<rect class='back' fill='#CACBCB' height='61' stroke='#9D9D9E' stroke-miterlimit='10' width='62' x='493.5' y='73.5' />
+			<text enable-background='new' transform='matrix(1 0 0 1 502.6455 101.5366)'>
+				<tspan font-size='12.3385' x='0' y='0'>shadow</tspan>
+				<tspan font-size='12.3385' x='10.969' y='14.806'>root</tspan>
+			</text>
+		</g>
+	</g>
+	<g>
+		<rect fill='#FFFFFF' height='23' stroke='#ABACAD' stroke-miterlimit='10' width='112' x='113.5' y='25.5' />
+		<text font-size='16' transform='matrix(1 0 0 1 120.9229 41.4062)'>document tree</text>
+	</g>
+	<text font-size='16' transform='matrix(1 0 0 1 374.5 43.5625)'>Sub-árvores shadow DOM</text>
+	<g>
+		<line fill='none' stroke='#717375' stroke-miterlimit='10' x1='204.39' x2='206.89' y1='102.308' y2='102.301' />
+		<line fill='none' stroke='#717375' stroke-dasharray='4.9928,4.9928' stroke-miterlimit='10' x1='211.882' x2='478.998' y1='102.288' y2='101.569' />
+		<line fill='none' stroke='#717375' stroke-miterlimit='10' x1='481.495' x2='483.995' y1='101.562' y2='101.556' />
+		<polygon fill='#717375' points='482.549,106.546 491.171,101.537 482.522,96.574' />
+	</g>
+</svg>
+<p>Como mencionei anteriormente, uma shadow DOM pode ser aninhada a qualquer elemento, chamaremos este elemento de <strong>host</strong>. E qualquer elemento (host) pode ter várias shadow DOMs (figura acima). No momento da renderização, o conteúdo dentro de host é substituído pelo conteúdo da shadow DOM (figura abaixo). Os lugares onde os elementos da sub-árvore shadow são inseridos em host são chamados de <em>pontos de inserção</em>. No exemplo abaixo, temos 2 pontos de inserção (os 2 filhos de shadow host).</p>
+<svg class='img' height='432px' width='700px'>
+	<line fill='none' stroke='#CCCCCC' stroke-miterlimit='10' x1='350.623' x2='350.149' y1='0' y2='93.175' />
+	<line fill='none' stroke='#CCCCCC' stroke-miterlimit='10' x1='350.19' x2='445.624' y1='101.077' y2='225.323' />
+	<line fill='none' stroke='#CCCCCC' stroke-miterlimit='10' x1='350.19' x2='255.036' y1='101.077' y2='225.323' />
+	<g class='node'>
+		<circle class='back' cx='350.629' cy='92.967' fill='#EEEEEE' r='43.06' stroke='#CCCCCC' stroke-miterlimit='10' />
+		<text enable-background='new' transform='matrix(1 0 0 1 321.6553 91.9287)'>
+			<tspan font-size='16.6081' x='0' y='0'>shadow</tspan>
+			<tspan font-size='16.6081' x='13.378' y='19.93'>host</tspan>
+		</text>
+	</g>
+	<line fill='none' stroke='#ABACAD' stroke-miterlimit='10' x1='258.371' x2='324.485' y1='233.117' y2='369.832' />
+	<line fill='none' stroke='#ABACAD' stroke-miterlimit='10' x1='258.371' x2='192.534' y1='233.117' y2='369.832' />
+	<g class='node'>
+		<rect class='back' fill='#CACBCB' height='66' stroke='#9D9D9E' stroke-miterlimit='10' width='66' x='290.5' y='334.5' />
+		<text enable-background='new' transform='matrix(1 0 0 1 301.6548 365.8535)'>
+			<tspan font-size='13.0743' x='0' y='0'>shadow</tspan>
+			<tspan font-size='13.0743' x='8.72' y='15.689'>child</tspan>
+		</text>
+	</g>
+	<g class='node'>
+		<rect class='back' fill='#CACBCB' height='66' stroke='#9D9D9E' stroke-miterlimit='10' width='66' x='160.5' y='334.5' />
+		<text enable-background='new' transform='matrix(1 0 0 1 171.168 365.8535)'>
+			<tspan font-size='13.0743' x='0' y='0'>shadow</tspan>
+			<tspan font-size='13.0743' x='8.721' y='15.689'>child</tspan>
+		</text>
+	</g>
+	<g class='node'>
+		<rect class='back' fill='#CACBCB' height='83' stroke='#9D9D9E' stroke-miterlimit='10' width='85' x='402.5' y='189.5' />
+		<text enable-background='new' transform='matrix(1 0 0 1 416.4385 227.4121)'>
+			<tspan font-size='16.6081' x='0' y='0'>shadow</tspan>
+			<tspan font-size='16.6081' x='11.078' y='19.93'>child</tspan>
+		</text>
+	</g>
+	<g class='node'>
+		<rect class='back' fill='#CACBCB' height='83' stroke='#9D9D9E' stroke-miterlimit='10' width='82' x='216.5' y='189.5' />
+		<text enable-background='new' transform='matrix(1 0 0 1 228.7827 227.4121)'>
+			<tspan font-size='16.6081' x='0' y='0'>shadow</tspan>
+			<tspan font-size='16.6081' x='11.078' y='19.93'>child</tspan>
+		</text>
+	</g>
+	<g>
+		<polyline fill='none' points='523.5,418 523.5,420.5 521,420.5' stroke='#CCCCCC' stroke-miterlimit='10' />
+		<line fill='none' stroke='#CCCCCC' stroke-dasharray='5,5' stroke-miterlimit='10' x1='516' x2='138' y1='420.5' y2='420.5' />
+		<polyline fill='none' points='136,420.5 133.5,420.5 133.5,418' stroke='#CCCCCC' stroke-miterlimit='10' />
+		<line fill='none' stroke='#CCCCCC' stroke-dasharray='5,5' stroke-miterlimit='10' x1='133.5' x2='133.5' y1='413' y2='174' />
+		<polyline fill='none' points='133.5,171 133.5,168.5 136,168.5' stroke='#CCCCCC' stroke-miterlimit='10' />
+		<line fill='none' stroke='#CCCCCC' stroke-dasharray='5,5' stroke-miterlimit='10' x1='141' x2='518' y1='168.5' y2='168.5' />
+		<polyline fill='none' points='521,168.5 523.5,168.5 523.5,171' stroke='#CCCCCC' stroke-miterlimit='10' />
+		<line fill='none' stroke='#CCCCCC' stroke-dasharray='5,5' stroke-miterlimit='10' x1='523.5' x2='523.5' y1='176' y2='415' />
+	</g>
+	<text transform='matrix(1 0 0 1 454.957 391.7188)'>
+		<tspan fill='#616162' font-size='12' x='0' y='0'>Sub-árvore</tspan>
+		<tspan fill='#616162' font-size='12' x='-12.792' y='14.4'>shadow DOM</tspan>
+	</text>
+</svg>
+<h2 id='encapsulamento_faz_todo_o_sentido'>Encapsulamento faz todo o sentido</h2>
+
+<p>Uma das grandes razões para a implementação da Shadow DOM pelos navegadores é para poder manter seus widgets inalteráveis, isolando-os de todo tipo de acesso – ou seja, mantendo tudo dentro de uma <strong>caixa preta</strong>.</p>
+
+<p>Sabe esses componentes de interface que usamos em nossas aplicações como <code>&lt;select&gt;</code> (<em>combo box</em>) e <code>&lt;input&gt;</code> dos tipos <code>text</code>, <code>range</code>, <code>number</code>, <code>color</code>, <code>datetime</code> etc? Pois bem, estes componentes não passam de elementos HTML estilizados com CSS de acordo com o estilo de cada plataforma, acredite. A grande diferença é o <strong>encapsulamento</strong>.</p>
+
+<p>Por exemplo, sabemos que o elemento <code>&lt;input type=&quot;range&quot;&gt;</code> se parece com o seguinte:</p>
+<figure class='content'>
+	<img alt='input range' src='/images/posts/2012-07-17-range.jpg' title='input range' />
+</figure>
+<p>O input <code>range</code> visivelmente é composto basicamente por 2 partes: uma trilha e um botão – o qual é possível deslizar pela trilha.</p>
+
+<p>Sabemos que não temos acesso aos elementos internos do componente/widget, não podemos manipula-los e nem mesmo estiliza-los, justamente porque <strong>não temos acesso</strong> a shadow DOM do elemento. Para ilustrar este exemplo, suponha que tenhamos:</p>
+<div class='highlight'><pre><code class='html'><span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&quot;range&quot;</span> <span class='na'>id=</span><span class='s'>&quot;slider&quot;</span> <span class='nt'>/&gt;</span>
+</code></pre></div>
+<p>Se tentarmos obter o primeiro elemento filho de <code>#slider</code> via JavaScript:</p>
+<div class='highlight'><pre><code class='javascript'><span class='kd'>var</span> <span class='nx'>slider</span> <span class='o'>=</span> <span class='nb'>document</span><span class='p'>.</span><span class='nx'>getElementsById</span><span class='p'>(</span> <span class='s2'>&quot;slider&quot;</span> <span class='p'>)</span>
+<span class='nx'>console</span><span class='p'>.</span><span class='nx'>log</span><span class='p'>(</span> <span class='nx'>slider</span><span class='p'>.</span><span class='nx'>firstChild</span> <span class='p'>)</span> <span class='c1'>// retorna null</span>
+</code></pre></div>
+<p>Nada é retornado, mas como isto é possível, então? <strong>Isso é a shadow DOM em ação</strong>. Apenas precisamos incluir <code>&lt;input type=&quot;range&quot;&gt;</code> em nosso código e o navegador se vira com o resto, ou seja, com a montagem estrutural e com a renderização do componente por completo.</p>
+
+<p>Este tipo de coisa acontece muito, os componentes são encapsulados em apenas um elemento (definido no código) que age como uma caixa preta, mas o que rola por baixo dos panos é algo bem mais complexo.</p>
+<figure class='content right'>
+	<img alt='Rolling Stones' src='/images/posts/2012-07-17-video.jpg' title='Rolling Stones' />
+</figure>
+<p>O elemento <code>&lt;input type=&quot;range&quot;&gt;</code> é bem simples em relação a outros, como por exemplo <code>&lt;audio&gt;</code> e <code>&lt;video&gt;</code>, que possuem controles de play/pause, volume, trilha, rewind, forward, display de tempo, etc. E no caso de <code>&lt;video&gt;</code>, ainda há o display de mídia (onde toca o vídeo) e um botão para tela cheia.</p>
+
+<h2 id='mais_liberdade'>Mais liberdade</h2>
+
+<p>Imagine poder ter acesso aos elementos dos componentes e poder modificar as propriedades inerentes a apresentação de qualquer um deles. Isto se torna possível com a abertura da shadow DOM.</p>
+
+<p>Quando o assunto é design de UI, quem nunca desejou poder alterar os estilos dos componentes, de modo que estes apareceriam sempre de forma igual independente de plataforma? Por exemplo, poder estilizar o player de vídeo mostrado acima com as cores da sua aplicação.</p>
+
+<h2 id='tente_voc'>Tente você</h2>
+
+<p>Com o navegador Google Chrome <strong>é possível visualizar</strong> a shadow DOM de vários elementos de formulário pelo <em>Web Inspector</em>. As instruções para tornar isto possível estão <a href='http://chemicaloliver.net/programming/inspecting-the-shadow-dom-in-google-chrome-inspector/'>neste post</a> (em inglês).</p>
+
+<p>Tentei usar a <a href='http://www.w3.org/TR/shadow-dom/#api-shadow-root'>ShadowRoot API</a> para implementar algum exemplo customizado de widget aqui no post, mas infelizmente esta API ainda não está disponível – nem nas versões mais novas do Google Chrome Canary e Webkit. Então, por enquanto ficaremos só na vontade, e assim que soubermos de algo, prometo fazer um post sobre criação de widgets com a Shadow DOM.</p>
+
+<p>No próximo post falarei sobre estilização de widgets de formulário com CSS através de novos seletores e propriedades que permitem o alcance aos estilos da shadow DOM.</p>
+<aside class='fonte'>
+	<h3>Referência</h3>
+	<ul>
+		<li>→<a alt='Shadow DOM' href='http://www.w3.org/TR/components-intro/#shadow-dom-section' title='Shadow DOM'>Web Components: Shadow DOM Section</a> <span class='comment'>//W3C</span></li>
+		<li>→<a alt='ShadowRoot API' href='http://www.w3.org/TR/shadow-dom/#api-shadow-root' title='ShadowRoot API'>ShadowRoot API</a> <span class='comment'>//W3C</span></li>
+		<li>→<a alt='What the Heck is Shadow DOM?' href='http://glazkov.com/2011/01/14/what-the-heck-is-shadow-dom/' title='What the Heck is Shadow DOM?'>What the Heck is Shadow DOM?</a></li>
+		<li>→<a alt='Inspecting the Shadow DOM in Google Chrome Inspector' href='http://chemicaloliver.net/programming/inspecting-the-shadow-dom-in-google-chrome-inspector/' title='Inspecting the Shadow DOM in Google Chrome Inspector'>Inspecting the Shadow DOM in Google Chrome Inspector</a></li>
+	</ul>
+</aside>
+					</section>
+				</article>
+			</section>
+
+		</section><!-- end #content -->
+
+	</div><!-- end #wrapper -->
+
+</body>
+</html>

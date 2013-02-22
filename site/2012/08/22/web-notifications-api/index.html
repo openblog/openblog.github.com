@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+	<meta charset="UTF-8" />
+	
+		<title>Web Notifications API | Open Blog</title>
+	
+	
+		<meta name="author" content="Caio Gondim" />
+	
+	
+		<meta name="keywords" content="web-notification, notificações, notificações-web, safari-6, chrome, notification-center, api, html5, webkit
+" />
+	
+	
+		<meta name="description" content="A Web Notifications é uma nova API para enviarmos notificações ao usuário fora do contexto de uma página web. Para quem usa Mac, imaginem que Web Notifications é o Growl para a web. Uma API simples que nos dá acesso a features antes só disponíveis para aplicações nativas." />
+	
+	<meta name="language" content="pt" />
+	<meta name="content-language" content="pt-BR" />
+	<meta name="robots" content="all" />
+	<meta name="distribution" content="Global" />
+	<meta name="resource-type" content="document" />
+
+	<link rel="icon" type="image/png" href="/assets/img/favicon.png" />
+    <link href="/assets/css/screen.css?2013-02-22" media="screen, projection" rel="stylesheet" type="text/css" />
+    <!--[if IE]>
+    	<link href="/assets/css/ie.css?2013-02-22" media="screen, projection" rel="stylesheet" type="text/css" />
+  	<![endif]-->
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+
+	<div id="wrapper">
+		
+		<header id="main">
+	<h1><a href="/" id="logo">.openBlog()</a></h1>
+</header>
+		
+		<section id="content">
+
+			<section class="post-container" itemscope itemtype="http://schema.org/BlogPosting">
+				<span class="hidden" itemprop="publisher">Open Blog</span>
+				<article>
+					<header>
+						<h1><a href="/2012/08/22/web-notifications-api/" itemprop="headline">Web Notifications API</a></h1>
+					</header>
+					<section itemprop="articleBody">
+						
+						<figure>
+							<img itemprop="thumbnailUrl" src="/images/posts/2012-08-17-web-notification-api.jpg" class="post-image" alt="Web Notifications API" title="Web Notifications API" width="700" height="432" />
+						</figure>
+						
+						<p>A <em>Web Notifications</em> é uma nova API para enviarmos notificações ao usuário fora do contexto de uma página <em>web</em>. Para quem usa Mac, imaginem que <em>Web Notifications</em> é o <a href='http://growl.info/'>Growl</a> para a <em>web</em>. Essa <a href='http://pt.wikipedia.org/wiki/API'>API</a> ainda não está padronizada, mas já existe um grupo no <a href='http://www.w3.org/TR/notifications/'>W3C</a> trabalhando nela e alguns navegadores que a suportam. O que significa que já podemos nos divertir um pouco.</p>
+<table class='support'>
+    <thead>
+        <tr>
+            <th class='subject'><h2>Suporte</h2></th>
+            <th class='browser chrome'><div class='i' /></th>
+            <th class='browser safari'><div class='i' /></th>
+            <th class='browser firefox'><div class='i' /></th>
+            <th class='browser ie'><div class='i' /></th>
+            <th class='browser opera'><div class='i' /></th>
+        </tr>
+        <tr>
+            <th />
+            <th class='base' colspan='5' />
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class='property'><code>window.Notification</code></td>
+            <td>19.0</td>
+            <td>6.0</td>
+            <td>--</td>
+            <td>--</td>
+            <td>--</td>
+        </tr>
+    </tbody>
+</table><p class='obs'><strong>OBS.:</strong> Todos os exemplos desse post foram
+testados na versão <strong>6.0 do Safari para Mac</strong>. A versão
+<strong>22.0.1229.8 dev do Chrome</strong>, que eu inicialmente usei como
+teste, estava dando <strong>crash</strong> ao pedir permissão para mostrarmos
+notificações na página atual.</p>
+<h2 id='pedindo_permisso'>Pedindo permissão</h2>
+
+<p>O primeiro passo é verificar se temos permissão para mostrar notificações no dominío atual. Podemos obter o status da nossa permissão através do método <code>Notification.permissionLevel</code> que nos retorna um dos seguintes valores:</p>
+
+<ul>
+<li><code>granted</code>: Usuário já nos deu permissão para mostrar notificações no site atual;</li>
+
+<li><code>denied</code>: Usuário negou a permissão para mostrar notificações;</li>
+
+<li><code>default</code>: Usuário ainda não especificou se aprova notificações deste site.</li>
+</ul>
+
+<p>Caso o status da permissão esteja como <em>default</em>, podemos então pedir permissão ao usuário através do método <code>Notification.requestPermission</code>. Este método dispara um <em>dialog</em> no navegador perguntando se o usuário permite o uso de notificações no domínio atual. Após o usuário permitir ou não, a função de <em>callback</em> é executada.</p>
+<div class='highlight'><pre><code class='javascript'><span class='nx'>$</span><span class='p'>(</span><span class='s1'>&#39;.pedir-permissao&#39;</span><span class='p'>).</span><span class='nx'>click</span><span class='p'>(</span><span class='kd'>function</span><span class='p'>(</span><span class='nx'>event</span><span class='p'>)</span> <span class='p'>{</span>
+    <span class='c1'>// testando se seu navegador suporta Web Notifications</span>
+    <span class='k'>if</span> <span class='p'>(</span><span class='o'>!</span><span class='nb'>window</span><span class='p'>.</span><span class='nx'>Notification</span><span class='p'>)</span> <span class='p'>{</span>
+        <span class='nx'>alert</span><span class='p'>(</span><span class='s1'>&#39;Seu navegador não suporta Web Notifications&#39;</span><span class='p'>)</span>
+        <span class='k'>return</span>
+    <span class='p'>}</span>
+    <span class='c1'>// usuário ainda não especificou se aprova notificações desse site</span>
+    <span class='c1'>// então pedimos permissão</span>
+    <span class='k'>if</span> <span class='p'>(</span><span class='nx'>Notification</span><span class='p'>.</span><span class='nx'>permissionLevel</span><span class='p'>()</span> <span class='o'>===</span> <span class='s1'>&#39;default&#39;</span><span class='p'>)</span> <span class='p'>{</span>
+        <span class='nx'>Notification</span><span class='p'>.</span><span class='nx'>requestPermission</span><span class='p'>(</span><span class='kd'>function</span><span class='p'>()</span> <span class='p'>{</span>
+            <span class='nx'>alert</span><span class='p'>(</span><span class='s1'>&#39;Função de callback&#39;</span><span class='p'>)</span>
+        <span class='p'>})</span>
+    <span class='c1'>// já foi dada a permissão</span>
+    <span class='p'>}</span> <span class='k'>else</span> <span class='k'>if</span> <span class='p'>(</span><span class='nx'>Notification</span><span class='p'>.</span><span class='nx'>permissionLevel</span><span class='p'>()</span> <span class='o'>===</span> <span class='s1'>&#39;granted&#39;</span><span class='p'>)</span> <span class='p'>{</span>
+        <span class='nx'>alert</span><span class='p'>(</span><span class='s1'>&#39;Usuário já havia dado permissão&#39;</span><span class='p'>)</span>
+    <span class='c1'>// usuário negou a permissão</span>
+    <span class='p'>}</span> <span class='k'>else</span> <span class='k'>if</span> <span class='p'>(</span><span class='nx'>Notification</span><span class='p'>.</span><span class='nx'>permissionLevel</span><span class='p'>()</span> <span class='o'>===</span> <span class='s1'>&#39;denied&#39;</span><span class='p'>)</span> <span class='p'>{</span>
+        <span class='nx'>alert</span><span class='p'>(</span><span class='s1'>&#39;Usuário negou permissão&#39;</span><span class='p'>)</span>
+    <span class='p'>}</span>
+<span class='p'>}</span>
+<span class='p'>})</span>
+</code></pre></div>
+<p>Clique no botão abaixo e verifique o <em>dialog</em> que aparecerá pedindo permissão para o uso de notificações no site atual. E lembrem de conceder permissão para continuarmos visualizando outros exemplos mais avançados do post.</p>
+<div class='img example bordered'>
+    <input class='pedir-permissao center' type='button' value='Pedir permissão' />
+    <script>
+        $('.pedir-permissao').click(function(event) {
+            if (!window.Notification) {
+                alert('Seu navegador não suporta Web Notifications')
+                return
+            }
+
+            if (Notification.permissionLevel() === 'default') {
+                Notification.requestPermission(function() {
+                    alert('Função de callback')
+                })
+            } else if (Notification.permissionLevel() === 'granted') {
+                alert('Usuário já havia dado permissão')
+            } else if (Notification.permissionLevel() === 'denied') {
+                alert('Usuário negou permissão')
+            }
+        })
+    </script>
+</div>
+<p>A imagem abaixo mostra o <em>dialog</em> de permissão do Safari 6.0 no Mac.</p>
+<p><img alt='' height='200' src='/images/posts/2012-08-22-pedindo-permissao.jpg' style='height: 200px !important;' width='700' /></p>
+<p>Caso queiram mudar a permissão de um site posteriormente, no Safari basta ir no menu Preferências → Notificações.</p>
+<p><img alt='' height='200' src='/images/posts/2012-08-22-safari-notificacoes.jpg' style='height: 200px !important;' width='700' /></p>
+<h2 id='enviando_uma_notificao'>Enviando uma notificação</h2>
+
+<p>Agora que o usuário nos cedeu permissão, já podemos criar nossa primeira notificação. No código abaixo temos um exemplo básico de uma <em>Web Notification</em>.</p>
+<div class='highlight'><pre><code class='javascript'><span class='kd'>var</span> <span class='nx'>notificationBasica</span> <span class='o'>=</span> <span class='k'>new</span> <span class='nx'>Notification</span><span class='p'>(</span><span class='s1'>&#39;Título da Notificação&#39;</span><span class='p'>)</span>
+<span class='nx'>notificationBasica</span><span class='p'>.</span><span class='nx'>show</span><span class='p'>()</span>
+</code></pre></div>
+<p>Criamos um novo objeto do tipo <code>Notification</code> passando o título da notificação como argumento. Depois de criado, basta executar o método <code>show</code> para que a notificação seja enviada. O botão abaixo executa este exemplo.</p>
+<div class='img bordered example'>
+    <input class='notificacao-basica center' type='button' value='Disparar notificação' />
+    <script>
+        $('.notificacao-basica').click(function() {
+            if (!window.Notification) {
+                alert('Seu navegador não suporta Web Notifications')
+                return
+            }
+            if (Notification.permissionLevel() !== 'granted') {
+                alert('Usuário não permitiu mostrar Web Notifications')
+                return
+            }
+
+            var notificacaoBasica = new Notification('Título da Notificação')
+            notificacaoBasica.show()
+        })
+    </script>
+</div>
+<p>O navegador deverá mostrar uma notificação parecida com a imagem abaixo</p>
+<p><img alt='' height='200' src='/images/posts/2012-08-22-notificacao-exemplo.jpg' style='height: 200px !important;' width='700' /></p>
+<p>Caso estejam utilizando o OS X Mountain Lion, todas as notificações enviadas irão também para o <em>Notification Center</em>.</p>
+<p><img alt='' height='200' src='/images/posts/2012-08-22-notification-center.jpg' style='height: 200px !important;' width='700' /></p>
+<h2 id='parmetros'>Parâmetros</h2>
+
+<p>O único paramêtro obrigatório de uma notificação é o título. Porém existem outros parâmetros opcionais que podem ser passados como um objeto. Objeto? Melhor um exemplo:</p>
+<div class='highlight'><pre><code class='javascript'><span class='kd'>var</span> <span class='nx'>notification</span> <span class='o'>=</span> <span class='k'>new</span> <span class='nx'>Notification</span><span class='p'>(</span><span class='s1'>&#39;Título da Notificação&#39;</span><span class='p'>,</span> <span class='p'>{</span>
+    <span class='nx'>body</span><span class='o'>:</span> <span class='s1'>&#39;Body da Notifição&#39;</span><span class='p'>,</span>
+    <span class='nx'>tag</span><span class='o'>:</span> <span class='s1'>&#39;novo e-mail&#39;</span><span class='p'>,</span>
+    <span class='nx'>onshow</span><span class='o'>:</span> <span class='kd'>function</span><span class='p'>(</span><span class='nx'>event</span><span class='p'>)</span> <span class='p'>{</span>
+        <span class='nx'>console</span><span class='p'>.</span><span class='nx'>log</span><span class='p'>(</span><span class='s1'>&#39;evento onshow&#39;</span><span class='p'>)</span>
+    <span class='p'>},</span>
+    <span class='nx'>onclick</span><span class='o'>:</span> <span class='kd'>function</span><span class='p'>(</span><span class='nx'>event</span><span class='p'>)</span> <span class='p'>{</span>
+        <span class='nx'>alert</span><span class='p'>(</span><span class='s1'>&#39;evento onclick&#39;</span><span class='p'>)</span>
+    <span class='p'>},</span>
+    <span class='nx'>onclose</span><span class='o'>:</span> <span class='kd'>function</span><span class='p'>(</span><span class='nx'>event</span><span class='p'>)</span> <span class='p'>{</span>
+        <span class='nx'>console</span><span class='p'>.</span><span class='nx'>log</span><span class='p'>(</span><span class='s1'>&#39;evento onclose&#39;</span><span class='p'>)</span>
+    <span class='p'>},</span>
+    <span class='nx'>onerror</span><span class='o'>:</span> <span class='kd'>function</span><span class='p'>(</span><span class='nx'>event</span><span class='p'>)</span> <span class='p'>{</span>
+        <span class='nx'>console</span><span class='p'>.</span><span class='nx'>log</span><span class='p'>(</span><span class='s1'>&#39;evento onerror&#39;</span><span class='p'>)</span>
+    <span class='p'>}</span>
+<span class='p'>}</span>
+<span class='p'>})</span>
+<span class='nx'>notification</span><span class='p'>.</span><span class='nx'>show</span><span class='p'>()</span>
+</code></pre></div>
+<p>Esses são todos os parâmetros aceitos pelas notifications no Safari e Chrome no Mac:</p>
+
+<ul>
+<li><code>body</code>: Mensagem mais detalhada sobre a notificação;</li>
+
+<li><code>tag</code>: Identificador da notificação. Impede que o usuário receba várias notificações caso tenha várias abas com seu site aberto;</li>
+
+<li><code>onshow</code>: Evento disparado quando a notificação é exibida;</li>
+
+<li><code>onclick</code>: Evento disparado no <em>click</em> da notificação. Com ele podemos, por exemplo, mostrar o novo e-mail ao usuário no <em>click</em> da notificação;</li>
+
+<li><code>onclose</code>: Evento disparado quando a notificação é ignorada ou fechada no <em>Notification Center</em>;</li>
+
+<li><code>onerror</code>: Evento disparado caso a notificação não possa ser mostrada ao usuário. Disparado quando o nível de permissão está setado como <em>default</em> ou <em>denied</em>.</li>
+</ul>
+
+<p>O botão abaixo dispara essa notificação com todos os parâmetros. Observe que, diferente das outras, se dispararmos várias dessas notificações apenas a última ficará visível no <em>Notification Center</em>. Isto devido ao atributo <em>tag</em>.</p>
+<div class='img bordered example'>
+    <input class='notificacao-completa' type='button' value='Disparar notificação completa' />
+    <script>
+        $('.notificacao-completa').click(function() {
+            if (!window.Notification) {
+                alert('Seu navegador não suporta Web Notifications')
+                return
+            }
+            if (Notification.permissionLevel() !== 'granted') {
+                alert('Usuário não permitiu mostrar Web Notifications')
+                return
+            }
+            var notificacaoCompleta = new Notification('Notificação completa', {
+                body: 'Body da Notifição',
+                tag: 'novo e-mail',
+                onshow: function(event) {
+                    console.log('evento onshow')
+                },
+                onclick: function(event) {
+                    alert('evento onclick')
+                },
+                onclose: function(event) {
+                    console.log('evento onclose')
+                },
+                onerror: function(event) {
+                    console.log('evento onerror')
+                }
+            })
+            notificacaoCompleta.show()
+
+        })
+    </script>
+</div>
+<p>A <a href='http://www.w3.org/TR/notifications/'>especificação do W3C</a> define mais alguns parâmetros além dos citados acima, mas eles não são suportados pelo Safari ou Chrome e talvez nunca serão. Para não deixar muito longo o post decidi não comentar sobre eles. Mas caso queiram se aprofundar na especificação existe um link nas referências.</p>
+<aside class='fonte'>
+    <h3>Referência</h3>
+    <ul>
+        <li>→<a alt='When can I use...' href='http://caniuse.com/#search=notification' title='When can i use...'>When can i use Web Notifications</a> <span class='comment'>// When can I use...</span></li>
+        <li>→<a alt='W3C' href='http://www.w3.org/TR/notifications/' title='W3C'>Web Notifications</a> <span class='comment'>// W3C</span></li>
+        <li>→<a alt='W3C' href='https://developer.apple.com/library/safari/#documentation/AppleApplications/Conceptual/SafariJSProgTopics/Articles/SendingNotifications.html#//apple_ref/doc/uid/TP40001483-CH23-SW1' title='W3C'>Sending Notifications</a> <span class='comment'>// Apple Safari Developer Library</span></li>
+    </ul>
+</aside>
+					</section>
+				</article>
+			</section>
+
+		</section><!-- end #content -->
+
+	</div><!-- end #wrapper -->
+
+</body>
+</html>

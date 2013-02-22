@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+	<meta charset="UTF-8" />
+	
+		<title>Imagens responsivas | Open Blog</title>
+	
+	
+		<meta name="author" content="Almir Filho" />
+	
+	
+		<meta name="keywords" content="imagens reposnsivas, imagem, responsiva, responsive image, html5, html, srcset, picture element, picture, source, w3c, desktop, smartphone, tablet, adaptive images
+" />
+	
+	
+		<meta name="description" content="Hoje falaremos de um assunto bastante acalourado no momento, Imagens reponsivas. Apresentar-vos-ei várias alternativas que desenvolvedores têm encontrado para tentar resolver este problema. Falaremos também sobre os debates e propostas que já estão rolando há um certo tempo no W3C e o que vem por aí." />
+	
+	<meta name="language" content="pt" />
+	<meta name="content-language" content="pt-BR" />
+	<meta name="robots" content="all" />
+	<meta name="distribution" content="Global" />
+	<meta name="resource-type" content="document" />
+
+	<link rel="icon" type="image/png" href="/assets/img/favicon.png" />
+    <link href="/assets/css/screen.css?2013-02-22" media="screen, projection" rel="stylesheet" type="text/css" />
+    <!--[if IE]>
+    	<link href="/assets/css/ie.css?2013-02-22" media="screen, projection" rel="stylesheet" type="text/css" />
+  	<![endif]-->
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+
+	<div id="wrapper">
+		
+		<header id="main">
+	<h1><a href="/" id="logo">.openBlog()</a></h1>
+</header>
+		
+		<section id="content">
+
+			<section class="post-container" itemscope itemtype="http://schema.org/BlogPosting">
+				<span class="hidden" itemprop="publisher">Open Blog</span>
+				<article>
+					<header>
+						<h1><a href="/2012/08/13/imagens-responsivas/" itemprop="headline">Imagens <span>responsivas</span></a></h1>
+					</header>
+					<section itemprop="articleBody">
+						
+						<figure>
+							<img itemprop="thumbnailUrl" src="/images/posts/2012-08-13-imagens-responsivas.jpg" class="post-image" alt="Imagens responsivas" title="Imagens responsivas" width="700" height="432" />
+						</figure>
+						
+						<p>Web <a href='http://www.alistapart.com/articles/responsive-web-design/'><em>design responsivo</em></a> tem sido um tema <strong>muito</strong> recorrente desde 2010 até hoje graças ao grande crescimento e surgimento de dispositivos móveis de variados tamanhos (situação agravada com o surgimento de telas retina como o iPhone 4 e o novo iPad), e por isso, os desenvolvedores de <em>front-end</em> passaram a ter uma – apenas <em>uma</em>? – responsabilidade adicional: desenvolver e manter mais uma penca de layouts.</p>
+
+<p>Neste contexto, basicamente quase toda a comunidade de desenvolvimento <em>front-end</em> passou a ansiar por um &#8220;código único&#8221; que pudesse desempenhar os diversos papéis necessários em diferentes meios, ou seja, um código que fosse <strong>responsivo</strong>, e parafraseando O Senhor dos Anéis, <em>&#8220;Um código para a todos dominar&#8221;</em> =P</p>
+
+<p>Hoje sabemos que já existem diversas técnicas e melhores práticas para o desenvolvimento de interfaces responsivas – foi daí que nasceram as <a href='http://mediaqueri.es/about/' title='Media Queries'><em>media queries</em></a>, e que acabaram virando uma <a href='http://www.w3.org/TR/css3-mediaqueries/' title='Media Queries'>recomendação W3C</a> <a href='http://www.webmonkey.com/2012/06/its-official-css-media-queries-are-a-web-standard/' title='CSS Media Queries are a Web Standard'>muito recentemente</a> –, mas um problema que ainda persiste sem uma solução adequada (leia-se: padronizada) é a questão das <strong>imagens responsivas</strong>.</p>
+
+<p>Hoje apresentar-vos-ei não uma solução, mas várias alternativas que desenvolvedores têm encontrado para tentar resolver este problema. Falaremos também sobre os debates e propostas que já estão rolando há um certo tempo no <a href='http://www.w3.org/community/respimg/' title='Responsive Images Community Group'>Grupo da Comunidade de Imagens Responsivas</a> (em inglês) do W3C.</p>
+
+<h2 id='o_problema'>O problema</h2>
+
+<p>Por mais otimizadas que sejam as imagens de um site para desktops, na maioria das vezes estas imagens ainda são bastante pesadas para uma conexão móvel, e imagens otimizadas para mobile são de demasiada baixa qualidade para visualizadores de desktop. Isso sem contar as diferentes resoluções de monitores desktop que tempos hoje em dia no mercado, acredito que a resolução 800x600px já tenha morrido há algum tempo, mas a 1024x768px ainda vai durar um bom tempo por ai.</p>
+
+<p>Os monitores full HD já estão em cena há algum tempo também, e logo de cara, querer comparar uma tela de 1024px de largura com uma de 1920px revela uma enorme discrepância, isto <strong>apenas considerando as telas desktop</strong>, para não mencionarmos as dimensões maiores que full HD (como por exemplo o novo iPad Retina e o novo Macbook Pro 15,4&#8221; Retina que tem 2880x1800px) e os dispositivos móveis como celulares e tablets – cada qual com sua variação de tamanhos.</p>
+<figure>
+	<img alt='' src='/images/posts/2012-08-13-imagens-responsivas1.jpg' />
+</figure>
+<p>Então, diante desses fatos, como fazer com que uma imagem na minha aplicação web possa ser exibida com a qualidade ideal em toda essa gama de dispositivos sem ocasionar um enorme desperdício de banda? E pior ainda, a <strong>experiência do usuário</strong> que utiliza minha aplicação ou visita minha página através de um celular acaba indo <strong>pro lixo</strong> pela grande demora no download de imagens, e talvez eu acabe perdendo usuários/clientes por isso.</p>
+
+<h2 id='o_ideal'>O ideal</h2>
+
+<p>Bem, o ideal, <strong>IDEAL mesmo</strong> seria que não precisássemos ter nenhum trabalho extra pra isso, que o servidor pudesse identificar a resolução (ou a velocidade da banda) do usuário e, dinamicamente gerar uma imagem novinha em folha para aquela determinada configuração. <strong>Mas é claro que isto não acontece</strong>, e mesmo assim, seria totalmente inviável (pelo menos hoje em dia). Coitado dos servidores (ou do nosso bolso).</p>
+
+<h2 id='o_ideal_cabvel'>O ideal cabível</h2>
+
+<p>Então, se tratando de imagens de bitmap – pois não temos este problema com imagens vetorizadas como SVG –, a solução ideal parece ser bem simples: servir uma imagem de tamanho diferente para cada grupo de resoluções, onde cada uma destas imagens seriam e adequadas para uma certa gama de dispositivos.</p>
+
+<p>Por exemplo: Podemos considerar um imagem que queremos servir de forma responsiva tanto para desktops quanto para celulares. Poderíamos considerar 3 diferentes tamanhos para esta imagem para os determinados dispositivos:</p>
+
+<ul>
+<li>320px - Smartphones com resolução padrão;</li>
+
+<li>1024px - iPhone Retina (smartphones com resoluções altas), tablets e desktops com resolução padrão;</li>
+
+<li>1600px - iPad Retina (tablets com resoluções altas)Desktops de alta resolução.</li>
+</ul>
+
+<p>Com isto, já teríamos um uso mais optimizado da distribuição dessa imagem, melhorando a experiência do usuário nos 3 exemplos.</p>
+
+<h3 id='o_que_mudaria'>O que mudaria</h3>
+
+<p>O que mudaria para nós, desenvolvedores? Acho que duas coisas: 1) teríamos que disponibilizar cópias em tamanhos diferentes da mesma imagem. No caso do exemplo acima seriam 3 de cada. 2) haveria alguma mudança na marcação, ou seja, alguma marcação especial no nosso código HTML. (Veremos mais adiante que isso realmente será necessário.)</p>
+
+<h2 id='_solues_atuais'><del>Gambiarras</del> Soluções atuais</h2>
+
+<p>Sabemos que ainda não há padronização para isso, mas <strong>o problema é atual</strong>. Há um monte de técnicas que já tentam lidar com esse problema, isto é, soluções que nos ajudam a servir a imagem correta para cada ocasião. Todas elas trabalham de uma forma um pouco diferente uma da outra, e dependendo dos seus requisitos, é possível fazer a melhor escolha de acordo com o que você precisa para o seu projeto. Abaixo coloquei uma lista de 8 dessas técnicas com seus respectivos links caso você queira saber mais sobre cada uma delas.</p>
+
+<ul>
+<li><a href='http://filamentgroup.com/lab/responsive_images_experimenting_with_context_aware_image_sizing/' title='Responsive Images'>Responsive images</a> (Filament Group)</li>
+
+<li><a href='http://adaptive-images.com/' title='Adaptive Images'>Adaptive Images</a></li>
+
+<li><a href='https://github.com/teleject/hisrc' title='HiSRC'>HiSRC</a></li>
+
+<li><a href='https://github.com/scottjehl/picturefill' title='Picturefill'>Picturefill</a></li>
+
+<li><a href='https://github.com/joshje/Responsive-Enhance' title='Image Enhance'>Responsive Enhance</a></li>
+
+<li><a href='http://www.sencha.com/products/io' title='Sencha.IO'>Sencha.IO</a></li>
+
+<li><a href='https://github.com/stowball/jQuery-rwdImages' title='rwdImages'>rwdImages</a></li>
+
+<li><a href='https://github.com/adamdbradley/foresight.js' title='Foresight.js'>Foresight.js</a></li>
+</ul>
+
+<p><a href='http://css-tricks.com/which-responsive-images-solution-should-you-use/' title='Which responsive images solution should you use?'>Este post</a> (em inglês) ajuda a decidir qual técnica é mais adequada para cada caso, existem soluções usando marcações especiais, JavaScript, técnicas <em>server-side</em> e algumas mesclam várias dessas alternativas. Não irei entrar em detalhes sobre isto pois este não é o intuito do post, mas recomendo a leitura.</p>
+
+<h2 id='enquanto_isso_no_w3c'>Enquanto isso, no W3C&#8230;</h2>
+
+<p>Beleza, agora vamos falar do que interessa mesmo, a pergunta que não quer calar: <strong>quando vamos ter esse poder nativamente?</strong></p>
+
+<p>Como falei no início do post, existe um <a href='http://www.w3.org/community/respimg/' title='Responsive Images Community Group'>Grupo da Comunidade de Imagens Responsivas</a> no W3C que discute sobre algumas alternativas a serem incluídas no <strong>HTML.next</strong> (próxima versão do HTML) que serão responsáveis por resolver o problema das imagens responsivas. Vamos falar das 2 principais idéias discutidas no grupo: o atributo <code>srcset</code> e o elemento <code>&lt;picture&gt;</code>.</p>
+
+<h3 id='o_atributo_srcset'>O atributo srcset</h3>
+
+<p>Uma das primeiras propostas foi a criação de um atributo <code>srcset</code> para o elemento <code>&lt;img&gt;</code>. Sua função seria especificar outras imagens e suas respectivas proporções em relação à imagem em <code>src</code>. Veja o exemplo abaixo:</p>
+<div class='highlight'><pre><code class='html'><span class='nt'>&lt;img</span> <span class='na'>alt=</span><span class='s'>&quot;Uma cerva gelada!&quot;</span>
+     <span class='na'>src=</span><span class='s'>&quot;heineken_pequena.jpg&quot;</span>
+     <span class='na'>srcset=</span><span class='s'>&quot;heineken_media.jpg 2x, heineken_grande.jpg 3x&quot;</span> <span class='nt'>/&gt;</span>
+</code></pre></div>
+<p>No código acima temos então a imagem <code>heineken_pequena.jpg</code> como sendo a padrão em <code>src</code> – no caso de a imagem estar sendo enviada para um celular –, e em <code>srcset</code> temos as outras imagens de tamanhos diferentes: <code>heineken_media.jpg</code> é 2 vezes maior e <code>heineken_grande.jpg</code> é 3 vezes maior que a imagem padrão.</p>
+
+<h3 id='o_elemento_picture'>O elemento &#60;picture&#62;</h3>
+
+<p>Com uma proposta bem diferente, aqui teríamos um novo elemento <code>&lt;picture&gt;</code> que especificaria várias imagens utilizando-se de um elemento já existente no HTML5: o <code>&lt;source&gt;</code>.</p>
+
+<p>Sabemos que <code>&lt;source&gt;</code> é usado dentro das <em>tags</em> <code>&lt;audio&gt;</code> e <code>&lt;video&gt;</code> para especificar múltiplas alternativas de mídias a serem tocadas de acordo com os <em>codecs</em> disponíveis no navegador ou sistema operacional do usuário. Contudo, dentro de <code>&lt;picture&gt;</code>, <code>&lt;source&gt;</code> desempenha um papel um pouco diferente pois a escolha da mídia não depende de <em>codecs</em> e sim da resolução de tela do usuário.</p>
+<div class='highlight'><pre><code class='html'><span class='nt'>&lt;picture</span> <span class='na'>alt=</span><span class='s'>&quot;Uma cerva gelada!&quot;</span><span class='nt'>&gt;</span>
+    <span class='nt'>&lt;source</span> <span class='na'>src=</span><span class='s'>&quot;heineken_pequena.jpg&quot;</span> <span class='nt'>/&gt;</span>
+    <span class='nt'>&lt;source</span> <span class='na'>media=</span><span class='s'>&quot;min-width:800px&quot;</span> <span class='na'>src=</span><span class='s'>&quot;heineken_media.jpg&quot;</span> <span class='nt'>/&gt;</span>
+    <span class='nt'>&lt;source</span> <span class='na'>media=</span><span class='s'>&quot;min-width:1280px&quot;</span> <span class='na'>src=</span><span class='s'>&quot;heineken_grande.jpg&quot;</span> <span class='nt'>/&gt;</span>
+    <span class='c'>&lt;!-- fallback para navegadores sem suporte --&gt;</span>
+    <span class='nt'>&lt;img</span> <span class='na'>src=</span><span class='s'>&quot;heineken_media.jpg&quot;</span> <span class='na'>alt=</span><span class='s'>&quot;Uma cerva gelada!&quot;</span> <span class='nt'>/&gt;</span>
+<span class='nt'>&lt;/picture&gt;</span>
+</code></pre></div>
+<p>Acima teríamos o mesmo resultado da alternativa <code>srcset</code>, mas com uma sintaxe totalmente diferente. A seleção do <code>&lt;source&gt;</code> acontece por meio do atributo <code>media</code>, que utiliza-se de <em>media queries</em>. Apesar de ter mais código, eu prefiro esta alternativa, pois o código sempre fica mais organizado e de mais fácil leitura. Imagine que temos que servir uma imagem &#8220;responsivamente&#8221; (acho que isso não é nem uma palavra) de 5 maneiras e seus nomes não são nada amigáveis. Rapidamente o código vai se tornando confuso e difícil de ler.</p>
+
+<h3 id='a_proposta_atual'>A proposta atual</h3>
+
+<p>A <a href='http://www.w3.org/community/respimg/wiki/Picture_Element_Proposal' title='Picture Element Proposal'>última proposta</a> feita pelo WHATWG é uma fusão das duas acima, ou seja, a criação do elemento <code>&lt;picture&gt;</code> com a possibilidade de também utilizar o atributo <code>srcset</code> nos elementos <code>&lt;source&gt;</code>:</p>
+<div class='highlight'><pre><code class='html'><span class='nt'>&lt;picture</span> <span class='na'>alt=</span><span class='s'>&quot;Uma cerva gelada!&quot;</span><span class='nt'>&gt;</span>
+    <span class='nt'>&lt;source</span> <span class='na'>srcset=</span><span class='s'>&quot;heineken_pequena1.jpg 1x, heineken_pequena2.jpg 2x&quot;</span> <span class='nt'>/&gt;</span>
+    <span class='nt'>&lt;source</span> <span class='na'>media=</span><span class='s'>&quot;min-width:800px&quot;</span> <span class='na'>srcset=</span><span class='s'>&quot;heineken_media1.jpg 1x, heineken_media2.jpg 2x&quot;</span> <span class='nt'>/&gt;</span>
+    <span class='nt'>&lt;source</span> <span class='na'>media=</span><span class='s'>&quot;min-width:1280px&quot;</span> <span class='na'>srcset=</span><span class='s'>&quot;heineken_grande1.jpg 1x, heineken_grande2.jpg 2x&quot;</span> <span class='nt'>/&gt;</span>
+    <span class='c'>&lt;!-- fallback para navegadores sem suporte --&gt;</span>
+    <span class='nt'>&lt;img</span> <span class='na'>src=</span><span class='s'>&quot;heineken_media.jpg&quot;</span> <span class='na'>alt=</span><span class='s'>&quot;Uma cerva gelada!&quot;</span> <span class='nt'>/&gt;</span>
+<span class='nt'>&lt;/picture&gt;</span>
+</code></pre></div>
+<h2 id='concluses'>Conclusões</h2>
+
+<p>Então pessoal, gostaria que todo mundo que lesse este post comentasse abaixo suas opiniões sobre essa questão das imagens responsivas e sobre qual é a solução mais correta a ser incluída nos padrões futuramente: <code>srcset</code>, <code>&lt;picture&gt;</code> ou os dois? Talvez eu não tenha entendido o por quê dessa última proposta mista, particularmente eu acho-a redundante e prefiro o elemento <code>&lt;picture&gt;</code> mais simples.</p>
+
+<p>Contudo, de qualquer forma é bom saber que o assunto está sendo discutido e que estão procurando a melhor solução. Agora é esperar pra ver, até mais!</p>
+<h2 id='atualizacoes'>Atualizações</h2><div class='update'>
+    <h3>23/08/2012</h3>
+    <p><strong>Ótimas notícias!</strong>
+        De acordo com <a alt='The two specs' href='http://filamentgroup.com/lab/thetwospecs/' title='The two specs'>este post</a>
+        do Filament Group, o elemento <code>&lt;picture&gt;</code> está provisioramente marcado para ser
+        <a href='http://www.w3.org/community/respimg/2012/08/04/picture-in-the-html5-spec/'>incluso ao HTML5</a>,
+        em vez do <em>HTML.next</em>. Ou seja, parece que veremos uma solução nativa para imagens responsivas logo logo, visto que
+        o HTML WG (Grupo do HTML5 do W3C) já está trabalhando numa especificação formal que deverá ficar pronta nas <strong>próximas
+        semanas</strong>.</p>
+</div><div class='update'>
+    <h3>29/08/2012</h3>
+    <p><strong>Publicado o Draft no W3C.</strong>
+        Saindo do forno, pessoal! Hoje finalmente foi publicado o <em>draft</em> da proposta para imagens responsivas no W3C.
+        <a href='http://dvcs.w3.org/hg/html-proposals/raw-file/tip/responsive-images/responsive-images.html'>Clique aqui para ver</a>.
+    </p>
+</div><aside class='fonte'>
+	<h3>Referência</h3>
+	<ul>
+		<li>→<a alt='Responsive Images Community Group' href='http://www.w3.org/community/respimg/' title='Responsive Images Community Group'>Responsive Images Community Group</a> <span class='comment'>//W3C Community</span></li>
+		<li>→<a alt='Which responsive images solution should you use?' href='http://css-tricks.com/which-responsive-images-solution-should-you-use/' title='Which responsive images solution should you use?'>Which responsive images solution should you use?</a> <span class='comment'>//CSS Tricks</span></li>
+        <li>→<a alt='Responsive Images with Mat Marquis' href='http://5by5.tv/webahead/25' title='Responsive Images with Mat Marquis'>The Web Ahead #25: Responsive Images with Mat Marquis (Podcast)</a> <span class='comment'>//5by5</span></li>
+		<li>→<a alt='Picture Element Proposal' href='http://www.w3.org/community/respimg/wiki/Picture_Element_Proposal' title='Picture Element Proposal'>Picture Element Proposal</a> <span class='comment'>//W3C</span></li>
+		<li>→<a alt='HTML5 adaptive images: end of round one' href='http://html5doctor.com/html5-adaptive-images-end-of-round-one/' title='HTML5 adaptive images: end of round one'>HTML5 adaptive images: end of round one</a> <span class='comment'>//HTML5 Doctor</span></li>
+		<li>→<a alt='Automatic Responsive Images in Wordpress' href='http://viewportindustries.com/blog/automatic-responsive-images-in-wordpress/' title='Automatic Responsive Images in Wordpress'>Automatic Responsive Images in Wordpress</a></li>
+	</ul>
+</aside>
+					</section>
+				</article>
+			</section>
+
+		</section><!-- end #content -->
+
+	</div><!-- end #wrapper -->
+
+</body>
+</html>

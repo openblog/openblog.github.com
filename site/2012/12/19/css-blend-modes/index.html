@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+	<meta charset="UTF-8" />
+	
+		<title>CSS blend modes | Open Blog</title>
+	
+	
+		<meta name="author" content="Almir Filho" />
+	
+	
+		<meta name="keywords" content="css, css3, blend mode, blend, blend-mode, w3c, grafico, filter, filtros, mistura, backdrop, overlay, elemento, imagem, backdrop, composicao, calculo, alpha-compositing, knock-out, isolation
+" />
+	
+	
+		<meta name="description" content="Essa é quente. Os blend modes estão vindo para o CSS através de uma nova especificação! No post de hoje conheceremos suas novas propriedades e saberemos como vamos utilizar estas novas funcionalidades." />
+	
+	<meta name="language" content="pt" />
+	<meta name="content-language" content="pt-BR" />
+	<meta name="robots" content="all" />
+	<meta name="distribution" content="Global" />
+	<meta name="resource-type" content="document" />
+
+	<link rel="icon" type="image/png" href="/assets/img/favicon.png" />
+    <link href="/assets/css/screen.css?2013-02-22" media="screen, projection" rel="stylesheet" type="text/css" />
+    <!--[if IE]>
+    	<link href="/assets/css/ie.css?2013-02-22" media="screen, projection" rel="stylesheet" type="text/css" />
+  	<![endif]-->
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+
+	<div id="wrapper">
+		
+		<header id="main">
+	<h1><a href="/" id="logo">.openBlog()</a></h1>
+</header>
+		
+		<section id="content">
+
+			<section class="post-container" itemscope itemtype="http://schema.org/BlogPosting">
+				<span class="hidden" itemprop="publisher">Open Blog</span>
+				<article>
+					<header>
+						<h1><a href="/2012/12/19/css-blend-modes/" itemprop="headline">CSS <span>blend modes</span></a></h1>
+					</header>
+					<section itemprop="articleBody">
+						
+						<figure>
+							<img itemprop="thumbnailUrl" src="/images/posts/2012-12-19-css-blend-modes.jpg" class="post-image" alt="CSS blend modes" title="CSS blend modes" width="700" height="432" />
+						</figure>
+						
+						<p>Quem trabalha com imagens em aplicativos gráficos como Photoshop, Fireworks, etc., provavelmente já sabe do que se trata. <em>Blending</em> é o ato de realizar <strong>composições</strong> entre cores. E como acontece no Photoshop ou no Fireworks, muitas dessas composições já estão pré-definidas e prontas para uso, essas composições são os <strong>blend modes</strong>, que agora estão vindo a fazer parte do CSS – graças ao trabalho da <strong>Adobe</strong> –, assim como já aconteceu com os <a href='http://loopinfinito.com.br/2012/04/14/css-filters/'>filtros CSS</a>.</p>
+
+<h2 id='novas_propriedades'>Novas propriedades</h2>
+
+<p>Uma série de novas propriedades foram definidas: <code>alpha-compositing</code>, <code>blend-mode</code>, <code>isolation</code>, e <code>knock-out</code>. Falarei sobre cada uma delas posteriormente. Primeiro vamos começar pelo óbvio: a propriedade <code>blend-mode</code>.</p>
+
+<p>Vamos começar a brincadeira aplicando um <em>blend mode</em> a um determinado elemento:</p>
+<div class='image-code'>
+
+<div class='highlight'><pre><code class='css'><span class='nt'>img</span><span class='nc'>.blend</span> <span class='p'>{</span>
+    <span class='n'>blend</span><span class='o'>-</span><span class='n'>mode</span><span class='o'>:</span> <span class='n'>overlay</span><span class='p'>;</span>
+<span class='p'>}</span>
+</code></pre></div>
+
+</div>
+<p>Agora toda <code>img</code> com a classe <code>.blend</code> será renderizada como <em>overlay</em> (o veremos a seguir).</p>
+
+<p>Com o intuito de melhorar a didática (vocês sabem como é aqui no Loop), iremos utilizar a imagem abaixo como exemplo no decorrer deste post.</p>
+<figure>
+	<img alt='Gostosas na praia (original)' height='200' src='/images/posts/2012-12-19-original.jpg' title='Gostosas na praia (original)' />
+</figure>
+<h2 id='entendendo_blend_modes'>Entendendo blend modes</h2>
+
+<p><em>Blending</em> é simplesmente fazer uma mistura de cores de um elemento com o que há debaixo dele (também chamado de <em>backdrop</em>). Essa mistura é realizada através de cálculos com as cores do elemento em questão e seu respectivo <em>backdrop</em>. Então, cada <em>blend mode</em> basicamente define uma <strong>função matemática</strong> que será usada para obter uma determinada composição. Caso queira saber mais sobre como estes cálculos são realizados, <a href='http://www.w3.org/TR/compositing/#whatiscompositing'>leia isso</a>.</p>
+
+<p>Inicialmente já estão previstos <strong>16 blend modes</strong>, e poderemos utilizá-los através da nova propriedade <code>blend-mode</code>, mas antes, vamos melhorar <strong>só um pouquinho</strong> a nossa imagem de exemplo.</p>
+
+<p>Vamos adicionar outras imagens em cima da mesma, e vamos considerar que estas novas imagens são da classe <code>.heineken</code> (veja abaixo).</p>
+
+<h3 id='normal'>normal</h3>
+<figure>
+	<img alt='Gostosas na praia (normal)' height='200' src='/images/posts/2012-12-19-normal.jpg' title='Gostosas na praia (normal)' />
+</figure><div class='image-code'>
+
+<div class='highlight'><pre><code class='css'><span class='nt'>img</span><span class='nc'>.heineken</span> <span class='p'>{</span>
+    <span class='n'>blend</span><span class='o'>-</span><span class='n'>mode</span><span class='o'>:</span> <span class='k'>normal</span><span class='p'>;</span>
+<span class='p'>}</span>
+</code></pre></div>
+
+</div>
+<p>Como o próprio nome já diz, este não tem nada de mais, é apenas o valor de <em>blending</em>&#160;<strong>padrão</strong> de qualquer elemento – este será renderizado sem nenhuma composição gráfica.</p>
+
+<h3 id='multiply'>multiply</h3>
+<figure>
+	<img alt='Gostosas na praia (multiply)' height='200' src='/images/posts/2012-12-19-multiply.jpg' title='Gostosas na praia (multiply)' />
+</figure><div class='image-code'>
+
+<div class='highlight'><pre><code class='css'><span class='nt'>img</span><span class='nc'>.heineken</span> <span class='p'>{</span>
+    <span class='n'>blend</span><span class='o'>-</span><span class='n'>mode</span><span class='o'>:</span> <span class='n'>multiply</span><span class='p'>;</span>
+<span class='p'>}</span>
+</code></pre></div>
+
+</div>
+<h3 id='screen'>screen</h3>
+<figure>
+	<img alt='Gostosas na praia (screen)' height='200' src='/images/posts/2012-12-19-screen.jpg' title='Gostosas na praia (screen)' />
+</figure><div class='image-code'>
+
+<div class='highlight'><pre><code class='css'><span class='nt'>img</span><span class='nc'>.heineken</span> <span class='p'>{</span>
+    <span class='n'>blend</span><span class='o'>-</span><span class='n'>mode</span><span class='o'>:</span> <span class='n'>screen</span><span class='p'>;</span>
+<span class='p'>}</span>
+</code></pre></div>
+
+</div>
+<h3 id='overlay'>overlay</h3>
+<figure>
+	<img alt='Gostosas na praia (overlay)' height='200' src='/images/posts/2012-12-19-overlay.jpg' title='Gostosas na praia (overlay)' />
+</figure><div class='image-code'>
+
+<div class='highlight'><pre><code class='css'><span class='nt'>img</span><span class='nc'>.heineken</span> <span class='p'>{</span>
+    <span class='n'>blend</span><span class='o'>-</span><span class='n'>mode</span><span class='o'>:</span> <span class='n'>overlay</span><span class='p'>;</span>
+<span class='p'>}</span>
+</code></pre></div>
+
+</div>
+<h3 id='darken'>darken</h3>
+<figure>
+	<img alt='Gostosas na praia (darken)' height='200' src='/images/posts/2012-12-19-darken.jpg' title='Gostosas na praia (darken)' />
+</figure><div class='image-code'>
+
+<div class='highlight'><pre><code class='css'><span class='nt'>img</span><span class='nc'>.heineken</span> <span class='p'>{</span>
+    <span class='n'>blend</span><span class='o'>-</span><span class='n'>mode</span><span class='o'>:</span> <span class='n'>darken</span><span class='p'>;</span>
+<span class='p'>}</span>
+</code></pre></div>
+
+</div>
+<h3 id='lighten'>lighten</h3>
+<figure>
+	<img alt='Gostosas na praia (lighten)' height='200' src='/images/posts/2012-12-19-lighten.jpg' title='Gostosas na praia (lighten)' />
+</figure><div class='image-code'>
+
+<div class='highlight'><pre><code class='css'><span class='nt'>img</span><span class='nc'>.heineken</span> <span class='p'>{</span>
+    <span class='n'>blend</span><span class='o'>-</span><span class='n'>mode</span><span class='o'>:</span> <span class='n'>lighten</span><span class='p'>;</span>
+<span class='p'>}</span>
+</code></pre></div>
+
+</div>
+<h3 id='colordodge'>color-dodge</h3>
+<figure>
+	<img alt='Gostosas na praia (color-dodge)' height='200' src='/images/posts/2012-12-19-color-dodge.jpg' title='Gostosas na praia (color-dodge)' />
+</figure><div class='image-code'>
+
+<div class='highlight'><pre><code class='css'><span class='nt'>img</span><span class='nc'>.heineken</span> <span class='p'>{</span>
+    <span class='n'>blend</span><span class='o'>-</span><span class='n'>mode</span><span class='o'>:</span> <span class='k'>color</span><span class='o'>-</span><span class='n'>dodge</span><span class='p'>;</span>
+<span class='p'>}</span>
+</code></pre></div>
+
+</div>
+<h3 id='colorburn'>color-burn</h3>
+<figure>
+	<img alt='Gostosas na praia (color-burn)' height='200' src='/images/posts/2012-12-19-color-burn.jpg' title='Gostosas na praia (color-burn)' />
+</figure><div class='image-code'>
+
+<div class='highlight'><pre><code class='css'><span class='nt'>img</span><span class='nc'>.heineken</span> <span class='p'>{</span>
+    <span class='n'>blend</span><span class='o'>-</span><span class='n'>mode</span><span class='o'>:</span> <span class='k'>color</span><span class='o'>-</span><span class='n'>burn</span><span class='p'>;</span>
+<span class='p'>}</span>
+</code></pre></div>
+
+</div>
+<h3 id='hardlight'>hard-light</h3>
+<figure>
+	<img alt='Gostosas na praia (hard-light)' height='200' src='/images/posts/2012-12-19-hard-light.jpg' title='Gostosas na praia (hard-light)' />
+</figure><div class='image-code'>
+
+<div class='highlight'><pre><code class='css'><span class='nt'>img</span><span class='nc'>.heineken</span> <span class='p'>{</span>
+    <span class='n'>blend</span><span class='o'>-</span><span class='n'>mode</span><span class='o'>:</span> <span class='n'>hard</span><span class='o'>-</span><span class='n'>light</span><span class='p'>;</span>
+<span class='p'>}</span>
+</code></pre></div>
+
+</div>
+<h3 id='softlight'>soft-light</h3>
+<figure>
+	<img alt='Gostosas na praia (soft-light)' height='200' src='/images/posts/2012-12-19-soft-light.jpg' title='Gostosas na praia (soft-light)' />
+</figure><div class='image-code'>
+
+<div class='highlight'><pre><code class='css'><span class='nt'>img</span><span class='nc'>.heineken</span> <span class='p'>{</span>
+    <span class='n'>blend</span><span class='o'>-</span><span class='n'>mode</span><span class='o'>:</span> <span class='k'>soft</span><span class='o'>-</span><span class='n'>light</span><span class='p'>;</span>
+<span class='p'>}</span>
+</code></pre></div>
+
+</div>
+<h3 id='difference'>difference</h3>
+<figure>
+	<img alt='Gostosas na praia (difference)' height='200' src='/images/posts/2012-12-19-difference.jpg' title='Gostosas na praia (difference)' />
+</figure><div class='image-code'>
+
+<div class='highlight'><pre><code class='css'><span class='nt'>img</span><span class='nc'>.heineken</span> <span class='p'>{</span>
+    <span class='n'>blend</span><span class='o'>-</span><span class='n'>mode</span><span class='o'>:</span> <span class='n'>difference</span><span class='p'>;</span>
+<span class='p'>}</span>
+</code></pre></div>
+
+</div>
+<h3 id='exclusion'>exclusion</h3>
+<figure>
+	<img alt='Gostosas na praia (exclusion)' height='200' src='/images/posts/2012-12-19-exclusion.jpg' title='Gostosas na praia (exclusion)' />
+</figure><div class='image-code'>
+
+<div class='highlight'><pre><code class='css'><span class='nt'>img</span><span class='nc'>.heineken</span> <span class='p'>{</span>
+    <span class='n'>blend</span><span class='o'>-</span><span class='n'>mode</span><span class='o'>:</span> <span class='n'>exclusion</span><span class='p'>;</span>
+<span class='p'>}</span>
+</code></pre></div>
+
+</div>
+<h3 id='hue'>hue</h3>
+<figure>
+	<img alt='Gostosas na praia (hue)' height='200' src='/images/posts/2012-12-19-hue.jpg' title='Gostosas na praia (hue)' />
+</figure><div class='image-code'>
+
+<div class='highlight'><pre><code class='css'><span class='nt'>img</span><span class='nc'>.heineken</span> <span class='p'>{</span>
+    <span class='n'>blend</span><span class='o'>-</span><span class='n'>mode</span><span class='o'>:</span> <span class='n'>hue</span><span class='p'>;</span>
+<span class='p'>}</span>
+</code></pre></div>
+
+</div>
+<h3 id='saturation'>saturation</h3>
+<figure>
+	<img alt='Gostosas na praia (saturation)' height='200' src='/images/posts/2012-12-19-saturation.jpg' title='Gostosas na praia (saturation)' />
+</figure><div class='image-code'>
+
+<div class='highlight'><pre><code class='css'><span class='nt'>img</span><span class='nc'>.heineken</span> <span class='p'>{</span>
+    <span class='n'>blend</span><span class='o'>-</span><span class='n'>mode</span><span class='o'>:</span> <span class='n'>saturation</span><span class='p'>;</span>
+<span class='p'>}</span>
+</code></pre></div>
+
+</div>
+<h3 id='color'>color</h3>
+<figure>
+	<img alt='Gostosas na praia (color)' height='200' src='/images/posts/2012-12-19-color.jpg' title='Gostosas na praia (color)' />
+</figure><div class='image-code'>
+
+<div class='highlight'><pre><code class='css'><span class='nt'>img</span><span class='nc'>.heineken</span> <span class='p'>{</span>
+    <span class='n'>blend</span><span class='o'>-</span><span class='n'>mode</span><span class='o'>:</span> <span class='k'>color</span><span class='p'>;</span>
+<span class='p'>}</span>
+</code></pre></div>
+
+</div>
+<h3 id='luminosity'>luminosity</h3>
+<figure>
+	<img alt='Gostosas na praia (luminosity)' height='200' src='/images/posts/2012-12-19-luminosity.jpg' title='Gostosas na praia (luminosity)' />
+</figure><div class='image-code'>
+
+<div class='highlight'><pre><code class='css'><span class='nt'>img</span><span class='nc'>.heineken</span> <span class='p'>{</span>
+    <span class='n'>blend</span><span class='o'>-</span><span class='n'>mode</span><span class='o'>:</span> <span class='n'>luminosity</span><span class='p'>;</span>
+<span class='p'>}</span>
+</code></pre></div>
+
+</div>
+<p>Se quiser saber mais detalhes a nível matemático sobre qualquer um desses <em>blend modes</em>, dê uma sacada <a href='http://www.w3.org/TR/compositing/#blending'>aqui</a>.</p>
+
+<h2 id='propriedades_alphacompositing_knockout_e_isolation'>Propriedades alpha-compositing, knock-out e isolation</h2>
+
+<p>Além da propriedade <code>blend-mode</code>, existem outras propriedades referentes a composição: <code>alpha-compositing</code>, <code>knock-out</code> e <code>isolation</code>.</p>
+
+<h3 id='alphacompositing'>alpha-compositing</h3>
+
+<p>Define o modo de composição usado quando é realizada a composição de um elemento. Seu valor padrão é <code>source-over</code>, e existem mais <a href='http://www.w3.org/TR/compositing/#alpha-compositing'>12 possibilidades</a>. Por ser um assunto bastante extenso e matemático demais, não entrarei em detalhes, mas caso você queira saber mais sobre o assunto, visite a seção sobre <a href='http://www.w3.org/TR/compositing/#advancedcompositing'>Composição avançada</a> do <em>draft</em> da especificação W3C.</p>
+
+<h3 id='knockout'>knock-out</h3>
+
+<p>Define se um grupo de elementos é ou não um grupo <em>knock-out</em>. A diferença em relação a um grupo normal é que os elementos de um grupo <em>knock-out</em> realizam composição e <em>blending</em> apenas com os elementos de <strong>fora do grupo</strong> – ou seja, com o <strong>backdrop do grupo</strong>, e os elementos do próprio grupo não são considerados.</p>
+
+<p>Para entendermos melhor, vejamos o exemplo abaixo:</p>
+<figure>
+	<img alt='Gostosas na praia' height='200' src='/images/posts/2012-12-19-knockout1.jpg' title='Gostosas na praia' />
+</figure>
+<p>No exemplo acima temos um exemplo que mostra as mesmas duas imagens de antes com o seus <em>blend-modes</em> como <code>darken</code>. A diferença aqui é que elas estão se sobrepondo – note que a estrela sobrepõe a cerveja. Agora, vamos considerar que estas duas imagens estão agrupadas dentro de uma <code>&lt;div&gt;</code> qualquer:</p>
+<div class='highlight'><pre><code class='html'><span class='nt'>&lt;div&gt;</span>
+    <span class='nt'>&lt;img</span> <span class='na'>src=</span><span class='s'>&quot;cerveja.jpg&quot;</span> <span class='nt'>/&gt;</span>
+    <span class='nt'>&lt;img</span> <span class='na'>src=</span><span class='s'>&quot;estrela.jpg&quot;</span> <span class='nt'>/&gt;</span>
+<span class='nt'>&lt;/div&gt;</span>
+</code></pre></div>
+<p>Agora compare a imagem acima com o exemplo abaixo. Consegue notar a diferença? No exemplo abaixo, o grupo (a <code>&lt;div&gt;</code>) é um grupo <em>knock-out</em>.</p>
+<figure>
+	<img alt='Gostosas na praia (knock-out)' height='200' src='/images/posts/2012-12-19-knockout2.jpg' title='Gostosas na praia (knock-out)' />
+</figure><div class='image-code'>
+
+<div class='highlight'><pre><code class='css'><span class='nt'>div</span> <span class='p'>{</span>
+    <span class='n'>knock</span><span class='o'>-</span><span class='n'>out</span><span class='o'>:</span> <span class='n'>knock</span><span class='o'>-</span><span class='n'>out</span><span class='p'>;</span>
+<span class='p'>}</span>
+</code></pre></div>
+
+</div>
+<p>Perceba como os elementos de dentro do grupo realizam o <em>blending</em> apenas considerando o <strong>backdrop do grupo</strong> e ignorando o outros elementos do mesmo grupo. No nosso caso, a estrela ignora a cerveja e só faz o <em>blending</em> com o <em>backdrop</em> da <code>&lt;div&gt;</code> (as gostosas ao fundo). O valor padrão de <code>knock-out</code> é <code>preserve</code>.</p>
+
+<h3 id='isolation'>isolation</h3>
+
+<p>Define se um grupo é isolado ou não (o comportamento padrão é <em>não isolado</em>). Dizer que um grupo é isolado implica em dizer que os elementos de um mesmo grupo realizarão <em>blending</em> usando um <em>backdrop</em> preto e totalmente transparente – <code>rgba(0, 0, 0, 0)</code> –, em vez do <em>backdrop</em> normal. Para mais detalhes, <a href='http://www.w3.org/TR/compositing/#isolationblending'>leia isso</a>.</p>
+
+<h2 id='blendmodes_no_background'>Blend-modes no background!</h2>
+
+<p>No <strong>próximo post</strong> falarei sobre como é possível aplicar tudo o que vimos aqui hoje apenas aos <em>backgrounds</em> dos elementos (este <em>post</em> já está grande demais). Então podem aguardar mais coisa boa vindo por ai.</p>
+
+<h2 id='suporte'>Suporte</h2>
+
+<p>Nenhum navegador ainda se aventurou em implementar nenhuma dessas novidades que acabamos de ver. E também não há previsões.</p>
+
+<h3 id='mas_calma_l'>Mas calma lá!</h3>
+
+<p>A Adobe fez um <em>fork</em> do <strong>Chromium</strong>, implementou algumas funcionalidades e disponibilizou para demonstrar o uso dos <em>blend modes</em>. Se você estiver afim de testar, faça o download do Chromium deles <a href='https://github.com/adobe/webkit/downloads'>aqui</a> e teste acessando <a href='http://adobe.github.com/web-platform/demos/compositing/blend-photogallery/index.html'>essa página de testes</a>. Eu fiz o teste e é show de bola.</p>
+
+<h2 id='e_um_feliz_natal_hohoho'>E um feliz natal! Hohoho!</h2>
+<div class='img'>
+	<iframe allowfullscreen='allowfullscreen' frameborder='0' height='480' src='http://www.youtube.com/embed/AENBG8HUsvs' width='700'>&nbsp;</iframe>
+</div>
+<p>É isso ai pessoal, só me resta desejar um feliz natal pra todos os <em>frond-enders</em> – e claro, pra todos os <em>back-enders</em> também! E aproveitando a deixa, segue o vídeo publicado ontem pela <a href='http://braziljs.org'>BrazilJS Foundation</a> com uma galera cantando (muito toscamente) a música &#8221;<em>Então é Natal</em>&#8221; – não é a toa que não estamos no ramo fonográfico, né.</p>
+
+<p>Tosqueiras à parte, esta <strong>ótima iniciativa</strong> foi do <a href='http://twitter.com/bernarddeluna'>Bernard de Luna</a>, e uma galerona participou: O <a href='http://twitter.com/felipenmoura'>Felipe Nascimento</a> (que tinha acabado de acordar, ou não), <a href='http://twitter.com/keppelen'>Giovanni Keppelen</a> (animadíssimo como sempre), <a href='http://twitter.com/bernarddeluna'>Bernard de Luna</a> (com os óculos da irmã), <a href='http://twitter.com/caio_gondim'>Caio Gondim</a> (com sua vibe regueira), <a href='http://twitter.com/almirfilho'>Almir Filho</a> (até eu, cara ;D), <a href='http://twitter.com/jaydson'>Jaydson Gomes</a> (com seu solo de guitarra destruidor), <a href='http://twitter.com/juarezpaf'>Juarez Filho</a> (pregando a palavra aos fiéis da Igreja do Front-End), <a href='http://twitter.com/leobetosouza'>Leonardo Alberto</a> (Ed Motta Jr.), <a href='http://twitter.com/leobalter'>Leonardo Balter</a> (o único que sabe cantar), <a href='http://twitter.com/maujor'>Maujor</a> (falando sua mensagem linda de final de ano), <a href='http://twitter.com/reinaldoferraz'>Reinaldo Ferraz</a> (do W3C), <a href='http://twitter.com/renatomangini'>Renato Mangini</a> (do Google) e claro, <a href='http://twitter.com/zenorocha'>Zeno Rocha</a> (que estava fora do país e mesmo assim não ficou de fora).</p>
+<aside class='fonte'>
+    <h3>Referência</h3>
+    <ul>
+        <li>→<a alt='Compositing and Blending 1.0' href='http://www.w3.org/TR/compositing/' title='Compositing and Blending 1.0'>Compositing and Blending 1.0</a> <span class='comment'>// W3C</span></li>
+    </ul>
+</aside>
+					</section>
+				</article>
+			</section>
+
+		</section><!-- end #content -->
+
+	</div><!-- end #wrapper -->
+
+</body>
+</html>

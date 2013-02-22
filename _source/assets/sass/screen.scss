@@ -1,0 +1,62 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+
+/* ----------- Vars ----------- */
+$cl_main: #20747b; //verde musgo
+$cl_ft: #d8d8d8; //cinza escuro
+
+/* ----------- Mixins ----------- */
+@mixin fontMain{
+	font-family: 'Ubuntu', sans-serif;
+}
+
+/* ----------- Geral ----------- */
+body {
+	background: url('/assets/img/patterns/darkdenim3.png') #fbfbfb;
+	background-attachment: fixed;
+	border-top: 5px solid $cl_main;
+}
+
+#main{
+	margin-bottom: 50px;
+}
+
+#wrapper {
+	width: 900px;
+	margin: 0 auto;
+}
+
+#content .post-container {
+	position: relative;
+	margin-bottom: 50px;
+}
+
+#content .post-container article>section img {
+	margin: 20px 0 20px 0;
+	border: solid 1px $cl_main;
+}
+
+.hidden{display: none;}
+
+/* ----------- Fonts ----------- */
+#wrapper {
+	font-size: 15px;
+	color: $cl_ft ;
+	@include fontMain;
+}
+#wrapper h1{
+	font-size: 36px;
+}
+#main h1{ 
+	font-size: 50px;
+	font-family: Courier; 
+}
+
+a{
+	color: $cl_main;
+	text-decoration: none;
+}

@@ -1,0 +1,131 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 17, ../../../../../.rvm/gems/ruby-1.9.3-p385/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../../../.rvm/gems/ruby-1.9.3-p385/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../../../.rvm/gems/ruby-1.9.3-p385/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../../../.rvm/gems/ruby-1.9.3-p385/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../../../.rvm/gems/ruby-1.9.3-p385/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../../../.rvm/gems/ruby-1.9.3-p385/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../../.rvm/gems/ruby-1.9.3-p385/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../../../.rvm/gems/ruby-1.9.3-p385/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../../../.rvm/gems/ruby-1.9.3-p385/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+/* ----------- Vars ----------- */
+/* ----------- Mixins ----------- */
+/* ----------- Geral ----------- */
+/* line 18, ../sass/screen.scss */
+body {
+  background: url("/assets/img/patterns/darkdenim3.png") #fbfbfb;
+  background-attachment: fixed;
+  border-top: 5px solid #20747b;
+}
+
+/* line 24, ../sass/screen.scss */
+#main {
+  margin-bottom: 50px;
+}
+
+/* line 28, ../sass/screen.scss */
+#wrapper {
+  width: 900px;
+  margin: 0 auto;
+}
+
+/* line 33, ../sass/screen.scss */
+#content .post-container {
+  position: relative;
+  margin-bottom: 50px;
+}
+
+/* line 38, ../sass/screen.scss */
+#content .post-container article > section img {
+  margin: 20px 0 20px 0;
+  border: solid 1px #20747b;
+}
+
+/* line 43, ../sass/screen.scss */
+.hidden {
+  display: none;
+}
+
+/* ----------- Fonts ----------- */
+/* line 46, ../sass/screen.scss */
+#wrapper {
+  font-size: 15px;
+  color: #d8d8d8;
+  font-family: "Ubuntu", sans-serif;
+}
+
+/* line 51, ../sass/screen.scss */
+#wrapper h1 {
+  font-size: 36px;
+}
+
+/* line 54, ../sass/screen.scss */
+#main h1 {
+  font-size: 50px;
+  font-family: Courier;
+}
+
+/* line 59, ../sass/screen.scss */
+a {
+  color: #20747b;
+  text-decoration: none;
+}

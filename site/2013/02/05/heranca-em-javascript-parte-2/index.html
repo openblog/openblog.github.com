@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+	<meta charset="UTF-8" />
+	
+		<title>Herança em JavaScript parte II | Open Blog</title>
+	
+	
+		<meta name="author" content="Caio Gondim" />
+	
+	
+		<meta name="keywords" content="javascript, js, web development, desenvolvimento web, html5, front-end, programação, oop, orientação a objetos, herança, orientação a protótipos, java
+" />
+	
+	
+		<meta name="description" content="E finalmente sai a parte II do post Herança com JavaScript. Na parte I relembramos o que é herança em linguagens de programação orientadas a objeto baseadas em classes, a cadeia de protótipos no JavaScript e como a utilizar para simular herança. Nesta parte II abordaremos alguns novos métodos definidos pela especificação ECMAScript 5 que facilitará bastante o trabalho com herança e protótipos." />
+	
+	<meta name="language" content="pt" />
+	<meta name="content-language" content="pt-BR" />
+	<meta name="robots" content="all" />
+	<meta name="distribution" content="Global" />
+	<meta name="resource-type" content="document" />
+
+	<link rel="icon" type="image/png" href="/assets/img/favicon.png" />
+    <link href="/assets/css/screen.css?2013-02-22" media="screen, projection" rel="stylesheet" type="text/css" />
+    <!--[if IE]>
+    	<link href="/assets/css/ie.css?2013-02-22" media="screen, projection" rel="stylesheet" type="text/css" />
+  	<![endif]-->
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+
+	<div id="wrapper">
+		
+		<header id="main">
+	<h1><a href="/" id="logo">.openBlog()</a></h1>
+</header>
+		
+		<section id="content">
+
+			<section class="post-container" itemscope itemtype="http://schema.org/BlogPosting">
+				<span class="hidden" itemprop="publisher">Open Blog</span>
+				<article>
+					<header>
+						<h1><a href="/2013/02/05/heranca-em-javascript-parte-2/" itemprop="headline">Herança em JavaScript <span class="light">parte II</span></a></h1>
+					</header>
+					<section itemprop="articleBody">
+						
+						<figure>
+							<img itemprop="thumbnailUrl" src="/images/posts/2013-02-05-heranca-em-javascript-parte-2.jpg" class="post-image" alt="Herança em JavaScript parte II" title="Herança em JavaScript parte II" width="700" height="432" />
+						</figure>
+						
+						<p>O JavaScript é uma linguagem orientada a objetos baseada em protótipos mas que, ao longo de seu desenvolvimento, foi forçada a &#8220;parecer&#8221; uma linguagem baseada em classes. Com o ECMAScript 5 é finalmente possível programar em JavaScript utilizando os conceitos de prototipação, herdando propriedades diretamente de um objeto.</p>
+
+<h2 id='clonando'>Clonando</h2>
+
+<p>Um dos novos métodos adicionados pela especificação ECMAScript 5 é o <code>Object.create</code>. Com ele nós podemos criar um novo objeto clone de um outro. Em outras palavras, usar um objeto existente como protótipo.</p>
+
+<p>No exemplo abaixo primeiro definimos um objeto <strong>pessoa</strong>, para logo depois criarmos um novo objeto <strong>joao</strong> que contém exatamente todas as propriedades de pessoa.</p>
+<div class='highlight'><pre><code class='javascript'><span class='kd'>var</span> <span class='nx'>pessoa</span> <span class='o'>=</span> <span class='p'>{</span>
+  <span class='nx'>caminhar</span><span class='o'>:</span> <span class='kd'>function</span><span class='p'>()</span> <span class='p'>{</span>
+    <span class='c1'>// ...</span>
+  <span class='p'>},</span>
+  <span class='nx'>falar</span><span class='o'>:</span> <span class='kd'>function</span><span class='p'>()</span> <span class='p'>{</span>
+    <span class='c1'>// ...</span>
+  <span class='p'>}</span>
+<span class='p'>}</span>
+
+<span class='kd'>var</span> <span class='nx'>joao</span> <span class='o'>=</span> <span class='nb'>Object</span><span class='p'>.</span><span class='nx'>create</span><span class='p'>(</span><span class='nx'>pessoa</span><span class='p'>)</span>
+<span class='nx'>joao</span><span class='p'>.</span><span class='nx'>caminhar</span><span class='p'>()</span> <span class='c1'>// método clonado de *pessoa*</span>
+</code></pre></div>
+<p>Com este método é possível também criarmos um objeto sem propriedades, que não usa nenhum outro como protótipo. O que era impossível antes.</p>
+<div class='highlight'><pre><code class='javascript'><span class='kd'>var</span> <span class='nx'>obj</span> <span class='o'>=</span> <span class='p'>{}</span>
+<span class='nx'>obj</span><span class='p'>.</span><span class='nx'>toString</span><span class='p'>()</span> <span class='c1'>// método herdado de Object</span>
+
+<span class='kd'>var</span> <span class='nx'>objVirgem</span> <span class='o'>=</span> <span class='nb'>Object</span><span class='p'>.</span><span class='nx'>create</span><span class='p'>(</span><span class='kc'>null</span><span class='p'>)</span>
+<span class='nx'>objVirgem</span><span class='p'>.</span><span class='nx'>toString</span><span class='p'>()</span> <span class='c1'>// não possui nenhum método</span>
+</code></pre></div>
+<h2 id='extendendo'>Extendendo</h2>
+
+<p>Além de simplesmente clonar, é possível criar um novo objeto extendendo um já existente.</p>
+<div class='highlight'><pre><code class='javascript'><span class='kd'>var</span> <span class='nx'>animal</span> <span class='o'>=</span> <span class='p'>{</span>
+  <span class='nx'>respirar</span><span class='o'>:</span> <span class='kd'>function</span><span class='p'>()</span> <span class='p'>{</span>
+    <span class='c1'>// ...</span>
+  <span class='p'>},</span>
+  <span class='nx'>reproduzir</span><span class='o'>:</span> <span class='kd'>function</span><span class='p'>()</span> <span class='p'>{</span>
+    <span class='c1'>// ...</span>
+  <span class='p'>}</span>
+<span class='p'>}</span>
+
+<span class='kd'>var</span> <span class='nx'>cachorro</span> <span class='o'>=</span> <span class='nb'>Object</span><span class='p'>.</span><span class='nx'>create</span><span class='p'>(</span><span class='nx'>animal</span><span class='p'>,</span> <span class='p'>{</span>
+  <span class='nx'>latir</span><span class='o'>:</span> <span class='p'>{</span>
+    <span class='nx'>value</span><span class='o'>:</span> <span class='kd'>function</span><span class='p'>()</span> <span class='p'>{</span>
+      <span class='c1'>// ...</span>
+    <span class='p'>}</span>
+  <span class='p'>}</span>
+<span class='p'>})</span>
+
+<span class='nx'>cachorro</span><span class='p'>.</span><span class='nx'>respirar</span><span class='p'>()</span> <span class='c1'>// método herdado</span>
+<span class='nx'>cachorro</span><span class='p'>.</span><span class='nx'>latir</span><span class='p'>()</span> <span class='c1'>// método adicionado</span>
+</code></pre></div>
+<p>No exemplo acima criamos um novo objeto do tipo <strong>cachorro</strong> que contem todas as propriedades de <strong>animal</strong> além de um novo método <strong>latir</strong>.</p>
+
+<h2 id='definindo_propriedades'>Definindo propriedades</h2>
+
+<p>O novo meio de definirmos novas propriedades em um objeto é através do método <code>Object.defineProperty</code>. No ECMAScript 5, as propriedades de um objeto não são mais apenas valores acessados através de uma chave. Agora podemos definir <em>setters</em>, <em>getters</em>, se a propriedade é apenas de leitura, enumerável, &#8230;</p>
+<div class='highlight'><pre><code class='javascript'><span class='nb'>Object</span><span class='p'>.</span><span class='nx'>defineProperty</span><span class='p'>(</span><span class='nx'>cachorro</span><span class='p'>,</span> <span class='s1'>&#39;dormir&#39;</span><span class='p'>,</span> <span class='p'>{</span>
+  <span class='nx'>value</span><span class='o'>:</span> <span class='kd'>function</span><span class='p'>()</span> <span class='p'>{</span>
+    <span class='c1'>// ...</span>
+  <span class='p'>},</span>
+  <span class='nx'>writable</span><span class='o'>:</span> <span class='kc'>false</span><span class='p'>,</span>
+  <span class='nx'>enumerable</span><span class='o'>:</span> <span class='kc'>false</span><span class='p'>,</span>
+  <span class='nx'>configurable</span><span class='o'>:</span> <span class='kc'>false</span>
+<span class='p'>})</span>
+</code></pre></div>
+<p>Os <em>descriptors</em> de uma propriedade podem ser:</p>
+
+<ul>
+<li><strong>value</strong>: o valor da propriedade. pode ser uma função, um objeto, um número, &#8230;</li>
+
+<li><strong>writable</strong>: se <code>false</code>, o valor não pode ser alterado.</li>
+
+<li><strong>configurable</strong>: se <code>false</code>, não é possível deletar a propriedade ou modificar seus atributos (<code>writable</code>, <code>configurable</code> ou <code>enumerable</code>)</li>
+
+<li><strong>enumerable</strong>: se <code>true</code>, a propriedade será iterada em um <em>loop</em>&#160;<code>for (var prop in obj){}</code></li>
+</ul>
+
+<p>Além disso é possivel definir <em>getters</em> and <em>setters</em> que irão ser disparados de forma transparente toda vez que a propriedade for acessada ou modificada.</p>
+<div class='highlight'><pre><code class='javascript'><span class='nb'>Object</span><span class='p'>.</span><span class='nx'>defineProperty</span><span class='p'>(</span><span class='nx'>cachorro</span><span class='p'>,</span> <span class='s1'>&#39;idade&#39;</span><span class='p'>,</span> <span class='p'>{</span>
+  <span class='nx'>value</span><span class='o'>:</span> <span class='mi'>1</span><span class='p'>,</span>
+  <span class='nx'>get</span><span class='o'>:</span> <span class='nx'>funtion</span><span class='p'>()</span> <span class='p'>{</span>
+    <span class='c1'>// já que cada ano de um cachorro é equivalente a 7 anos nossos</span>
+    <span class='k'>return</span> <span class='nx'>idade</span> <span class='o'>*</span> <span class='mi'>7</span>
+  <span class='p'>},</span>
+  <span class='nx'>set</span><span class='o'>:</span> <span class='kd'>function</span><span class='p'>(</span><span class='nx'>value</span><span class='p'>)</span> <span class='p'>{</span>
+    <span class='nx'>idade</span> <span class='o'>=</span> <span class='nx'>value</span>
+  <span class='p'>}</span>
+<span class='p'>})</span>
+
+<span class='nx'>cachorro</span><span class='p'>.</span><span class='nx'>idade</span> <span class='o'>=</span> <span class='mi'>3</span>
+<span class='nx'>cachorro</span><span class='p'>.</span><span class='nx'>idade</span> <span class='c1'>// retorna 21 (3*7)</span>
+</code></pre></div>
+<h2 id='mtodos_super'>Métodos super</h2>
+
+<p>No exemplo abaixo, definimos uma nova propriedade <strong>respirar</strong> no objeto cachorro. Mas essa propriedade já havia sido herdada do objeto <strong>animal</strong>, então acabamos a sobreescrevendo.</p>
+<div class='highlight'><pre><code class='javascript'><span class='nb'>Object</span><span class='p'>.</span><span class='nx'>defineProperty</span><span class='p'>(</span><span class='nx'>cachorro</span><span class='p'>,</span> <span class='s1'>&#39;respirar&#39;</span><span class='p'>,</span> <span class='p'>{</span>
+  <span class='nx'>value</span><span class='o'>:</span> <span class='kd'>function</span><span class='p'>(){</span>
+    <span class='c1'>// ...</span>
+  <span class='p'>}</span>
+<span class='p'>})</span>
+<span class='nx'>cachorro</span><span class='p'>.</span><span class='nx'>respirar</span><span class='p'>()</span> <span class='c1'>// dispara função que acabamos de definir</span>
+</code></pre></div>
+<p>Mas mesmo assim ainda podemos percorrer a cadeia de protótipos e acessar o método definido no protótipo de cachorro, o método definido no objeto animal. O novo método <code>Object.getPrototypeOf</code> nos dá acesso ao protótipo de um objeto. Então basta acessarmos o protótipo de <strong>cachorro</strong> e chamarmos o método anteriormente sobreescrito.</p>
+<div class='highlight'><pre><code class='javascript'><span class='nb'>Object</span><span class='p'>.</span><span class='nx'>getPrototypeOf</span><span class='p'>(</span><span class='nx'>cachorro</span><span class='p'>).</span><span class='nx'>respirar</span><span class='p'>()</span>
+<span class='c1'>// o mesmo que</span>
+<span class='nx'>animal</span><span class='p'>.</span><span class='nx'>respirar</span><span class='p'>()</span>
+</code></pre></div>
+<h2 id='modificando_prottipo_em_tempo_de_execuo'>Modificando protótipo em tempo de execução</h2>
+
+<p>Em linguagens baseadas em protótipos podemos facilmente adicionar ou remover propriedades a objetos, bastando modificar seus protótipos. Por exemplo, caso um novo método seja implementado em animal, todos os objetos que usam animal como protótipo terão este método disponível.</p>
+<div class='highlight'><pre><code class='javascript'><span class='nx'>cachorro</span><span class='p'>.</span><span class='nx'>morrer</span><span class='p'>()</span> <span class='c1'>// undefined</span>
+
+<span class='nb'>Object</span><span class='p'>.</span><span class='nx'>defineProperty</span><span class='p'>(</span><span class='nx'>animal</span><span class='p'>,</span> <span class='s1'>&#39;morrer&#39;</span><span class='p'>,</span> <span class='p'>{</span>
+  <span class='nx'>value</span><span class='o'>:</span> <span class='kd'>function</span><span class='p'>()</span> <span class='p'>{</span>  <span class='p'>}</span>
+<span class='p'>})</span>
+<span class='nx'>cachorro</span><span class='p'>.</span><span class='nx'>morrer</span><span class='p'>()</span> <span class='c1'>// dispara função definida em animal</span>
+</code></pre></div>
+<p>Então imaginem que queremos dar a todos os cachorros já criados em nossa aplicação um novo método. Para isso basta acessar o protótipo de cachorro e definir uma nova propriedade. Após isso, todos os cachorros já poderão usar o novo método.</p>
+<div class='highlight'><pre><code class='javascript'><span class='nb'>Object</span><span class='p'>.</span><span class='nx'>defineProperty</span><span class='p'>(</span><span class='nb'>Object</span><span class='p'>.</span><span class='nx'>getPrototypeOf</span><span class='p'>(</span><span class='nx'>cachorro</span><span class='p'>),</span> <span class='s1'>&#39;comer&#39;</span><span class='p'>,</span> <span class='p'>{</span>
+  <span class='nx'>value</span><span class='o'>:</span> <span class='kd'>function</span><span class='p'>()</span> <span class='p'>{}</span>
+<span class='p'>})</span>
+</code></pre></div>
+<h2 id='e_no_ie'>E no IE?</h2>
+
+<p>Infelizmente apenas a partir da versão 9 do IE que temos suporte a estas novas <em>features</em> do JavaScript. E sabemos que o IE 9 não roda no Windows XP, então ainda temos algum tempo para aprender e dominar este novo jeito de desenvolver com JavaScript.</p>
+<table class='support'>
+  <thead>
+    <tr>
+      <th class='subject'><h2>Suporte</h2></th>
+      <th class='browser chrome'><div class='i' /></th>
+      <th class='browser safari'><div class='i' /></th>
+      <th class='browser firefox'><div class='i' /></th>
+      <th class='browser ie'><div class='i' /></th>
+      <th class='browser opera'><div class='i' /></th>
+    </tr>
+    <tr>
+      <th />
+      <th class='base' colspan='5' />
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class='property'><code>Object.create()</code></td>
+      <td>5.0</td>
+      <td>5.0</td>
+      <td>4.0</td>
+      <td>9.0</td>
+      <td>11.60</td>
+    </tr>
+    <tr>
+      <td class='property'><code>Object.defineProperty()</code></td>
+      <td>5.0</td>
+      <td>5.1</td>
+      <td>4.0</td>
+      <td>9.0</td>
+      <td>11.60</td>
+    </tr>
+    <tr>
+      <td class='property'><code>Object.getPrototypeOf()</code></td>
+      <td>5.0</td>
+      <td>5.0</td>
+      <td>3.5</td>
+      <td>9.0</td>
+      <td>--</td>
+    </tr>
+  </tbody>
+</table>
+<p>Mas caso você tenha espiríto aventureiro, existe um <a href='https://github.com/kriskowal/es5-shim'><em>shim</em></a> para que estes novos métodos funcionem (ou parcialmente funcionem) em navegadores antigos.</p>
+<aside class='fonte'>
+  <h3>Referência</h3>
+  <ul>
+    <li>→
+      <a href='http://ejohn.org/blog/objectgetprototypeof/'>
+        Object.getPrototypeOf
+      </a>
+      <span class='comment'>// John Resig</span>
+    </li>
+    <li>→
+      <a href='http://loopinfinito.com.br/2012/05/04/heranca-em-javascript-parte-1/'>
+        Herança em JavaScript parte I
+      </a>
+      <span class='comment'>// Loop Infinito</span>
+    </li>
+    <li>→
+      <a href='http://ejohn.org/blog/ecmascript-5-objects-and-properties/'>
+        ECMAScript 5 Objects and Properties
+      </a>
+      <span class='comment'>// John Resig</span>
+    </li>
+    <li>→
+      <a href='https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/create'>
+        Object.create
+      </a>
+      <span class='comment'>// MDN</span>
+    </li>
+    <li>→
+      <a href='http://wikipedia.qwika.com/en2pt/Prototype-based_programming'>
+        Prototype-based Programming
+      </a>
+      <span class='comment'>// Wikipedia</span>
+    </li>
+  </ul>
+</aside>
+					</section>
+				</article>
+			</section>
+
+		</section><!-- end #content -->
+
+	</div><!-- end #wrapper -->
+
+</body>
+</html>

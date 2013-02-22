@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+	<meta charset="UTF-8" />
+	
+		<title>Customizando widgets de formulários web | Open Blog</title>
+	
+	
+		<meta name="author" content="Almir Filho" />
+	
+	
+		<meta name="keywords" content="css, css3, web-forms, web forms, formulario web, formulario-web, webkit, customizacao, widget, range, radio, checkbox
+" />
+	
+	
+		<meta name="description" content="Hoje vamos descobrir como estilizar elementos de formulário e os deixarmos assim, como essa máquina da foto acima, totalmente customizada." />
+	
+	<meta name="language" content="pt" />
+	<meta name="content-language" content="pt-BR" />
+	<meta name="robots" content="all" />
+	<meta name="distribution" content="Global" />
+	<meta name="resource-type" content="document" />
+
+	<link rel="icon" type="image/png" href="/assets/img/favicon.png" />
+    <link href="/assets/css/screen.css?2013-02-22" media="screen, projection" rel="stylesheet" type="text/css" />
+    <!--[if IE]>
+    	<link href="/assets/css/ie.css?2013-02-22" media="screen, projection" rel="stylesheet" type="text/css" />
+  	<![endif]-->
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+
+	<div id="wrapper">
+		
+		<header id="main">
+	<h1><a href="/" id="logo">.openBlog()</a></h1>
+</header>
+		
+		<section id="content">
+
+			<section class="post-container" itemscope itemtype="http://schema.org/BlogPosting">
+				<span class="hidden" itemprop="publisher">Open Blog</span>
+				<article>
+					<header>
+						<h1><a href="/2012/08/08/customizando-widgets-de-formularios-web/" itemprop="headline"><span>Customizando</span> widgets de formulários web</a></h1>
+					</header>
+					<section itemprop="articleBody">
+						
+						<figure>
+							<img itemprop="thumbnailUrl" src="/images/posts/2012-08-08-customizando-widgets-de-formularios-web.jpg" class="post-image" alt="Customizando widgets de formulários web" title="Customizando widgets de formulários web" width="700" height="432" />
+						</figure>
+						
+						<style>
+#exemplo-radio input[type=radio] {
+    appearance: checkbox;
+    -o-appearance: checkbox;
+    -ms-appearance: checkbox;
+    -moz-appearance: checkbox;
+    -khtml-appearance: checkbox;
+    -webkit-appearance: checkbox;
+}
+.example label {
+	margin: 0px 15px 0px 5px;
+}
+.example .div {
+	border-bottom: 1px solid #ddd;
+	padding-bottom: 15px;
+	margin-bottom: 15px;
+}
+input#rolling-stones {
+	appearance: none;
+    -o-appearance: none;
+    -ms-appearance: none;
+    -moz-appearance: none;
+    -khtml-appearance: none;
+    -webkit-appearance: none;
+    background-color: rgba(0,0,0,0.1);
+    background-image: -webkit-linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0));
+    width: 300px;
+    height: 6px;
+    border-radius: 6px;
+    -o-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -khtml-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border: 1px solid rgba(0,0,0,0.5);
+    box-shadow: 1px 1px 0px white;
+    -o-box-shadow: 1px 1px 0px white;
+    -ms-box-shadow: 1px 1px 0px white;
+    -moz-box-shadow: 1px 1px 0px white;
+    -khtml-box-shadow: 1px 1px 0px white;
+    -webkit-box-shadow: 1px 1px 0px white;
+}
+input#rolling-stones::-webkit-slider-thumb {
+	appearance: none;
+    -o-appearance: none;
+    -ms-appearance: none;
+    -moz-appearance: none;
+    -khtml-appearance: none;
+    -webkit-appearance: none;
+    width: 8px;
+    height: 18px;
+    background-color: #999;
+    background-image: -webkit-linear-gradient(#999,#666);
+    border-radius: 8px;
+    -o-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -khtml-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    -o-box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    -ms-box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    -moz-box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    -khtml-box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    border: 1px solid rgba(0,0,0,0.3);
+}
+input#rolling-stones::-webkit-slider-thumb:hover {
+	background-image: none;
+	background-color: #777;
+}
+input#rolling-stones::-webkit-slider-thumb:active {
+	background-image: none;
+	background-color: #555;
+}
+input#rolling-stones:focus {
+	outline: none;
+}
+input#rolling-stones:focus::-webkit-slider-thumb {
+	outline: none;
+	box-shadow: 0px 0px 5px 1px red;
+    -o-box-shadow: 0px 0px 5px 1px red;
+    -ms-box-shadow: 0px 0px 5px 1px red;
+    -moz-box-shadow: 0px 0px 5px 1px red;
+    -khtml-box-shadow: 0px 0px 5px 1px red;
+    -webkit-box-shadow: 0px 0px 5px 1px red;
+}
+input.estilizado {
+    /* removendo a aparência padrão (Chrome e Safari) */
+    appearance: none;
+    -o-appearance: none;
+    -ms-appearance: none;
+    -moz-appearance: none;
+    -khtml-appearance: none;
+    -webkit-appearance: none;
+    /* estilização */
+    border: 1px solid rgba( 0,0,0,0.5 );
+    box-shadow: 1px 1px 0px white;
+    -o-box-shadow: 1px 1px 0px white;
+    -ms-box-shadow: 1px 1px 0px white;
+    -moz-box-shadow: 1px 1px 0px white;
+    -khtml-box-shadow: 1px 1px 0px white;
+    -webkit-box-shadow: 1px 1px 0px white;
+    background-color: white;
+    background-image: -webkit-linear-gradient( rgba(0,0,0,0.2),rgba(0,0,0,0) );
+}
+/* quando o input estiver selecionado */
+input.estilizado:checked {
+    background-image: none;
+    background-color: rgba( 0,0,0,0.3 );
+}
+/* quando um input estiver em foco */
+input.estilizado:focus {
+    outline: none;
+    box-shadow: 0px 0px 5px 1px red;
+    -o-box-shadow: 0px 0px 5px 1px red;
+    -ms-box-shadow: 0px 0px 5px 1px red;
+    -moz-box-shadow: 0px 0px 5px 1px red;
+    -khtml-box-shadow: 0px 0px 5px 1px red;
+    -webkit-box-shadow: 0px 0px 5px 1px red;
+}
+/* estilos para o checkbox */
+input[type=checkbox].estilizado {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    -o-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+/* quando um checkbox estiver selecionado */
+input[type=checkbox].estilizado:checked:before {
+    content: "✔";
+    font-size: 15px;
+    color: rgba( 0,0,0,0.5 );
+    position: relative;
+    top: -6px;
+    left: 2px;
+}
+/* estilos para o radio button */
+input[type=radio].estilizado {
+    width: 13px;
+    height: 13px;
+    border-radius: 7px;
+    -o-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -khtml-border-radius: 7px;
+    -webkit-border-radius: 7px;
+}
+/* quando um radio button estiver selecionado */
+input[type=radio].estilizado:checked:before {
+    content: "•";
+    font-size: 15px;
+    color: #333;
+    position: relative;
+    top: -5px;
+    left: 1px;
+}
+</style>
+<p>No <a href='http://loopinfinito.com.br/2012/07/17/sou-dom-shadow-dom/' title='Sou DOM, Shadow DOM'>post anterior</a> falamos sobre <em>Shadow DOM</em> e entendemos a razão pela qual não é possível estilizar <strong>widgets de formulário</strong> (<em>selects</em>, <em>radio buttons</em>, <em>checkboxes</em>, <em>ranges</em>, etc). Contudo, não é necessário esperar que a API Shadow DOM seja disponibilizada para que já possamos começar a brincar de estilizar nossos widgets, pois o CSS3 já define algumas propriedades e seletores específicos de vários componentes de formulário.</p>
+
+<p>Hoje vamos descobrir como estilizar elementos de formulário e os deixarmos assim, como essa máquina da foto acima, totalmente customizada.</p>
+
+<p>O CSS3 define a propriedade <code>appearance</code>, que nos permite fazer com que um elemento pareça com componentes de UI.</p>
+<p class='obs'><strong>OBS.:</strong> Para visualizar os exemplos deste post corretamente, você tem que estar usando um navegador baseado em
+Webkit (<strong>Google Chrome</strong> ou <strong>Safari</strong>).</p>
+<h2 id='show_me_the_code'>Show me the code</h2>
+
+<p>Neste primeiro exemplo vamos fazer uma coisa bem simples, mudaremos a aparência de um grupo de radio buttons:</p>
+<div class='highlight'><pre><code class='html'><span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&quot;radio&quot;</span> <span class='na'>name=</span><span class='s'>&quot;pinkfloyd&quot;</span> <span class='na'>id=</span><span class='s'>&quot;syd&quot;</span> <span class='nt'>/&gt;</span>
+<span class='nt'>&lt;label</span> <span class='na'>for=</span><span class='s'>&quot;syd&quot;</span><span class='nt'>&gt;</span>Syd Barret<span class='nt'>&lt;/label&gt;</span>
+
+<span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&quot;radio&quot;</span> <span class='na'>name=</span><span class='s'>&quot;pinkfloyd&quot;</span> <span class='na'>id=</span><span class='s'>&quot;david&quot;</span> <span class='nt'>/&gt;</span>
+<span class='nt'>&lt;label</span> <span class='na'>for=</span><span class='s'>&quot;david&quot;</span><span class='nt'>&gt;</span>David Gilmour<span class='nt'>&lt;/label&gt;</span>
+
+<span class='nt'>&lt;input</span> <span class='na'>type=</span><span class='s'>&quot;radio&quot;</span> <span class='na'>name=</span><span class='s'>&quot;pinkfloyd&quot;</span> <span class='na'>id=</span><span class='s'>&quot;roger&quot;</span> <span class='nt'>/&gt;</span>
+<span class='nt'>&lt;label</span> <span class='na'>for=</span><span class='s'>&quot;roger&quot;</span><span class='nt'>&gt;</span>Roger Waters<span class='nt'>&lt;/label&gt;</span>
+</code></pre></div>
+<p>Este trecho de código gera os widgets abaixo:</p>
+<div class='img example bordered'>
+	<input id='syd' name='pinkfloyd' type='radio' />
+	<label for='syd'>Syd Barrett</label>
+
+	<input id='david' name='pinkfloyd' type='radio' />
+	<label for='david'>David Gilmour</label>
+
+	<input id='roger' name='pinkfloyd' type='radio' />
+	<label for='roger'>Roger Waters</label>
+</div>
+<p>Agora usaremos a propriedade <code>appearance</code> para alterar a aparência dos <em>radio buttons</em>. Dentre tantas opções, escolhi a que achei mais didática para este exemplo – o <strong>checkbox</strong> –, mas você pode escolher outra opção qualquer. No CSS, precisamos apenas:</p>
+<div class='highlight'><pre><code class='css'><span class='nt'>input</span><span class='o'>[</span><span class='nt'>type</span><span class='o'>=</span><span class='nt'>radio</span><span class='o'>]</span> <span class='p'>{</span>
+    <span class='o'>-</span><span class='n'>webkit</span><span class='o'>-</span><span class='n'>appearance</span><span class='o'>:</span> <span class='n'>checkbox</span><span class='p'>;</span> <span class='c'>/* Chrome e Safari */</span>
+    <span class='o'>-</span><span class='n'>moz</span><span class='o'>-</span><span class='n'>appearance</span><span class='o'>:</span> <span class='n'>checkbox</span><span class='p'>;</span> <span class='c'>/* Firefox */</span>
+    <span class='n'>appearance</span><span class='o'>:</span> <span class='n'>checkbox</span><span class='p'>;</span> <span class='c'>/* ainda não é suportado */</span>
+<span class='p'>}</span>
+</code></pre></div>
+<p>Como podemos ver a seguir, a aparência dos radio buttons mudou para a mesma aparência das checkboxes, mas não se enganem, os widgets ainda são de fato radio buttons, podemos constatar isto pelo fato de que apenas uma das opções abaixo pode ser selecionada ao mesmo tempo. Teste você mesmo!</p>
+<div class='img example bordered' id='exemplo-radio'>
+	<input id='syd1' name='pinkfloyd' type='radio' />
+	<label for='syd1' style='margin: 0px 15px 0px 5px;'>Syd Barrett</label>
+
+	<input id='david1' name='pinkfloyd' type='radio' />
+	<label for='david1' style='margin: 0px 15px 0px 5px;'>David Gilmour</label>
+
+	<input id='roger1' name='pinkfloyd' type='radio' />
+	<label for='roger1' style='margin: 0px 15px 0px 5px;'>Roger Waters</label>
+</div>
+<h2 id='customizando_o_input_range'>Customizando o input range</h2>
+
+<p>Show de bola! Agora, o próximo experimento será bem mais legal, desta vez iremos estilizar um <strong>slider</strong> de formulário como bem entendermos – <code>&lt;input type=&quot;range&quot;&gt;</code>, cuja aparência padrão é:</p>
+<div class='img example bordered' style='text-align:center;'>
+	<input type='range' />
+</div>
+<p>O que devemos fazer primeiramente é <strong>remover a aparência padrão</strong> setando a propriedade <code>appearance</code> para <code>none</code>, isso nos dará a liberdade de modificar qualquer propriedade do elemento, só assim poderemos começar a customização do widget. Vamos então dar continuidade com os passos iniciais no nosso <em>widget de range</em> de <em>id</em> <code>#rolling-stones</code>:</p>
+<div class='highlight'><pre><code class='css'><span class='nt'>input</span><span class='nf'>#rolling-stones</span> <span class='p'>{</span>
+    <span class='c'>/* removendo a aparência padrão (Chrome e Safari) */</span>
+    <span class='o'>-</span><span class='n'>webkit</span><span class='o'>-</span><span class='n'>appearance</span><span class='o'>:</span> <span class='k'>none</span><span class='p'>;</span>
+    <span class='c'>/* estilização */</span>
+    <span class='k'>width</span><span class='o'>:</span> <span class='m'>300px</span><span class='p'>;</span>
+    <span class='k'>height</span><span class='o'>:</span> <span class='m'>6px</span><span class='p'>;</span>
+    <span class='k'>border</span><span class='o'>-</span><span class='n'>radius</span><span class='o'>:</span> <span class='m'>6px</span><span class='p'>;</span>
+    <span class='k'>border</span><span class='o'>:</span> <span class='m'>1px</span> <span class='k'>solid</span> <span class='n'>rgba</span><span class='p'>(</span> <span class='m'>0</span><span class='o'>,</span><span class='m'>0</span><span class='o'>,</span><span class='m'>0</span><span class='o'>,</span><span class='m'>0</span><span class='o'>.</span><span class='m'>5</span> <span class='p'>);</span>
+    <span class='n'>box</span><span class='o'>-</span><span class='n'>shadow</span><span class='o'>:</span> <span class='m'>1px</span> <span class='m'>1px</span> <span class='m'>0px</span> <span class='nb'>white</span><span class='p'>;</span>
+    <span class='k'>background-color</span><span class='o'>:</span> <span class='n'>rgba</span><span class='p'>(</span> <span class='m'>0</span><span class='o'>,</span><span class='m'>0</span><span class='o'>,</span><span class='m'>0</span><span class='o'>,</span><span class='m'>0</span><span class='o'>.</span><span class='m'>1</span> <span class='p'>);</span>
+    <span class='k'>background-image</span><span class='o'>:</span> <span class='o'>-</span><span class='n'>webkit</span><span class='o'>-</span><span class='n'>linear</span><span class='o'>-</span><span class='n'>gradient</span><span class='p'>(</span> <span class='n'>rgba</span><span class='p'>(</span><span class='m'>0</span><span class='o'>,</span><span class='m'>0</span><span class='o'>,</span><span class='m'>0</span><span class='o'>,</span><span class='m'>0</span><span class='o'>.</span><span class='m'>2</span><span class='p'>)</span><span class='o'>,</span> <span class='n'>rgba</span><span class='p'>(</span><span class='m'>0</span><span class='o'>,</span><span class='m'>0</span><span class='o'>,</span><span class='m'>0</span><span class='o'>,</span><span class='m'>0</span><span class='p'>)</span> <span class='p'>);</span>
+<span class='p'>}</span>
+</code></pre></div>
+<p>Após remover a aparência padrão com <code>-webkit-appearance: none</code>, nosso elemento vai ficar com um fundo branco, e é ai que as estilizações acima entram em cena. Mas podemos perceber que embora o fundo já tenha sido customizado, seu pequeno botão circular que desliza sobre a trilha (<em>slider thumb</em>) ainda permanecerá com sua aparência padrão, isso ocorre porque este botão é um <strong>outro elemento</strong> padrão encapsulado dentro do <em>input range</em>, e para mudarmos sua aparência padrão deveremos usar um seletor especial <code>::slider-thumb</code> – que por enquanto apenas o Webkit (Chrome e Safari) dá suporte através da flag <code>-webkit</code>. Customizando o botão:</p>
+<div class='highlight'><pre><code class='css'><span class='nt'>input</span><span class='nf'>#rolling-stones</span><span class='o'>:</span><span class='nd'>:-webkit-slider-thumb</span> <span class='p'>{</span>
+    <span class='c'>/* removendo a aparência padrão (Chrome e Safari) */</span>
+    <span class='o'>-</span><span class='n'>webkit</span><span class='o'>-</span><span class='n'>appearance</span><span class='o'>:</span> <span class='k'>none</span><span class='p'>;</span>
+    <span class='c'>/* estilização */</span>
+    <span class='k'>width</span><span class='o'>:</span> <span class='m'>8px</span><span class='p'>;</span>
+    <span class='k'>height</span><span class='o'>:</span> <span class='m'>18px</span><span class='p'>;</span>
+    <span class='k'>border</span><span class='o'>-</span><span class='n'>radius</span><span class='o'>:</span> <span class='m'>8px</span><span class='p'>;</span>
+    <span class='k'>border</span><span class='o'>:</span> <span class='m'>1px</span> <span class='k'>solid</span> <span class='n'>rgba</span><span class='p'>(</span> <span class='m'>0</span><span class='o'>,</span><span class='m'>0</span><span class='o'>,</span><span class='m'>0</span><span class='o'>,</span><span class='m'>0</span><span class='o'>.</span><span class='m'>3</span> <span class='p'>);</span>
+    <span class='n'>box</span><span class='o'>-</span><span class='n'>shadow</span><span class='o'>:</span> <span class='m'>1px</span> <span class='m'>1px</span> <span class='m'>2px</span> <span class='n'>rgba</span><span class='p'>(</span> <span class='m'>0</span><span class='o'>,</span><span class='m'>0</span><span class='o'>,</span><span class='m'>0</span><span class='o'>,</span><span class='m'>0</span><span class='o'>.</span><span class='m'>2</span> <span class='p'>);</span>
+    <span class='k'>background-color</span><span class='o'>:</span> <span class='m'>#999</span><span class='p'>;</span>
+    <span class='k'>background-image</span><span class='o'>:</span> <span class='o'>-</span><span class='n'>webkit</span><span class='o'>-</span><span class='n'>linear</span><span class='o'>-</span><span class='n'>gradient</span><span class='p'>(</span> <span class='m'>#999</span><span class='o'>,</span> <span class='m'>#666</span> <span class='p'>);</span>
+<span class='p'>}</span>
+</code></pre></div>
+<p>A parte seguinte é mais relacionada à interação do widget com o usuário. Especificamos os comportamentos para quando há foco (<code>:focus</code>), para quando passamos a seta do mouse em cima do botão (<code>:hover</code>) e para quando clicamos e arrastamos o botão (<code>:active</code>):</p>
+<div class='highlight'><pre><code class='css'><span class='nt'>input</span><span class='nf'>#rolling-stones</span><span class='nd'>:focus</span> <span class='p'>{</span>
+    <span class='k'>outline</span><span class='o'>:</span> <span class='k'>none</span><span class='p'>;</span>
+<span class='p'>}</span>
+
+<span class='nt'>input</span><span class='nf'>#rolling-stones</span><span class='nd'>:focus</span><span class='o'>:</span><span class='nd'>:-webkit-slider-thumb</span> <span class='p'>{</span>
+    <span class='k'>outline</span><span class='o'>:</span> <span class='k'>none</span><span class='p'>;</span>
+    <span class='n'>box</span><span class='o'>-</span><span class='n'>shadow</span><span class='o'>:</span> <span class='m'>0px</span> <span class='m'>0px</span> <span class='m'>5px</span> <span class='m'>1px</span> <span class='nb'>red</span><span class='p'>;</span>
+<span class='p'>}</span>
+
+<span class='nt'>input</span><span class='nf'>#rolling-stones</span><span class='o'>:</span><span class='nd'>:-webkit-slider-thumb:hover</span> <span class='p'>{</span>
+    <span class='k'>background-image</span><span class='o'>:</span> <span class='k'>none</span><span class='p'>;</span>
+    <span class='k'>background-color</span><span class='o'>:</span> <span class='m'>#777</span><span class='p'>;</span>
+<span class='p'>}</span>
+
+<span class='nt'>input</span><span class='nf'>#rolling-stones</span><span class='o'>:</span><span class='nd'>:-webkit-slider-thumb:active</span> <span class='p'>{</span>
+    <span class='k'>background-image</span><span class='o'>:</span> <span class='k'>none</span><span class='p'>;</span>
+    <span class='k'>background-color</span><span class='o'>:</span> <span class='m'>#555</span><span class='p'>;</span>
+<span class='p'>}</span>
+</code></pre></div>
+<p>E eis o resultado! Recomendo testar também o <em>focus</em> (aperte <em>tab</em> e depois ← e →).</p>
+<div class='img example bordered' id='exemplo-range' style='text-align:center;'>
+	<input id='rolling-stones' tabindex='1' type='range' />
+</div><table class='support'>
+	<thead>
+		<tr>
+			<th class='subject'><h2>Suporte</h2></th>
+			<th class='browser chrome'><div class='i' /></th>
+			<th class='browser safari'><div class='i' /></th>
+			<th class='browser firefox'><div class='i' /></th>
+			<th class='browser ie'><div class='i' /></th>
+			<th class='browser opera'><div class='i' /></th>
+		</tr>
+		<tr>
+			<th />
+			<th class='base' colspan='5' />
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td class='property'><code>appearance</code></td>
+			<td>1.0<br /><code class='small'>-webkit</code></td>
+			<td>3.0<br /><code class='small'>-webkit</code></td>
+			<td>1.0<br /><code class='small'>-moz</code></td>
+			<td>--</td>
+			<td>--</td>
+		</tr>
+		<tr>
+			<td class='property'><code>::slider-thumb</code></td>
+			<td>20 *<br /><code class='small'>-webkit</code></td>
+			<td>5.1 *<br /><code class='small'>-webkit</code></td>
+			<td>--</td>
+			<td>--</td>
+			<td>--</td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan='6'>* Suporte inicial desconhecido. Testado nessas versões apenas.</td>
+		</tr>
+	</tfoot>
+</table>
+<p>No momento em que escrevo este post, só os navegadores Mozilla Firefox, Google Chrome e Safari dão suporte (apenas parcial por enquanto) à propriedade <code>appearance</code>, ou seja, <code>-moz-appearance</code> (Firefox) e <code>-webkit-appearance</code> (Chrome e Safari). O problema é que cada uma dessas implementações diferem bastante uma da outra, no Firefox por exemplo, <code>-moz-appearance</code> pode assumir <a href='https://developer.mozilla.org/en/CSS/-moz-appearance' title='-moz-appearance'>106 valores</a> diferentes, enquanto que no Webkit (Chrome e Safari), <code>-webkit-appearance</code> reconhece apenas <a href='http://css-infos.net/property/-webkit-appearance' title='-webkit-appearance'>43 valores</a>. Já o pseudo-elemento <code>::slider-thumb</code> é suportado apenas pelo Webkit e ainda não faz parte da especificação W3C.</p>
+
+<h2 id='customizando_checkbox_e_radio_button'>Customizando checkbox e radio button</h2>
+
+<p>Agora é a vez de fazermos o mesmo com as checkboxes e radio buttons. Abaixo temos o HTML dos nossos widgets, criei a classe <code>.estilizado</code> apenas para enfatizar o reaproveitamento de CSS logo a seguir.</p>
+<div class='highlight'><pre><code class='html'><span class='c'>&lt;!-- checkboxes --&gt;</span>
+<span class='nt'>&lt;input</span> <span class='na'>class=</span><span class='s'>&quot;estilizado&quot;</span> <span class='na'>type=</span><span class='s'>&quot;checkbox&quot;</span> <span class='na'>id=</span><span class='s'>&#39;c1&#39;</span> <span class='nt'>/&gt;</span>
+<span class='nt'>&lt;label</span> <span class='na'>for=</span><span class='s'>&quot;c1&quot;</span><span class='nt'>&gt;</span>Paul<span class='nt'>&lt;/label&gt;</span>
+<span class='nt'>&lt;input</span> <span class='na'>class=</span><span class='s'>&quot;estilizado&quot;</span> <span class='na'>type=</span><span class='s'>&quot;checkbox&quot;</span> <span class='na'>id=</span><span class='s'>&#39;c2&#39;</span> <span class='nt'>/&gt;</span>
+<span class='nt'>&lt;label</span> <span class='na'>for=</span><span class='s'>&quot;c2&quot;</span><span class='nt'>&gt;</span>George<span class='nt'>&lt;/label&gt;</span>
+<span class='nt'>&lt;input</span> <span class='na'>class=</span><span class='s'>&quot;estilizado&quot;</span> <span class='na'>type=</span><span class='s'>&quot;checkbox&quot;</span> <span class='na'>id=</span><span class='s'>&#39;c3&#39;</span> <span class='nt'>/&gt;</span>
+<span class='nt'>&lt;label</span> <span class='na'>for=</span><span class='s'>&quot;c3&quot;</span><span class='nt'>&gt;</span>John<span class='nt'>&lt;/label&gt;</span>
+<span class='nt'>&lt;input</span> <span class='na'>class=</span><span class='s'>&quot;estilizado&quot;</span> <span class='na'>type=</span><span class='s'>&quot;checkbox&quot;</span> <span class='na'>id=</span><span class='s'>&#39;c4&#39;</span> <span class='nt'>/&gt;</span>
+<span class='nt'>&lt;label</span> <span class='na'>for=</span><span class='s'>&quot;c4&quot;</span><span class='nt'>&gt;</span>Ringo<span class='nt'>&lt;/label&gt;</span>
+
+<span class='c'>&lt;!-- radio buttons --&gt;</span>
+<span class='nt'>&lt;input</span> <span class='na'>class=</span><span class='s'>&quot;estilizado&quot;</span> <span class='na'>type=</span><span class='s'>&quot;radio&quot;</span> <span class='na'>name=</span><span class='s'>&quot;band&quot;</span> <span class='na'>id=</span><span class='s'>&quot;r1&quot;</span> <span class='nt'>/&gt;</span>
+<span class='nt'>&lt;label</span> <span class='na'>for=</span><span class='s'>&quot;r1&quot;</span><span class='nt'>&gt;</span>Motörhead<span class='nt'>&lt;/label&gt;</span>
+<span class='nt'>&lt;input</span> <span class='na'>class=</span><span class='s'>&quot;estilizado&quot;</span> <span class='na'>type=</span><span class='s'>&quot;radio&quot;</span> <span class='na'>name=</span><span class='s'>&quot;band&quot;</span> <span class='na'>id=</span><span class='s'>&quot;r2&quot;</span> <span class='nt'>/&gt;</span>
+<span class='nt'>&lt;label</span> <span class='na'>for=</span><span class='s'>&quot;r2&quot;</span><span class='nt'>&gt;</span>AC/DC<span class='nt'>&lt;/label&gt;</span>
+<span class='nt'>&lt;input</span> <span class='na'>class=</span><span class='s'>&quot;estilizado&quot;</span> <span class='na'>type=</span><span class='s'>&quot;radio&quot;</span> <span class='na'>name=</span><span class='s'>&quot;band&quot;</span> <span class='na'>id=</span><span class='s'>&quot;r3&quot;</span> <span class='nt'>/&gt;</span>
+<span class='nt'>&lt;label</span> <span class='na'>for=</span><span class='s'>&quot;r3&quot;</span><span class='nt'>&gt;</span>Motley Crue<span class='nt'>&lt;/label&gt;</span>
+</code></pre></div>
+<p>Abaixo o resultado padrão do código acima:</p>
+<div class='img example bordered'>
+	<div class='div'>
+		<input id='c1' type='checkbox' />
+		<label for='c1'>Paul</label>
+		<input id='c2' type='checkbox' />
+		<label for='c2'>George</label>
+		<input id='c3' type='checkbox' />
+		<label for='c3'>John</label>
+		<input id='c4' type='checkbox' />
+		<label for='c4'>Ringo</label>
+	</div>
+	<div>
+		<input id='r1' name='band' type='radio' />
+		<label for='r1'>Motörhead</label>
+		<input id='r2' name='band' type='radio' />
+		<label for='r2'>AC/DC</label>
+		<input id='r3' name='band' type='radio' />
+		<label for='r3'>Motley Crue</label>
+	</div>
+</div>
+<p>Agora vamos ao que interessa, CSS! Começamos definindo a classe <code>.estilizado</code>, ou seja, as propriedades inerentes tanto às <em>checkboxes</em> quanto aos <em>radio buttons</em>.</p>
+<div class='highlight'><pre><code class='css'><span class='nt'>input</span><span class='nc'>.estilizado</span> <span class='p'>{</span>
+    <span class='c'>/* removendo a aparência padrão (Chrome e Safari) */</span>
+    <span class='o'>-</span><span class='n'>webkit</span><span class='o'>-</span><span class='n'>appearance</span><span class='o'>:</span> <span class='k'>none</span><span class='p'>;</span>
+    <span class='c'>/* estilização */</span>
+    <span class='k'>border</span><span class='o'>:</span> <span class='m'>1px</span> <span class='k'>solid</span> <span class='n'>rgba</span><span class='p'>(</span> <span class='m'>0</span><span class='o'>,</span><span class='m'>0</span><span class='o'>,</span><span class='m'>0</span><span class='o'>,</span><span class='m'>0</span><span class='o'>.</span><span class='m'>5</span> <span class='p'>);</span>
+    <span class='n'>box</span><span class='o'>-</span><span class='n'>shadow</span><span class='o'>:</span> <span class='m'>1px</span> <span class='m'>1px</span> <span class='m'>0px</span> <span class='nb'>white</span><span class='p'>;</span>
+    <span class='k'>background-color</span><span class='o'>:</span> <span class='nb'>white</span><span class='p'>;</span>
+    <span class='k'>background-image</span><span class='o'>:</span> <span class='o'>-</span><span class='n'>webkit</span><span class='o'>-</span><span class='n'>linear</span><span class='o'>-</span><span class='n'>gradient</span><span class='p'>(</span> <span class='n'>rgba</span><span class='p'>(</span><span class='m'>0</span><span class='o'>,</span><span class='m'>0</span><span class='o'>,</span><span class='m'>0</span><span class='o'>,</span><span class='m'>0</span><span class='o'>.</span><span class='m'>2</span><span class='p'>)</span><span class='o'>,</span><span class='n'>rgba</span><span class='p'>(</span><span class='m'>0</span><span class='o'>,</span><span class='m'>0</span><span class='o'>,</span><span class='m'>0</span><span class='o'>,</span><span class='m'>0</span><span class='p'>)</span> <span class='p'>);</span>
+<span class='p'>}</span>
+
+<span class='c'>/* quando o input estiver selecionado */</span>
+<span class='nt'>input</span><span class='nc'>.estilizado</span><span class='nd'>:checked</span> <span class='p'>{</span>
+    <span class='k'>background-image</span><span class='o'>:</span> <span class='k'>none</span><span class='p'>;</span>
+    <span class='k'>background-color</span><span class='o'>:</span> <span class='n'>rgba</span><span class='p'>(</span> <span class='m'>0</span><span class='o'>,</span><span class='m'>0</span><span class='o'>,</span><span class='m'>0</span><span class='o'>,</span><span class='m'>0</span><span class='o'>.</span><span class='m'>3</span> <span class='p'>);</span>
+<span class='p'>}</span>
+
+<span class='c'>/* quando o input estiver em foco */</span>
+<span class='nt'>input</span><span class='nc'>.estilizado</span><span class='nd'>:focus</span> <span class='p'>{</span>
+    <span class='k'>outline</span><span class='o'>:</span> <span class='k'>none</span><span class='p'>;</span>
+    <span class='n'>box</span><span class='o'>-</span><span class='n'>shadow</span><span class='o'>:</span> <span class='m'>0px</span> <span class='m'>0px</span> <span class='m'>5px</span> <span class='m'>1px</span> <span class='nb'>red</span><span class='p'>;</span>
+<span class='p'>}</span>
+</code></pre></div>
+<p>Feito isso, agora vamos aos estilos adicionais das <strong>checkboxes</strong>:</p>
+<div class='highlight'><pre><code class='css'><span class='nt'>input</span><span class='o'>[</span><span class='nt'>type</span><span class='o'>=</span><span class='nt'>checkbox</span><span class='o'>]</span><span class='nc'>.estilizado</span> <span class='p'>{</span>
+    <span class='k'>width</span><span class='o'>:</span> <span class='m'>12px</span><span class='p'>;</span>
+    <span class='k'>height</span><span class='o'>:</span> <span class='m'>12px</span><span class='p'>;</span>
+    <span class='k'>border</span><span class='o'>-</span><span class='n'>radius</span><span class='o'>:</span> <span class='m'>3px</span><span class='p'>;</span>
+<span class='p'>}</span>
+
+<span class='c'>/* quando o checkbox estiver selecionado */</span>
+<span class='nt'>input</span><span class='o'>[</span><span class='nt'>type</span><span class='o'>=</span><span class='nt'>checkbox</span><span class='o'>]</span><span class='nc'>.estilizado</span><span class='nd'>:checked:before</span> <span class='p'>{</span>
+    <span class='k'>content</span><span class='o'>:</span> <span class='s2'>&quot;✔&quot;</span><span class='p'>;</span>
+    <span class='k'>font-size</span><span class='o'>:</span> <span class='m'>15px</span><span class='p'>;</span>
+    <span class='k'>color</span><span class='o'>:</span> <span class='n'>rgba</span><span class='p'>(</span> <span class='m'>0</span><span class='o'>,</span><span class='m'>0</span><span class='o'>,</span><span class='m'>0</span><span class='o'>,</span><span class='m'>0</span><span class='o'>.</span><span class='m'>5</span> <span class='p'>);</span>
+    <span class='k'>position</span><span class='o'>:</span> <span class='k'>relative</span><span class='p'>;</span>
+    <span class='k'>top</span><span class='o'>:</span> <span class='m'>-6px</span><span class='p'>;</span>
+    <span class='k'>left</span><span class='o'>:</span> <span class='m'>2px</span><span class='p'>;</span>
+<span class='p'>}</span>
+</code></pre></div>
+<p>E continuando com os estilos adicionais dos <strong>radio buttons</strong>:</p>
+<div class='highlight'><pre><code class='css'><span class='nt'>input</span><span class='o'>[</span><span class='nt'>type</span><span class='o'>=</span><span class='nt'>radio</span><span class='o'>]</span><span class='nc'>.estilizado</span> <span class='p'>{</span>
+    <span class='k'>width</span><span class='o'>:</span> <span class='m'>13px</span><span class='p'>;</span>
+    <span class='k'>height</span><span class='o'>:</span> <span class='m'>13px</span><span class='p'>;</span>
+    <span class='k'>border</span><span class='o'>-</span><span class='n'>radius</span><span class='o'>:</span> <span class='m'>7px</span><span class='p'>;</span>
+<span class='p'>}</span>
+
+<span class='c'>/* quando o radio button estiver selecionado */</span>
+<span class='nt'>input</span><span class='o'>[</span><span class='nt'>type</span><span class='o'>=</span><span class='nt'>radio</span><span class='o'>]</span><span class='nc'>.estilizado</span><span class='nd'>:checked:before</span> <span class='p'>{</span>
+    <span class='k'>content</span><span class='o'>:</span> <span class='s2'>&quot;•&quot;</span><span class='p'>;</span>
+    <span class='k'>font-size</span><span class='o'>:</span> <span class='m'>15px</span><span class='p'>;</span>
+    <span class='k'>color</span><span class='o'>:</span> <span class='m'>#333</span><span class='p'>;</span>
+    <span class='k'>position</span><span class='o'>:</span> <span class='k'>relative</span><span class='p'>;</span>
+    <span class='k'>top</span><span class='o'>:</span> <span class='m'>-5px</span><span class='p'>;</span>
+    <span class='k'>left</span><span class='o'>:</span> <span class='m'>1px</span><span class='p'>;</span>
+<span class='p'>}</span>
+</code></pre></div>
+<p>O resultado encontra-se abaixo, teste você mesmo (o <em>focus</em> também)!</p>
+<div class='img example bordered'>
+	<div class='div'>
+		<input class='estilizado' id='c10' tabindex='2' type='checkbox' />
+		<label for='c10'>Paul</label>
+		<input class='estilizado' id='c20' tabindex='3' type='checkbox' />
+		<label for='c20'>George</label>
+		<input class='estilizado' id='c30' tabindex='4' type='checkbox' />
+		<label for='c30'>John</label>
+		<input class='estilizado' id='c40' tabindex='5' type='checkbox' />
+		<label for='c40'>Ringo</label>
+	</div>
+	<div>
+		<input class='estilizado' id='r10' name='band' tabindex='6' type='radio' />
+		<label for='r10'>Motörhead</label>
+		<input class='estilizado' id='r20' name='band' tabindex='7' type='radio' />
+		<label for='r20'>AC/DC</label>
+		<input class='estilizado' id='r30' name='band' tabindex='8' type='radio' />
+		<label for='r30'>Motley Crue</label>
+	</div>
+</div>
+<h2 id='futuramente'>Futuramente</h2>
+
+<p>Eu gostaria de continuar aqui com outros widgets como <code>&lt;select&gt;</code> e os <em>inputs</em> dos tipos <code>file</code>, <code>number</code>, <code>color</code>, <code>datetime</code> e seus variantes, mas não encontrei mais seletores especiais – com exceção do seletor <code>::-webkit-inner-spin-button</code> e <code>::-webkit-outer-spin-button</code> para <code>&lt;input type=&quot;number&quot;&gt;</code>, que infelizmente não nos permitem fazer nada de muito legal.</p>
+
+<p>No caso do <code>&lt;select&gt;</code>, sabemos que este já é parcialmente customizável, pois podemos alterar a aparência do campo de texto, mas não podemos ainda modificar a sua <em>lista de opções</em> e nem o seu <em>botão</em> – a não ser, colocando uma imagem de fundo para o elemento inteiro, como <a href='http://37signals.com/svn/posts/2609-customizing-web-forms-with-css3-and-webkit/'>nestes exemplos</a> (em inglês), mas não acho isso nada legal =P</p>
+
+<p>Acredito que o suporte a estes tipos de customização está melhorando muito rápido (em parte graças ao Webkit), e aos poucos estamos caminhando para finalmente ter o controle total de todas essas ferramentas que tanto usamos.</p>
+<aside class='fonte'>
+	<h3>Referência</h3>
+	<ul>
+		<li>→<a alt='Sou DOM, Shadow DOM' href='http://loopinfinito.com.br/2012/07/17/sou-dom-shadow-dom/' title='Sou DOM, Shadow DOM'>Sou DOM, Shadow DOM</a> <span class='comment'>//loop infinito</span></li>
+		<li>→<a alt='CSS3 appearance property' href='http://www.w3schools.com/cssref/css3_pr_appearance.asp' title='CSS3 appearance property'>CSS3 appearance property</a> <span class='comment'>//w3schools</span></li>
+		<li>→<a alt='-moz-appearance' href='https://developer.mozilla.org/en-US/docs/CSS/-moz-appearance' title='-moz-appearance'>-moz-appearance</a> <span class='comment'>//MDN</span></li>
+		<li>→<a alt='-webkit-appearance' href='http://css-infos.net/property/-webkit-appearance' title='-webkit-appearance'>-webkit-appearance</a></li>
+		<li>→<a alt='Customizing web forms with CSS3 and Webkit' href='http://37signals.com/svn/posts/2609-customizing-web-forms-with-css3-and-webkit/' title='Customizing web forms with CSS3 and Webkit'>Customizing web forms with CSS3 and Webkit</a> <span class='comment'>//37signals</span></li>
+	</ul>
+</aside>
+					</section>
+				</article>
+			</section>
+
+		</section><!-- end #content -->
+
+	</div><!-- end #wrapper -->
+
+</body>
+</html>
