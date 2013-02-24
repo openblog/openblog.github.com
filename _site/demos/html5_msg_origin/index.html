@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
 	<meta charset="UTF-8" />
 	
-		<title>HTML5 Web Messaging | Open Blog</title>
+		<title>HTML5 Web Messaging Demo | Open Blog</title>
 	
 	
 		<meta name="author" content="Vagner Santana" />
@@ -30,14 +30,36 @@
 </head>
 
 <body>
-  <div id="wrapper">
 
-	<header id="main">
+	<div id="wrapper">
+		
+		<header id="main">
 	<h1><a href="/" id="logo">.openBlog()</a></h1>
 </header>
-    
-    <section id="content">
-      <script>
+		
+		<section id="content">
+
+			<section class="post-container" itemscope itemtype="http://schema.org/BlogPosting">
+				<span class="hidden" itemprop="publisher">Open Blog</span>
+				<article>
+					<header>
+						<h1><a href="/demos/html5_msg_origin/" itemprop="headline">HTML5 Web Messaging Demo</a></h1>
+					</header>
+					<section itemprop="articleBody">
+						
+						<style>
+	input{
+		width: 300px;
+		height: 20px;
+	}
+	iframe{
+		margin-top: 20px;
+		border: solid 1px #cecece;
+		background: #fff;
+	}
+</style>
+
+<script>
 	window.onload = function(){
 		var objIframe = document.getElementsByTagName('iframe')[0];
 		var btnEnviar =  document.getElementsByTagName('button')[0];
@@ -59,12 +81,17 @@
 <section id="content">
 	<p>
 		<label>Mensagem: <input type="text"></label>
-		<button type="button">Enviar mensagem</button>
+		<button class="btn" type="button">Enviar mensagem</button>
 	</p>
 	<iframe src="http://labs.vagnersantana.com/html5_msg_iframe.html"></iframe>
 </section>
-    </section>
+					</section>
+				</article>
+			</section>
 
-  </div>
+		</section><!-- end #content -->
+
+	</div><!-- end #wrapper -->
+
 </body>
 </html>

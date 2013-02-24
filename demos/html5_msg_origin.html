@@ -1,7 +1,18 @@
 ---
-title: HTML5 Web Messaging
-layout: home
+title: HTML5 Web Messaging Demo
+layout: post
 ---
+<style>
+	input{
+		width: 300px;
+		height: 20px;
+	}
+	iframe{
+		margin-top: 20px;
+		border: solid 1px #cecece;
+		background: #fff;
+	}
+</style>
 
 <script>
 	window.onload = function(){
@@ -9,7 +20,7 @@ layout: home
 		var btnEnviar =  document.getElementsByTagName('button')[0];
 
 		btnEnviar.onclick = function(){
-			var textoMsg = document.getElementsByTagName('textarea')[0].value;
+			var textoMsg = document.getElementsByTagName('input')[0].value;
 
 			if(textoMsg == ''){
 				alert('Digite uma mensagem!');
@@ -24,8 +35,8 @@ layout: home
 
 <section id="content">
 	<p>
-		<label>Mensagem: <textarea></textarea></label>
-		<button type="button">Enviar mensagem</button>
+		<label>Mensagem: <input type="text"></label>
+		<button class="btn" type="button">Enviar mensagem</button>
 	</p>
 	<iframe src="http://labs.vagnersantana.com/html5_msg_iframe.html"></iframe>
 </section>

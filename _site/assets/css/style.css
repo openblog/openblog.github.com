@@ -2,7 +2,7 @@
  * In this file you should write your main styles. (or centralize your imports)
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
-/* line 17, ../../../../../.rvm/gems/ruby-1.9.3-p385/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 17, ../../../../.rvm/gems/ruby-1.9.3-p385/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -24,45 +24,45 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../../../../.rvm/gems/ruby-1.9.3-p385/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../../../.rvm/gems/ruby-1.9.3-p385/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../../../../.rvm/gems/ruby-1.9.3-p385/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../../.rvm/gems/ruby-1.9.3-p385/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../../../../.rvm/gems/ruby-1.9.3-p385/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../../.rvm/gems/ruby-1.9.3-p385/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../../../../.rvm/gems/ruby-1.9.3-p385/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../../.rvm/gems/ruby-1.9.3-p385/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../../../../.rvm/gems/ruby-1.9.3-p385/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../../.rvm/gems/ruby-1.9.3-p385/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../../../../.rvm/gems/ruby-1.9.3-p385/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 103, ../../../../.rvm/gems/ruby-1.9.3-p385/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../../../../.rvm/gems/ruby-1.9.3-p385/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 32, ../../../../.rvm/gems/ruby-1.9.3-p385/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../../../../.rvm/gems/ruby-1.9.3-p385/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 116, ../../../../.rvm/gems/ruby-1.9.3-p385/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
 }
@@ -130,22 +130,23 @@ a {
   text-decoration: none;
 }
 
-/* line 71, ../sass/style.scss */
+/* ----------- Content ----------- */
+/* line 67, ../sass/style.scss */
 #content .post-container {
   position: relative;
   margin-bottom: 100px;
 }
-/* line 75, ../sass/style.scss */
+/* line 71, ../sass/style.scss */
 #content .post-container .post-image {
   border-width: 0;
 }
-/* line 79, ../sass/style.scss */
+/* line 75, ../sass/style.scss */
 #content .post-container article {
   width: 600px;
   padding: 45px 50px 0px 50px;
   line-height: 200%;
 }
-/* line 86, ../sass/style.scss */
+/* line 82, ../sass/style.scss */
 #content .post-container article code {
   background-color: #EFEFEF;
   padding: 2px 3px;
@@ -153,7 +154,7 @@ a {
   color: #555;
   font-size: 12px;
 }
-/* line 94, ../sass/style.scss */
+/* line 90, ../sass/style.scss */
 #content .post-container article pre {
   width: 600px;
   position: relative;
@@ -166,7 +167,7 @@ a {
   color: whiteSmoke;
   margin: 25px 0;
 }
-/* line 106, ../sass/style.scss */
+/* line 102, ../sass/style.scss */
 #content .post-container article pre code {
   background: none;
   color: white;
@@ -174,7 +175,7 @@ a {
   padding: 0px;
   border: none;
 }
-/* line 114, ../sass/style.scss */
+/* line 110, ../sass/style.scss */
 #content .post-container article pre.prettyprint {
   position: relative;
   left: -50px;
@@ -182,48 +183,48 @@ a {
   padding: 10px 50px;
   font-size: 14px;
 }
-/* line 123, ../sass/style.scss */
+/* line 119, ../sass/style.scss */
 #content .post-container article .image-code pre {
   margin-top: -9px !important;
 }
-/* line 127, ../sass/style.scss */
+/* line 123, ../sass/style.scss */
 #content .post-container article p {
   margin: 25px 0;
 }
-/* line 130, ../sass/style.scss */
+/* line 126, ../sass/style.scss */
 #content .post-container article p.obs {
   color: #999;
   font-size: 13px;
   font-style: italic;
   line-height: 170%;
 }
-/* line 138, ../sass/style.scss */
+/* line 134, ../sass/style.scss */
 #content .post-container article > section {
   padding-bottom: 45px;
 }
-/* line 141, ../sass/style.scss */
+/* line 137, ../sass/style.scss */
 #content .post-container article > section > ul, #content .post-container article > section > ol {
   margin: 25px 0;
   list-style-position: inside;
 }
-/* line 146, ../sass/style.scss */
+/* line 142, ../sass/style.scss */
 #content .post-container article > section > li {
   margin: 5px 0px;
 }
-/* line 151, ../sass/style.scss */
+/* line 147, ../sass/style.scss */
 #content .post-container article > section .img,
 #content .post-container article > section img {
   position: relative;
   left: -50px;
   width: 700px;
 }
-/* line 156, ../sass/style.scss */
+/* line 152, ../sass/style.scss */
 #content .post-container article > section .img.bordered,
 #content .post-container article > section img.bordered {
   border-top: 1px solid #dddddd;
   border-bottom: 1px solid #dddddd;
 }
-/* line 161, ../sass/style.scss */
+/* line 157, ../sass/style.scss */
 #content .post-container article > section .img.example,
 #content .post-container article > section img.example {
   padding: 20px 50px;
@@ -231,44 +232,44 @@ a {
   background-color: whiteSmoke;
   margin: 25px 0px;
 }
-/* line 169, ../sass/style.scss */
+/* line 165, ../sass/style.scss */
 #content .post-container article > section img {
   background-color: white;
   background-size: 30px 30px;
   background-position: 0 0, 15px 15px;
 }
-/* line 176, ../sass/style.scss */
+/* line 172, ../sass/style.scss */
 #content .post-container article > section figure.content {
   line-height: 100%;
 }
-/* line 180, ../sass/style.scss */
+/* line 176, ../sass/style.scss */
 #content .post-container article > section figure.content img {
   position: static;
   left: 0;
   width: auto;
 }
-/* line 186, ../sass/style.scss */
+/* line 182, ../sass/style.scss */
 #content .post-container article > section figure.content.left {
   float: left;
   margin-right: 30px;
 }
-/* line 191, ../sass/style.scss */
+/* line 187, ../sass/style.scss */
 #content .post-container article > section figure.content.right {
   float: right;
   margin-left: 30px;
 }
-/* line 198, ../sass/style.scss */
+/* line 194, ../sass/style.scss */
 #content .post-container article blockquote {
   padding-left: 20px;
   border-left: 10px #cccccc solid;
   color: #999;
   display: block;
 }
-/* line 204, ../sass/style.scss */
+/* line 200, ../sass/style.scss */
 #content .post-container article blockquote footer {
   font-size: 14px;
 }
-/* line 209, ../sass/style.scss */
+/* line 205, ../sass/style.scss */
 #content .post-container article abbr {
   border-bottom: 1px dotted #cccccc;
   padding-bottom: 1px;
