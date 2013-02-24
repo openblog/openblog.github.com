@@ -1,38 +1,31 @@
-<!doctype html>
-<html lang="en">
+---
+title: HTML5 Web Messaging
+layout: home
+---
 
-{% include head.html %}
+<script>
+	window.onload = function(){
+		var objIframe = document.getElementsByTagName('iframe')[0];
+		var btnEnviar =  document.getElementsByTagName('button')[0];
 
-<body>
-	<script>
-		window.onload = function(){
-			var objIframe = document.getElementsByTagName('iframe')[0];
-			var btnEnviar =  document.getElementsByTagName('button')[0];
+		btnEnviar.onclick = function(){
+			var textoMsg = document.getElementsByTagName('input')[0].value;
 
-			btnEnviar.onclick = function(){
-				var textoMsg = document.getElementsByTagName('input')[0].value;
-
-				if(textoMsg == ''){
-					alert('Digite uma mensagem!');
-				} else{
-					objIframe.contentWindow.postMessage(textoMsg, 'http://labs.vagnersantana.com');
-				}
+			if(textoMsg == ''){
+				alert('Digite uma mensagem!');
+			} else{
+				objIframe.contentWindow.postMessage(textoMsg, 'http://labs.vagnersantana.com');
 			}
 		}
-	</script>
-	
-	<div id="wrapper">
+	}
+</script>
 
-	{% include main.html %}
+<div id="wrapper">
 
-	<section id="content">
-		<p>
-			<label>Mensagem: <input type="text"></label>
-			<button type="button">Enviar mensagem</button>
-		</p>
-		<iframe src="http://labs.vagnersantana.com/html5_msg_iframe.html"></iframe>
-	</section>
-
-	</div>
-</body>
-</html>
+<section id="content">
+	<p>
+		<label>Mensagem: <input type="text"></label>
+		<button type="button">Enviar mensagem</button>
+	</p>
+	<iframe src="http://labs.vagnersantana.com/html5_msg_iframe.html"></iframe>
+</section>
