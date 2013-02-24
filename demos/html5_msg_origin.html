@@ -9,7 +9,7 @@ layout: home
 		var btnEnviar =  document.getElementsByTagName('button')[0];
 
 		btnEnviar.onclick = function(){
-			var textoMsg = document.getElementsByTagName('input')[0].value;
+			var textoMsg = document.getElementsByTagName('textarea')[0].value;
 
 			if(textoMsg == ''){
 				alert('Digite uma mensagem!');
@@ -24,7 +24,7 @@ layout: home
 
 <section id="content">
 	<p>
-		<label>Mensagem: <input type="text"></label>
+		<label>Mensagem: <textarea></textarea></label>
 		<button type="button">Enviar mensagem</button>
 	</p>
 	<iframe src="http://labs.vagnersantana.com/html5_msg_iframe.html"></iframe>
