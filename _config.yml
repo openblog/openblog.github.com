@@ -6,7 +6,7 @@ baseurl:    /
 url: 
 paginate: 5
 
-source:      ./
+source:      ./_source
 destination: ./site
 plugins:     ./_plugins
 
