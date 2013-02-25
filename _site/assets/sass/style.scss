@@ -36,7 +36,47 @@ body {
 	margin-bottom: 50px;
 }
 
+.btn{
+	width: 100px;
+	height: 40px;
+	border: solid 1px #102724;
+	background: $cl_main;
+	border-radius: 5px;
+	color: $cl_ft;
+}
+
+.btn:hover{
+	background: $cl_main2;
+}
+
+.btn-demo{
+	width: 100px;
+	height: 70px;
+	font-size: 15px;
+	margin-left: 300px;
+}
+
+.demo-cont{
+	margin-top: 50px;
+}
+
 .hidden{display: none;}
+
+/* ----------- Tabelas ----------- */
+.tbl table {
+	width: 700px;
+	border-collapse:collapse;
+	border:1px solid #545454;
+	margin: 20px 0;
+}
+.tbl table td, th{
+	padding: 6px;
+	border:1px solid #545454;
+}
+
+.tbl table th{
+	background: #3c3d3e;
+}
 
 /* ----------- Fonts ----------- */
 #wrapper {
@@ -73,7 +113,8 @@ a:hover{
 	.post-container {
 		position: relative;
 		margin: 30px 0 60px 0;
-		border-bottom: 1px solid #3e4040;
+		//border-bottom: 1px solid #3e4040;
+		border-bottom: 1px dotted #636363;
 
 		.post-image {
 			border-width: 0;

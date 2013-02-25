@@ -1,23 +1,23 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://loopinfinito.com.br/2013/02/19/eventos-online-offline/</loc>
-        <lastmod>2013-02-24T22:15:36-03:00</lastmod>
+        <loc>http://loopinfinito.com.br/2013/02/24/hello-world/</loc>
+        <lastmod>2013-02-25T01:32:05-03:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>http://loopinfinito.com.br/2013/02/20/teste/</loc>
-        <lastmod>2013-02-24T22:17:27-03:00</lastmod>
+        <loc>http://loopinfinito.com.br/2013/02/25/html5-web-messaging-api/</loc>
+        <lastmod>2013-02-25T01:24:30-03:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>http://loopinfinito.com.br/demos/html5_msg_origin/</loc>
-        <lastmod>2013-02-24T21:59:17-03:00</lastmod>
+        <lastmod>2013-02-25T00:50:38-03:00</lastmod>
     </url>
     <url>
         <loc>http://loopinfinito.com.br/</loc>
-        <lastmod>2013-02-24T22:17:27-03:00</lastmod>
+        <lastmod>2013-02-25T01:32:05-03:00</lastmod>
     </url>
 </urlset>
