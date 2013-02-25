@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* Welcome to Compass.
  * In this file you should write your main styles. (or centralize your imports)
  * Import this file using the following HTML or equivalent:
@@ -70,104 +71,115 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 /* ----------- Vars ----------- */
 /* ----------- Mixins ----------- */
 /* ----------- Geral ----------- */
-/* line 18, ../sass/style.scss */
+/* line 19, ../sass/style.scss */
 body {
-  background: url("/assets/img/patterns/darkdenim3.png") #fbfbfb;
+  background: url("/img/patterns/darkdenim3.png") #fbfbfb;
   background-attachment: fixed;
   border-top: 5px solid #20747b;
 }
 
-/* line 24, ../sass/style.scss */
+/* line 25, ../sass/style.scss */
 #main {
   margin-bottom: 50px;
 }
 
-/* line 28, ../sass/style.scss */
+/* line 29, ../sass/style.scss */
 #wrapper {
   width: 900px;
   margin: 0 auto;
 }
 
-/* line 33, ../sass/style.scss */
+/* line 34, ../sass/style.scss */
 #content .post-container {
   position: relative;
   margin-bottom: 50px;
 }
 
-/* line 38, ../sass/style.scss */
-#content .post-container article > section img {
-  margin: 20px 0 20px 0;
-  border: solid 1px #20747b;
-}
-
-/* line 43, ../sass/style.scss */
+/* line 39, ../sass/style.scss */
 .hidden {
   display: none;
 }
 
 /* ----------- Fonts ----------- */
-/* line 46, ../sass/style.scss */
+/* line 42, ../sass/style.scss */
 #wrapper {
   font-size: 15px;
   color: #d8d8d8;
   font-family: "Ubuntu", sans-serif;
 }
 
-/* line 51, ../sass/style.scss */
+/* line 47, ../sass/style.scss */
 #wrapper h1 {
   font-size: 36px;
 }
 
-/* line 54, ../sass/style.scss */
+/* line 51, ../sass/style.scss */
+#wrapper h2, h3, h4, h5, h6 {
+  font-size: 26px;
+  margin: 20px 0;
+  color: #20747b;
+}
+
+/* line 57, ../sass/style.scss */
 #main h1 {
   font-size: 50px;
   font-family: Courier;
 }
 
-/* line 59, ../sass/style.scss */
+/* line 62, ../sass/style.scss */
 a {
   color: #20747b;
   text-decoration: none;
 }
 
+/* line 66, ../sass/style.scss */
+a:hover {
+  color: #26929b;
+}
+
 /* ----------- Content ----------- */
-/* line 67, ../sass/style.scss */
+/* line 73, ../sass/style.scss */
 #content .post-container {
   position: relative;
-  margin-bottom: 100px;
+  margin: 30px 0 60px 0;
+  border-bottom: 1px solid #3e4040;
 }
-/* line 71, ../sass/style.scss */
+/* line 78, ../sass/style.scss */
 #content .post-container .post-image {
   border-width: 0;
 }
-/* line 75, ../sass/style.scss */
+/* line 82, ../sass/style.scss */
+#content .post-container header {
+  line-height: 250%;
+}
+/* line 86, ../sass/style.scss */
 #content .post-container article {
-  width: 600px;
-  padding: 45px 50px 0px 50px;
+  width: 700px;
   line-height: 200%;
 }
-/* line 82, ../sass/style.scss */
-#content .post-container article code {
-  background-color: #EFEFEF;
-  padding: 2px 3px;
-  border: 1px solid #dddddd;
-  color: #555;
-  font-size: 12px;
-}
 /* line 90, ../sass/style.scss */
+#content .post-container article code {
+  background-color: #bababa;
+  padding: 2px 3px;
+  border: 1px solid #9a9a9a;
+  color: #333333;
+  font-size: 12px;
+  font-family: Monaco, Menlo, Consolas, "Courier New", monospace !important;
+}
+/* line 99, ../sass/style.scss */
 #content .post-container article pre {
   width: 600px;
   position: relative;
-  left: -50px;
   padding: 30px 50px 30px 50px;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 160%;
-  background-color: #333;
+  background-color: #272822;
+  border: solid 1px #21221d;
+  box-shadow: 5px 5px 15px #21221d;
   white-space: pre-wrap;
-  color: whiteSmoke;
-  margin: 25px 0;
+  margin: 20px 0;
 }
-/* line 102, ../sass/style.scss */
+/* line 111, ../sass/style.scss */
 #content .post-container article pre code {
   background: none;
   color: white;
@@ -175,56 +187,51 @@ a {
   padding: 0px;
   border: none;
 }
-/* line 110, ../sass/style.scss */
+/* line 119, ../sass/style.scss */
 #content .post-container article pre.prettyprint {
   position: relative;
-  left: -50px;
   width: 600px;
   padding: 10px 50px;
   font-size: 14px;
 }
-/* line 119, ../sass/style.scss */
+/* line 128, ../sass/style.scss */
 #content .post-container article .image-code pre {
   margin-top: -9px !important;
 }
-/* line 123, ../sass/style.scss */
-#content .post-container article p {
-  margin: 25px 0;
-}
-/* line 126, ../sass/style.scss */
+/* line 133, ../sass/style.scss */
 #content .post-container article p.obs {
   color: #999;
   font-size: 13px;
   font-style: italic;
   line-height: 170%;
 }
-/* line 134, ../sass/style.scss */
+/* line 141, ../sass/style.scss */
 #content .post-container article > section {
   padding-bottom: 45px;
 }
-/* line 137, ../sass/style.scss */
+/* line 144, ../sass/style.scss */
 #content .post-container article > section > ul, #content .post-container article > section > ol {
   margin: 25px 0;
   list-style-position: inside;
 }
-/* line 142, ../sass/style.scss */
+/* line 149, ../sass/style.scss */
 #content .post-container article > section > li {
   margin: 5px 0px;
 }
-/* line 147, ../sass/style.scss */
+/* line 154, ../sass/style.scss */
 #content .post-container article > section .img,
 #content .post-container article > section img {
   position: relative;
-  left: -50px;
   width: 700px;
+  margin: 20px 0;
 }
-/* line 152, ../sass/style.scss */
+/* line 159, ../sass/style.scss */
 #content .post-container article > section .img.bordered,
 #content .post-container article > section img.bordered {
   border-top: 1px solid #dddddd;
   border-bottom: 1px solid #dddddd;
 }
-/* line 157, ../sass/style.scss */
+/* line 164, ../sass/style.scss */
 #content .post-container article > section .img.example,
 #content .post-container article > section img.example {
   padding: 20px 50px;
@@ -232,45 +239,493 @@ a {
   background-color: whiteSmoke;
   margin: 25px 0px;
 }
-/* line 165, ../sass/style.scss */
+/* line 172, ../sass/style.scss */
 #content .post-container article > section img {
   background-color: white;
   background-size: 30px 30px;
   background-position: 0 0, 15px 15px;
 }
-/* line 172, ../sass/style.scss */
+/* line 179, ../sass/style.scss */
 #content .post-container article > section figure.content {
   line-height: 100%;
 }
-/* line 176, ../sass/style.scss */
+/* line 183, ../sass/style.scss */
 #content .post-container article > section figure.content img {
   position: static;
   left: 0;
   width: auto;
 }
-/* line 182, ../sass/style.scss */
+/* line 189, ../sass/style.scss */
 #content .post-container article > section figure.content.left {
   float: left;
   margin-right: 30px;
 }
-/* line 187, ../sass/style.scss */
+/* line 194, ../sass/style.scss */
 #content .post-container article > section figure.content.right {
   float: right;
   margin-left: 30px;
 }
-/* line 194, ../sass/style.scss */
+/* line 201, ../sass/style.scss */
 #content .post-container article blockquote {
+  margin: 20px 0;
   padding-left: 20px;
   border-left: 10px #cccccc solid;
   color: #999;
   display: block;
 }
-/* line 200, ../sass/style.scss */
+/* line 208, ../sass/style.scss */
 #content .post-container article blockquote footer {
   font-size: 14px;
 }
-/* line 205, ../sass/style.scss */
+/* line 213, ../sass/style.scss */
 #content .post-container article abbr {
   border-bottom: 1px dotted #cccccc;
   padding-bottom: 1px;
+}
+
+/* Paginação
+---------------------------------------- */
+/* line 223, ../sass/style.scss */
+#post-pagination {
+  width: 700px;
+  height: 30px;
+  position: relative;
+  margin: -50px 0 30px 0;
+}
+/* line 229, ../sass/style.scss */
+#post-pagination p {
+  position: absolute;
+  width: 150px;
+}
+/* line 233, ../sass/style.scss */
+#post-pagination p a {
+  line-height: 25px;
+  text-decoration: none;
+  font-size: 16px;
+}
+/* line 239, ../sass/style.scss */
+#post-pagination p.recentes {
+  left: 50px;
+}
+/* line 243, ../sass/style.scss */
+#post-pagination p.antigos {
+  right: 50px;
+  text-align: right;
+}
+
+/* ----------- Post Meta ----------- */
+/* line 251, ../sass/style.scss */
+aside.post-meta {
+  width: 170px;
+  position: absolute;
+  right: 0px;
+  font-size: 14px;
+  font-size: 13px;
+  margin-top: 30px;
+}
+/* line 259, ../sass/style.scss */
+aside.post-meta li {
+  margin: 20px 0 0 0;
+  height: 20px;
+  line-height: 20px;
+  position: relative;
+  color: #8a8a8a;
+}
+/* line 266, ../sass/style.scss */
+aside.post-meta li span.icon-aside {
+  width: 20px;
+  height: 16px;
+  position: absolute;
+  top: 3px;
+}
+/* line 273, ../sass/style.scss */
+aside.post-meta li > a {
+  margin-left: 32px;
+  display: inline-block;
+  color: #8a8a8a;
+}
+/* line 278, ../sass/style.scss */
+aside.post-meta li a:hover {
+  color: #7d7d7d;
+}
+/* line 284, ../sass/style.scss */
+aside.post-meta li.post-data time {
+  margin-left: 32px;
+}
+/* line 289, ../sass/style.scss */
+aside.post-meta li.post-comentarios {
+  height: auto;
+  min-height: 20px;
+}
+/* line 294, ../sass/style.scss */
+aside.post-meta li.post-tags {
+  padding-bottom: 2px;
+  height: auto;
+}
+/* line 298, ../sass/style.scss */
+aside.post-meta li.post-tags ul {
+  margin-left: 32px;
+}
+/* line 302, ../sass/style.scss */
+aside.post-meta li.post-tags li {
+  display: inline;
+  padding: 0px;
+  line-height: 24px;
+}
+/* line 307, ../sass/style.scss */
+aside.post-meta li.post-tags li a {
+  margin-left: 0px;
+}
+
+/* ----------- Code Highligth ----------- */
+/* line 1, ../sass/pygments.scss */
+.highlight {
+  color: #f6f3e8;
+  /* Comment */
+  /* Error */
+  /* Generic */
+  /* Keyword */
+  /* Literal */
+  /* Name */
+  /* Operator */
+  /* Other */
+  /* Punctuation */
+  /* Comment.Multiline */
+  /* Comment.Preproc */
+  /* Comment.Single */
+  /* Comment.Special */
+  /* Generic.Deleted */
+  /* Generic.Emph */
+  /* Generic.Error */
+  /* Generic.Heading */
+  /* Generic.Inserted */
+  /* Generic.Output */
+  /* Generic.Prompt */
+  /* Generic.Strong */
+  /* Generic.Subheading */
+  /* Generic.Traceback */
+  /* Keyword.Constant */
+  /* Keyword.Declaration */
+  /* Keyword.Namespace */
+  /* Keyword.Pseudo */
+  /* Keyword.Reserved */
+  /* Keyword.Type */
+  /* Literal.Date */
+  /* Literal.Number */
+  /* Literal.String */
+  /* Name.Attribute */
+  /* Name.Builtin */
+  /* Name.Class */
+  /* Name.Constant */
+  /* Name.Decorator */
+  /* Name.Entity */
+  /* Name.Exception */
+  /* Name.Function */
+  /* Name.Label */
+  /* Name.Namespace */
+  /* Name.Other */
+  /* Name.Property */
+  /* Name.Tag */
+  /* Name.Variable */
+  /* Operator.Word */
+  /* Text.Whitespace */
+  /* Literal.Number.Float */
+  /* Literal.Number.Hex */
+  /* Literal.Number.Integer */
+  /* Literal.Number.Oct */
+  /* Literal.String.Backtick */
+  /* Literal.String.Char */
+  /* Literal.String.Doc */
+  /* Literal.String.Double */
+  /* Literal.String.Escape */
+  /* Literal.String.Heredoc */
+  /* Literal.String.Interpol */
+  /* Literal.String.Other */
+  /* Literal.String.Regex */
+  /* Literal.String.Single */
+  /* Literal.String.Symbol */
+  /* Name.Builtin.Pseudo */
+  /* Name.Variable.Class */
+  /* Name.Variable.Global */
+  /* Name.Variable.Instance */
+  /* Literal.Number.Integer.Long */
+}
+/* line 4, ../sass/pygments.scss */
+.highlight .hll {
+  background-color: #ffffcc;
+}
+/* line 5, ../sass/pygments.scss */
+.highlight .c {
+  color: #99968b;
+}
+/* line 6, ../sass/pygments.scss */
+.highlight .err {
+  color: #f6f3e8;
+}
+/* line 7, ../sass/pygments.scss */
+.highlight .g {
+  color: #f6f3e8;
+}
+/* line 8, ../sass/pygments.scss */
+.highlight .k {
+  color: #8ac6f2;
+}
+/* line 9, ../sass/pygments.scss */
+.highlight .l {
+  color: #f6f3e8;
+}
+/* line 10, ../sass/pygments.scss */
+.highlight .n {
+  color: #f6f3e8;
+}
+/* line 11, ../sass/pygments.scss */
+.highlight .o {
+  color: #f6f3e8;
+}
+/* line 12, ../sass/pygments.scss */
+.highlight .x {
+  color: #f6f3e8;
+}
+/* line 13, ../sass/pygments.scss */
+.highlight .p {
+  color: #f6f3e8;
+}
+/* line 14, ../sass/pygments.scss */
+.highlight .cm {
+  color: #99968b;
+}
+/* line 15, ../sass/pygments.scss */
+.highlight .cp {
+  color: #e5786d;
+}
+/* line 16, ../sass/pygments.scss */
+.highlight .c1 {
+  color: #99968b;
+}
+/* line 17, ../sass/pygments.scss */
+.highlight .cs {
+  color: #99968b;
+}
+/* line 18, ../sass/pygments.scss */
+.highlight .gd {
+  color: #f6f3e8;
+}
+/* line 19, ../sass/pygments.scss */
+.highlight .ge {
+  color: #f6f3e8;
+}
+/* line 20, ../sass/pygments.scss */
+.highlight .gr {
+  color: #f6f3e8;
+}
+/* line 21, ../sass/pygments.scss */
+.highlight .gh {
+  color: #f6f3e8;
+  font-weight: bold;
+}
+/* line 22, ../sass/pygments.scss */
+.highlight .gi {
+  color: #f6f3e8;
+}
+/* line 23, ../sass/pygments.scss */
+.highlight .go {
+  color: #808080;
+  background-color: #303030;
+}
+/* line 24, ../sass/pygments.scss */
+.highlight .gp {
+  color: #f6f3e8;
+}
+/* line 25, ../sass/pygments.scss */
+.highlight .gs {
+  color: #f6f3e8;
+}
+/* line 26, ../sass/pygments.scss */
+.highlight .gu {
+  color: #f6f3e8;
+  font-weight: bold;
+}
+/* line 27, ../sass/pygments.scss */
+.highlight .gt {
+  color: #f6f3e8;
+}
+/* line 28, ../sass/pygments.scss */
+.highlight .kc {
+  color: #8ac6f2;
+}
+/* line 29, ../sass/pygments.scss */
+.highlight .kd {
+  color: #8ac6f2;
+}
+/* line 30, ../sass/pygments.scss */
+.highlight .kn {
+  color: #8ac6f2;
+}
+/* line 31, ../sass/pygments.scss */
+.highlight .kp {
+  color: #8ac6f2;
+}
+/* line 32, ../sass/pygments.scss */
+.highlight .kr {
+  color: #8ac6f2;
+}
+/* line 33, ../sass/pygments.scss */
+.highlight .kt {
+  color: #cae682;
+}
+/* line 34, ../sass/pygments.scss */
+.highlight .ld {
+  color: #f6f3e8;
+}
+/* line 35, ../sass/pygments.scss */
+.highlight .m {
+  color: #e5786d;
+}
+/* line 36, ../sass/pygments.scss */
+.highlight .s {
+  color: #95e454;
+}
+/* line 37, ../sass/pygments.scss */
+.highlight .na {
+  color: #cae682;
+}
+/* line 38, ../sass/pygments.scss */
+.highlight .nb {
+  color: #8AC6F2;
+}
+/* line 39, ../sass/pygments.scss */
+.highlight .nc {
+  color: #f6f3e8;
+}
+/* line 40, ../sass/pygments.scss */
+.highlight .no {
+  color: #e5786d;
+}
+/* line 41, ../sass/pygments.scss */
+.highlight .nd {
+  color: #f6f3e8;
+}
+/* line 42, ../sass/pygments.scss */
+.highlight .ni {
+  color: #e7f6da;
+}
+/* line 43, ../sass/pygments.scss */
+.highlight .ne {
+  color: #f6f3e8;
+}
+/* line 44, ../sass/pygments.scss */
+.highlight .nf {
+  color: #cae682;
+}
+/* line 45, ../sass/pygments.scss */
+.highlight .nl {
+  color: #f6f3e8;
+}
+/* line 46, ../sass/pygments.scss */
+.highlight .nn {
+  color: #f6f3e8;
+}
+/* line 47, ../sass/pygments.scss */
+.highlight .nx {
+  color: #f6f3e8;
+}
+/* line 48, ../sass/pygments.scss */
+.highlight .py {
+  color: #f6f3e8;
+}
+/* line 49, ../sass/pygments.scss */
+.highlight .nt {
+  color: #8ac6f2;
+}
+/* line 50, ../sass/pygments.scss */
+.highlight .nv {
+  color: #cae682;
+}
+/* line 51, ../sass/pygments.scss */
+.highlight .ow {
+  color: #f6f3e8;
+}
+/* line 52, ../sass/pygments.scss */
+.highlight .w {
+  color: #f6f3e8;
+}
+/* line 53, ../sass/pygments.scss */
+.highlight .mf {
+  color: #e5786d;
+}
+/* line 54, ../sass/pygments.scss */
+.highlight .mh {
+  color: #e5786d;
+}
+/* line 55, ../sass/pygments.scss */
+.highlight .mi {
+  color: #e5786d;
+}
+/* line 56, ../sass/pygments.scss */
+.highlight .mo {
+  color: #e5786d;
+}
+/* line 57, ../sass/pygments.scss */
+.highlight .sb {
+  color: #95e454;
+}
+/* line 58, ../sass/pygments.scss */
+.highlight .sc {
+  color: #95e454;
+}
+/* line 59, ../sass/pygments.scss */
+.highlight .sd {
+  color: #95e454;
+}
+/* line 60, ../sass/pygments.scss */
+.highlight .s2 {
+  color: #95e454;
+}
+/* line 61, ../sass/pygments.scss */
+.highlight .se {
+  color: #95e454;
+}
+/* line 62, ../sass/pygments.scss */
+.highlight .sh {
+  color: #95e454;
+}
+/* line 63, ../sass/pygments.scss */
+.highlight .si {
+  color: #95e454;
+}
+/* line 64, ../sass/pygments.scss */
+.highlight .sx {
+  color: #95e454;
+}
+/* line 65, ../sass/pygments.scss */
+.highlight .sr {
+  color: #95e454;
+}
+/* line 66, ../sass/pygments.scss */
+.highlight .s1 {
+  color: #95e454;
+}
+/* line 67, ../sass/pygments.scss */
+.highlight .ss {
+  color: #95e454;
+}
+/* line 68, ../sass/pygments.scss */
+.highlight .bp {
+  color: #f6f3e8;
+}
+/* line 69, ../sass/pygments.scss */
+.highlight .vc {
+  color: #cae682;
+}
+/* line 70, ../sass/pygments.scss */
+.highlight .vg {
+  color: #cae682;
+}
+/* line 71, ../sass/pygments.scss */
+.highlight .vi {
+  color: #cae682;
+}
+/* line 72, ../sass/pygments.scss */
+.highlight .il {
+  color: #e5786d;
 }

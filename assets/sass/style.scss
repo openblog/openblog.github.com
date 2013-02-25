@@ -7,7 +7,8 @@
 
 /* ----------- Vars ----------- */
 $cl_main: #20747b; //verde musgo
-$cl_ft: #d8d8d8; //cinza escuro
+$cl_main2: #26929b; //verde musgo p/ hover
+$cl_ft: #d8d8d8; //cinza claro
 
 /* ----------- Mixins ----------- */
 @mixin fontMain{
@@ -16,7 +17,7 @@ $cl_ft: #d8d8d8; //cinza escuro
 
 /* ----------- Geral ----------- */
 body {
-	background: url('/assets/img/patterns/darkdenim3.png') #fbfbfb;
+	background: url('/img/patterns/darkdenim3.png') #fbfbfb;
 	background-attachment: fixed;
 	border-top: 5px solid $cl_main;
 }
@@ -35,22 +36,24 @@ body {
 	margin-bottom: 50px;
 }
 
-#content .post-container article>section img {
-	margin: 20px 0 20px 0;
-	border: solid 1px $cl_main;
-}
-
 .hidden{display: none;}
 
 /* ----------- Fonts ----------- */
 #wrapper {
 	font-size: 15px;
-	color: $cl_ft ;
+	color: $cl_ft;
 	@include fontMain;
 }
 #wrapper h1{
 	font-size: 36px;
 }
+
+#wrapper h2, h3, h4, h5, h6{
+	font-size: 26px;
+	margin: 20px 0;
+	color: $cl_main;
+}
+
 #main h1{ 
 	font-size: 50px;
 	font-family: Courier; 
@@ -60,44 +63,50 @@ a{
 	color: $cl_main;
 	text-decoration: none;
 }
+a:hover{
+	color: $cl_main2;
+}
 
 /* ----------- Content ----------- */
 #content {
 
 	.post-container {
 		position: relative;
-		margin-bottom: 100px;
+		margin: 30px 0 60px 0;
+		border-bottom: 1px solid #3e4040;
 
 		.post-image {
 			border-width: 0;
 		}
 
+		header{
+			line-height: 250%;
+		}
+
 		article {
-			width: 600px;
-			// background-color: white;
-			padding: 45px 50px 0px 50px;
+			width: 700px;
 			line-height: 200%;
-			// border: 1px solid #CCCCCC;
 
 			code {
-				background-color: #EFEFEF;
+				background-color: #bababa;
 				padding: 2px 3px;
-				border: 1px solid #ddd;
-				color: #555;
+				border: 1px solid #9a9a9a;
+				color: #333333;
 				font-size: 12px;
+				font-family: Monaco,Menlo,Consolas,"Courier New",monospace !important;
 			}
 
 			pre {
 				width: 600px;
 				position: relative;
-				left: -50px;
 				padding: 30px 50px 30px 50px;
-				font-size: 12px;
+				font-size: 14px;
 				line-height: 160%;
-				background-color: #333;
+				background-color: #272822;
+				border: solid 1px #21221d;
+				box-shadow: 5px 5px 15px #21221d;
 				white-space: pre-wrap;
-				color: whiteSmoke;
-				margin: 25px 0;
+				margin: 20px 0;
 
 				code {
 					background: none;
@@ -109,7 +118,7 @@ a{
 
 				&.prettyprint {
 					position: relative;
-					left: -50px;
+					//left: -50px;
 					width: 600px;
 					padding: 10px 50px;
 					font-size: 14px;
@@ -121,8 +130,6 @@ a{
 			}
 
 			p {
-				margin: 25px 0;
-
 				&.obs {
 					color: #999;
 					font-size: 13px;
@@ -146,8 +153,8 @@ a{
 				.img,
 				img {
 					position: relative;
-					left: -50px;
 					width: 700px;
+					margin: 20px 0;
 
 					&.bordered {
 						border-top: 1px solid #ddd;
@@ -192,6 +199,7 @@ a{
 				}
 			}
 			blockquote {
+				margin: 20px 0;
 				padding-left: 20px;
 				border-left: 10px #ccc solid;
 				color: #999;
@@ -206,7 +214,103 @@ a{
 				border-bottom: 1px dotted #CCC;
 				padding-bottom: 1px;
 			}
+		}
+	}
+}
 
-		} // fim de article
-	} // fim de .post-container
-} // fim de #content
+/* Paginação
+---------------------------------------- */
+#post-pagination {
+	width: 700px;
+	height: 30px;
+	position: relative;
+	margin: -50px 0 30px 0;
+
+	p {
+		position: absolute;
+		width: 150px;
+
+		a {
+			line-height: 25px;
+			text-decoration: none;
+			font-size:16px;
+		}
+
+		&.recentes {
+			left: 50px;
+		}
+
+		&.antigos {
+			right: 50px;
+			text-align: right;
+		}
+	}
+}
+
+/* ----------- Post Meta ----------- */
+aside.post-meta {
+	width: 170px;
+	position: absolute;
+	right: 0px;
+	font-size: 14px;
+	font-size: 13px;
+	margin-top: 30px;
+
+	li {
+		margin: 20px 0 0 0;
+		height: 20px;
+		line-height: 20px;
+		position: relative;
+		color: #8a8a8a;
+
+		span.icon-aside {
+			width: 20px;
+			height: 16px;
+			position: absolute;
+			top: 3px;
+		}
+
+		> a {
+			margin-left: 32px;
+			display: inline-block;
+			color: #8a8a8a;
+		}
+		a:hover{
+			color: #7d7d7d;
+		}
+
+
+		&.post-data {
+			time {
+				margin-left: 32px;
+			}
+		}
+
+		&.post-comentarios {
+			height: auto;
+			min-height: 20px;
+		}
+
+		&.post-tags {
+			padding-bottom: 2px;
+			height: auto;
+
+			ul {
+				margin-left: 32px;
+			}
+
+			li {
+				display: inline;
+				padding: 0px;
+				line-height: 24px;
+
+				a {
+					margin-left: 0px;
+				}
+			}
+		}
+	}
+}
+
+/* ----------- Code Highligth ----------- */
+@import "pygments";
