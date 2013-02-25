@@ -10,10 +10,10 @@ comments: true
 keywords: >
   html5, javascript, messaging, api
 resumo: >
-  Já se deparou com a limitação de querer enviar dados de sua página para um `iframe` de um domínio diferente e não poder? Com essa <abbr title="Application Program Interface">API</abbr> isso se torna simples e fácil.
+  Já se deparou com a limitação de querer enviar dados de sua página para um iframe de um domínio diferente e não poder? Com essa <abbr title="Application Program Interface">API</abbr> isso se torna simples e fácil.
 ---
 
-Provavelmente em algum projeto você já foi obrigado a utilizar um `iframe` para carregar conteúdo de uma página externa, e desde então só era possível visualizar o conteúdo do mesmo, e ele funciona como uma <i>sandbox</i> onde não existe comunicação com sua aplicação.
+Provavelmente em algum projeto você já foi obrigado a utilizar um `iframe` para carregar conteúdo de uma página externa, e desde então só era possível visualizar o conteúdo do mesmo, e ele funciona como uma sandbox onde não existe comunicação com sua aplicação.
 Nas especificações do W3C o <abbr title="HyperText Markup Language 5">HTML5</abbr> possui algumas <abbr title="Application Program Interface">APIs</abbr> para comunicação. Neste post trata especificamente uma delas: a HTML5 Web Messaging API que resolve o problema descrito.
 
 ## API
@@ -58,7 +58,6 @@ Exemplo: digamos que a origem de minha aplicação seja o URL: http://openblog.c
     </tr>
   </table>
 </div>
-
 ##Método window.postMessage()
 
 Este método é o responsável por criar uma mensagem a ser enviada para um objeto `window` em uma origem diferente. O padrão do tipo da mensagem é uma <i>string</i>.
@@ -71,7 +70,7 @@ O método recebe três parâmetros: dois obrigatórios e um opcional.
   //portas: array de portas válidas para o destino
 {% endhighlight %}
 
-O destino pode ser um URL absoluto, um caractere curinga (*) que servirá para qualquer destino ou um caractere barra (/) que adota a política da mesma origem (ou seja, apenas o mesmo host da página).
+O destino pode ser um URL absoluto, um caractere curinga `*` que servirá para qualquer destino ou um caractere barra `/` que adota a política da mesma origem (ou seja, apenas o mesmo host da página).
 
 ##Evento message
 
