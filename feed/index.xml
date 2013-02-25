@@ -24,7 +24,6 @@ layout: nil
       {% capture img %}<p><img itemprop="thumbnailUrl" src="http://openblog.github.com{{ post.image }}" alt="{{ post.title | strip_html }}" title="{{ post.title | strip_html }}" width="700" height="432" /></p>{% endcapture %}
       {{ img | xml_escape }}
       {% endif %}
-      {{ post.content | replace: "src='/img/", "src='http://openblog.github.com/img/" | xml_escape }}
     </content>
   </entry>
   {% endfor %}
