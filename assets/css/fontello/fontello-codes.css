@@ -1,25 +1,49 @@
 @charset "UTF-8";
-/* line 2, ../../sass/fontello/fontello-codes.scss */
+/* line 4, ../../sass/fontello/fontello-codes.scss */
+.icon-tag:before {
+  content: '\e70c';
+}
+
+/* '' */
+/* line 5, ../../sass/fontello/fontello-codes.scss */
+.icon-comment:before {
+  content: '\e718';
+}
+
+/* '' */
+/* line 6, ../../sass/fontello/fontello-codes.scss */
 .icon-rss:before {
   content: '\e73a';
 }
 
 /* '' */
-/* line 3, ../../sass/fontello/fontello-codes.scss */
+/* line 7, ../../sass/fontello/fontello-codes.scss */
 .icon-github:before {
   content: '\f300';
 }
 
 /* '' */
-/* line 4, ../../sass/fontello/fontello-codes.scss */
+/* line 8, ../../sass/fontello/fontello-codes.scss */
 .icon-twitter:before {
   content: '\f309';
 }
 
 /* '' */
-/* line 5, ../../sass/fontello/fontello-codes.scss */
+/* line 9, ../../sass/fontello/fontello-codes.scss */
 .icon-facebook:before {
   content: '\f30c';
 }
 
 /* '' */
+/* line 10, ../../sass/fontello/fontello-codes.scss */
+.icon-author:before {
+  content: '👤';
+}
+
+/* '\1f464' */
+/* line 11, ../../sass/fontello/fontello-codes.scss */
+.icon-calendar:before {
+  content: '📅';
+}
+
+/* '\1f4c5' */

@@ -1,5 +1,11 @@
+@charset "UTF-8";
 
+
+.icon-tag:before { content: '\e70c'; } /* '' */
+.icon-comment:before { content: '\e718'; } /* '' */
 .icon-rss:before { content: '\e73a'; } /* '' */
 .icon-github:before { content: '\f300'; } /* '' */
 .icon-twitter:before { content: '\f309'; } /* '' */
 .icon-facebook:before { content: '\f30c'; } /* '' */
+.icon-author:before { content: '👤'; } /* '\1f464' */
+.icon-calendar:before { content: '📅'; } /* '\1f4c5' */

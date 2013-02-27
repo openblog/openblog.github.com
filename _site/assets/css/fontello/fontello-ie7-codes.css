@@ -1,19 +1,39 @@
 /* line 2, ../../sass/fontello/fontello-ie7-codes.scss */
+.icon-tag {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe70c;&nbsp;');
+}
+
+/* line 3, ../../sass/fontello/fontello-ie7-codes.scss */
+.icon-comment {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe718;&nbsp;');
+}
+
+/* line 4, ../../sass/fontello/fontello-ie7-codes.scss */
 .icon-rss {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe73a;&nbsp;');
 }
 
-/* line 3, ../../sass/fontello/fontello-ie7-codes.scss */
+/* line 5, ../../sass/fontello/fontello-ie7-codes.scss */
 .icon-github {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf300;&nbsp;');
 }
 
-/* line 4, ../../sass/fontello/fontello-ie7-codes.scss */
+/* line 6, ../../sass/fontello/fontello-ie7-codes.scss */
 .icon-twitter {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf309;&nbsp;');
 }
 
-/* line 5, ../../sass/fontello/fontello-ie7-codes.scss */
+/* line 7, ../../sass/fontello/fontello-ie7-codes.scss */
 .icon-facebook {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf30c;&nbsp;');
+}
+
+/* line 8, ../../sass/fontello/fontello-ie7-codes.scss */
+.icon-author {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#x1f464;&nbsp;');
+}
+
+/* line 9, ../../sass/fontello/fontello-ie7-codes.scss */
+.icon-calendar {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#x1f4c5;&nbsp;');
 }

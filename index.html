@@ -5,24 +5,24 @@ layout: home
 <section class="post-container" itemscope itemtype="http://schema.org/BlogPosting">
 	<span class="hidden" itemprop="publisher">Open Blog</span>
 	<aside class="post-meta">
-		<ul>
+		<ul class="icons-lt">
 			<li class="post-data">
-				<span class="icon-aside"></span>
+				<span class="icon-aside"><i class="icon-calendar"></i></span>
 				<time itemprop="datePublished" datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%d/%m/%Y" }}</time>
 			</li>
 			<li class="post-autor">
-				<span class="icon-aside"></span>
+				<span class="icon-aside"><i class="icon-author"></i></span>
 				<a href="{{ post.author_profile }}" data-link="{{ post.author_link }}" title="{{ post.author }}" alt="{{ post.author }}" rel="author" itemprop="author" onclick="_gaq.push(['_trackEvent', 'post_author', 'Home View', '{{ post.author }}'])">{{ post.author }}</a>
 			</li>
 			{% if post.comments %}
 			<li class="post-comentarios">
-				<span class="icon-aside"></span>
+				<span class="icon-aside"><i class="icon-comment"></i></span>
 				<a href="{{ post.url }}#disqus_thread" data-disqus-identifier="{{post.id}}" itemprop="interactionCount" onclick="_gaq.push(['_trackEvent', 'post_comments', 'Home View', '{{ post.url }}'])">Carregando...</a>
 			</li>
 			{% endif %}
 			{% unless post.tags == empty %}
 			<li class="post-tags">
-				<span class="icon-aside"></span>
+				<span class="icon-aside"><i class="icon-tag"></i></span>
 				<ul>
 					{% for tag in post.tags %}
 					<li><a href="/tag/{{ tag }}"><span>#</span>{{ tag }}</a></li>{% if forloop.last == false %},{% endif %}

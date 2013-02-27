@@ -1,8 +1,8 @@
 @charset "UTF-8";
 @font-face {
   font-family: 'fontello';
-  src: url("../font/fontello.eot?50550644");
-  src: url("../font/fontello.eot?50550644#iefix") format("embedded-opentype"), url("../font/fontello.woff?50550644") format("woff"), url("../font/fontello.ttf?50550644") format("truetype"), url("../font/fontello.svg?50550644#fontello") format("svg");
+  src: url("../font/fontello.eot?81601967");
+  src: url("../font/fontello.eot?81601967#iefix") format("embedded-opentype"), url("../font/fontello.woff?81601967") format("woff"), url("../font/fontello.ttf?81601967") format("truetype"), url("../font/fontello.svg?81601967#fontello") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -13,11 +13,11 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'fontello';
-    src: url('../font/fontello.svg?50550644#fontello') format('svg');
+    src: url('../font/fontello.svg?81601967#fontello') format('svg');
   }
 }
 */
-/* line 19, ../../sass/fontello/fontello.scss */
+/* line 21, ../../sass/fontello/fontello.scss */
 [class^="icon-"]:before,
 [class*=" icon-"]:before {
   font-family: 'fontello';
@@ -41,27 +41,51 @@
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
 
-/* line 41, ../../sass/fontello/fontello.scss */
+/* line 43, ../../sass/fontello/fontello.scss */
+.icon-tag:before {
+  content: '\e70c';
+}
+
+/* '' */
+/* line 44, ../../sass/fontello/fontello.scss */
+.icon-comment:before {
+  content: '\e718';
+}
+
+/* '' */
+/* line 45, ../../sass/fontello/fontello.scss */
 .icon-rss:before {
   content: '\e73a';
 }
 
 /* '' */
-/* line 42, ../../sass/fontello/fontello.scss */
+/* line 46, ../../sass/fontello/fontello.scss */
 .icon-github:before {
   content: '\f300';
 }
 
 /* '' */
-/* line 43, ../../sass/fontello/fontello.scss */
+/* line 47, ../../sass/fontello/fontello.scss */
 .icon-twitter:before {
   content: '\f309';
 }
 
 /* '' */
-/* line 44, ../../sass/fontello/fontello.scss */
+/* line 48, ../../sass/fontello/fontello.scss */
 .icon-facebook:before {
   content: '\f30c';
 }
 
 /* '' */
+/* line 49, ../../sass/fontello/fontello.scss */
+.icon-author:before {
+  content: '👤';
+}
+
+/* '\1f464' */
+/* line 50, ../../sass/fontello/fontello.scss */
+.icon-calendar:before {
+  content: '📅';
+}
+
+/* '\1f4c5' */

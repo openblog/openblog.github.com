@@ -1,0 +1,116 @@
+{
+  "name": "",
+  "glyphs": [
+    {
+      "search": [
+        "tag",
+        "category",
+        "price",
+        "offer"
+      ],
+      "code": 59148,
+      "from": 59148,
+      "uid": "3db5347bd219f3bce6025780f5d9ef45",
+      "css": "tag",
+      "orig_css": "tag",
+      "orig_code": 59148,
+      "src": "fontawesome"
+    },
+    {
+      "search": [
+        "comment",
+        "reply",
+        "write"
+      ],
+      "code": 59160,
+      "from": 59160,
+      "uid": "85528017f1e6053b2253785c31047f44",
+      "css": "comment",
+      "orig_css": "comment",
+      "orig_code": 59160,
+      "src": "fontawesome"
+    },
+    {
+      "search": [
+        "rss"
+      ],
+      "code": 59194,
+      "uid": "3e617d8049807e128c80d0344ba09e37",
+      "css": "rss",
+      "orig_css": "rss",
+      "orig_code": 59194,
+      "src": "entypo",
+      "from": 59194
+    },
+    {
+      "search": [
+        "github",
+        "social",
+        "logo"
+      ],
+      "code": 62208,
+      "uid": "d94334f23acba022bfd68e49d76b31bb",
+      "css": "github",
+      "orig_css": "github",
+      "orig_code": 62208,
+      "src": "entypo",
+      "from": 62208
+    },
+    {
+      "search": [
+        "twitter",
+        "social",
+        "logo"
+      ],
+      "code": 62217,
+      "uid": "d090355c31f497b61d676416c1fd39fb",
+      "css": "twitter",
+      "orig_css": "twitter",
+      "orig_code": 62217,
+      "src": "entypo",
+      "from": 62217
+    },
+    {
+      "search": [
+        "facebook",
+        "social",
+        "logo"
+      ],
+      "code": 62220,
+      "uid": "bc50457410acf467b8b5721240768742",
+      "css": "facebook",
+      "orig_css": "facebook",
+      "orig_code": 62220,
+      "src": "entypo",
+      "from": 62220
+    },
+    {
+      "search": [
+        "profile",
+        "contact",
+        "user"
+      ],
+      "code": 128100,
+      "uid": "86ee1fc7ff57e9c9c60d8a5e57183776",
+      "file": "user",
+      "css": "author",
+      "orig_css": "user",
+      "orig_code": 128100,
+      "src": "iconic",
+      "from": 128100
+    },
+    {
+      "search": [
+        "calendar",
+        "date"
+      ],
+      "code": 128197,
+      "from": 128197,
+      "uid": "531bc468eecbb8867d822f1c11f1e039",
+      "css": "calendar",
+      "orig_css": "calendar",
+      "orig_code": 128197,
+      "src": "fontawesome"
+    }
+  ]
+}

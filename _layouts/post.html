@@ -8,30 +8,28 @@
 	<div id="wrapper">
 		
 		{% include main.html %}
-		
 		<section id="content">
-
 			<section class="post-container" itemscope itemtype="http://schema.org/BlogPosting">
 				<span class="hidden" itemprop="publisher">Open Blog</span>
 				<aside class="post-meta">
-					<ul>
+					<ul class="icons-lt">
 						<li class="post-data">
-							<span class="icon-aside"></span>
+							<span class="icon-aside"><i class="icon-calendar"></i></span>
 							<time itemprop="datePublished" datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: "%d/%m/%Y" }}</time>
 						</li>
 						<li class="post-autor">
-							<span class="icon-aside"></span>
+							<span class="icon-aside"><i class="icon-author"></i></span>
 							<a href="{{ page.author_profile }}" data-link="{{ page.author_link }}" title="{{ page.author }}" alt="{{ page.author }}" rel="author" itemprop="author" onclick="_gaq.push(['_trackEvent', 'post_author', 'Post View', '{{ page.author }}'])">{{ page.author }}</a>
 						</li>
 						{% if page.comments %}
 						<li class="post-comentarios">
-							<span class="icon-aside"></span>
+							<span class="icon-aside"><i class="icon-comment"></i></span>
 							<a href="{{ page.url }}#disqus_thread" data-disqus-identifier="{{page.id}}" itemprop="interactionCount" onclick="_gaq.push(['_trackEvent', 'post_comments', 'Post View', '{{ post.url }}'])">Carregando...</a>
 						</li>
 						{% endif %}
 						{% unless page.tags == empty %}
 						<li class="post-tags">
-							<span class="icon-aside"></span>
+							<span class="icon-aside"><i class="icon-tag"></i></span>
 							<ul>
 								{% for tag in page.tags %}
 								<li><a href="/tag/{{ tag }}"><span>#</span>{{ tag }}</a></li>{% if forloop.last == false %},{% endif %}

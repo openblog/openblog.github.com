@@ -215,27 +215,32 @@ a:hover {
   float: left;
 }
 
+/* line 129, ../sass/style.scss */
+.icons-lt span {
+  font-size: 16px;
+}
+
 /* ----------- Content ----------- */
-/* line 132, ../sass/style.scss */
+/* line 136, ../sass/style.scss */
 #content .post-container {
   position: relative;
   margin: 30px 0 60px 0;
   border-bottom: 1px dotted #636363;
 }
-/* line 138, ../sass/style.scss */
+/* line 142, ../sass/style.scss */
 #content .post-container .post-image {
   border-width: 0;
 }
-/* line 142, ../sass/style.scss */
+/* line 146, ../sass/style.scss */
 #content .post-container header {
   line-height: 250%;
 }
-/* line 146, ../sass/style.scss */
+/* line 150, ../sass/style.scss */
 #content .post-container article {
   width: 700px;
   line-height: 200%;
 }
-/* line 150, ../sass/style.scss */
+/* line 154, ../sass/style.scss */
 #content .post-container article code {
   background-color: #bababa;
   padding: 2px 3px;
@@ -244,7 +249,7 @@ a:hover {
   font-size: 12px;
   font-family: Monaco, Menlo, Consolas, "Courier New", monospace !important;
 }
-/* line 159, ../sass/style.scss */
+/* line 163, ../sass/style.scss */
 #content .post-container article pre {
   width: 600px;
   position: relative;
@@ -257,7 +262,7 @@ a:hover {
   white-space: pre-wrap;
   margin: 20px 0;
 }
-/* line 171, ../sass/style.scss */
+/* line 175, ../sass/style.scss */
 #content .post-container article pre code {
   background: none;
   color: white;
@@ -265,51 +270,51 @@ a:hover {
   padding: 0px;
   border: none;
 }
-/* line 179, ../sass/style.scss */
+/* line 183, ../sass/style.scss */
 #content .post-container article pre.prettyprint {
   position: relative;
   width: 600px;
   padding: 10px 50px;
   font-size: 14px;
 }
-/* line 188, ../sass/style.scss */
+/* line 192, ../sass/style.scss */
 #content .post-container article .image-code pre {
   margin-top: -9px !important;
 }
-/* line 193, ../sass/style.scss */
+/* line 197, ../sass/style.scss */
 #content .post-container article p.obs {
   color: #999;
   font-size: 13px;
   font-style: italic;
   line-height: 170%;
 }
-/* line 201, ../sass/style.scss */
+/* line 205, ../sass/style.scss */
 #content .post-container article > section {
   padding-bottom: 45px;
 }
-/* line 204, ../sass/style.scss */
+/* line 208, ../sass/style.scss */
 #content .post-container article > section > ul, #content .post-container article > section > ol {
   margin: 25px 0;
   list-style-position: inside;
 }
-/* line 209, ../sass/style.scss */
+/* line 213, ../sass/style.scss */
 #content .post-container article > section > li {
   margin: 5px 0px;
 }
-/* line 214, ../sass/style.scss */
+/* line 218, ../sass/style.scss */
 #content .post-container article > section .img,
 #content .post-container article > section img {
   position: relative;
   width: 700px;
   margin: 20px 0;
 }
-/* line 219, ../sass/style.scss */
+/* line 223, ../sass/style.scss */
 #content .post-container article > section .img.bordered,
 #content .post-container article > section img.bordered {
   border-top: 1px solid #dddddd;
   border-bottom: 1px solid #dddddd;
 }
-/* line 224, ../sass/style.scss */
+/* line 228, ../sass/style.scss */
 #content .post-container article > section .img.example,
 #content .post-container article > section img.example {
   padding: 20px 50px;
@@ -317,33 +322,33 @@ a:hover {
   background-color: whiteSmoke;
   margin: 25px 0px;
 }
-/* line 232, ../sass/style.scss */
+/* line 236, ../sass/style.scss */
 #content .post-container article > section img {
   background-color: white;
   background-size: 30px 30px;
   background-position: 0 0, 15px 15px;
 }
-/* line 239, ../sass/style.scss */
+/* line 243, ../sass/style.scss */
 #content .post-container article > section figure.content {
   line-height: 100%;
 }
-/* line 243, ../sass/style.scss */
+/* line 247, ../sass/style.scss */
 #content .post-container article > section figure.content img {
   position: static;
   left: 0;
   width: auto;
 }
-/* line 249, ../sass/style.scss */
+/* line 253, ../sass/style.scss */
 #content .post-container article > section figure.content.left {
   float: left;
   margin-right: 30px;
 }
-/* line 254, ../sass/style.scss */
+/* line 258, ../sass/style.scss */
 #content .post-container article > section figure.content.right {
   float: right;
   margin-left: 30px;
 }
-/* line 261, ../sass/style.scss */
+/* line 265, ../sass/style.scss */
 #content .post-container article blockquote {
   margin: 20px 0;
   padding-left: 20px;
@@ -351,11 +356,11 @@ a:hover {
   color: #999;
   display: block;
 }
-/* line 268, ../sass/style.scss */
+/* line 272, ../sass/style.scss */
 #content .post-container article blockquote footer {
   font-size: 14px;
 }
-/* line 273, ../sass/style.scss */
+/* line 277, ../sass/style.scss */
 #content .post-container article abbr {
   border-bottom: 1px dotted #cccccc;
   padding-bottom: 1px;
@@ -363,36 +368,36 @@ a:hover {
 
 /* Paginação
 ---------------------------------------- */
-/* line 283, ../sass/style.scss */
+/* line 287, ../sass/style.scss */
 #post-pagination {
   width: 700px;
   height: 30px;
   position: relative;
   margin: -50px 0 30px 0;
 }
-/* line 289, ../sass/style.scss */
+/* line 293, ../sass/style.scss */
 #post-pagination p {
   position: absolute;
   width: 150px;
 }
-/* line 293, ../sass/style.scss */
+/* line 297, ../sass/style.scss */
 #post-pagination p a {
   line-height: 25px;
   text-decoration: none;
   font-size: 16px;
 }
-/* line 299, ../sass/style.scss */
+/* line 303, ../sass/style.scss */
 #post-pagination p.recentes {
   left: 50px;
 }
-/* line 303, ../sass/style.scss */
+/* line 307, ../sass/style.scss */
 #post-pagination p.antigos {
   right: 50px;
   text-align: right;
 }
 
 /* ----------- Post Meta ----------- */
-/* line 311, ../sass/style.scss */
+/* line 315, ../sass/style.scss */
 aside.post-meta {
   width: 170px;
   position: absolute;
@@ -401,7 +406,7 @@ aside.post-meta {
   font-size: 13px;
   margin-top: 30px;
 }
-/* line 319, ../sass/style.scss */
+/* line 323, ../sass/style.scss */
 aside.post-meta li {
   margin: 20px 0 0 0;
   height: 20px;
@@ -409,48 +414,48 @@ aside.post-meta li {
   position: relative;
   color: #8a8a8a;
 }
-/* line 326, ../sass/style.scss */
+/* line 330, ../sass/style.scss */
 aside.post-meta li span.icon-aside {
   width: 20px;
   height: 16px;
   position: absolute;
   top: 3px;
 }
-/* line 333, ../sass/style.scss */
+/* line 337, ../sass/style.scss */
 aside.post-meta li > a {
   margin-left: 32px;
   display: inline-block;
   color: #8a8a8a;
 }
-/* line 338, ../sass/style.scss */
+/* line 342, ../sass/style.scss */
 aside.post-meta li a:hover {
   color: #7d7d7d;
 }
-/* line 344, ../sass/style.scss */
+/* line 348, ../sass/style.scss */
 aside.post-meta li.post-data time {
   margin-left: 32px;
 }
-/* line 349, ../sass/style.scss */
+/* line 353, ../sass/style.scss */
 aside.post-meta li.post-comentarios {
   height: auto;
   min-height: 20px;
 }
-/* line 354, ../sass/style.scss */
+/* line 358, ../sass/style.scss */
 aside.post-meta li.post-tags {
   padding-bottom: 2px;
   height: auto;
 }
-/* line 358, ../sass/style.scss */
+/* line 362, ../sass/style.scss */
 aside.post-meta li.post-tags ul {
   margin-left: 32px;
 }
-/* line 362, ../sass/style.scss */
+/* line 366, ../sass/style.scss */
 aside.post-meta li.post-tags li {
   display: inline;
   padding: 0px;
   line-height: 24px;
 }
-/* line 367, ../sass/style.scss */
+/* line 371, ../sass/style.scss */
 aside.post-meta li.post-tags li a {
   margin-left: 0px;
 }
@@ -458,8 +463,8 @@ aside.post-meta li.post-tags li a {
 /* ----------- Import ----------- */
 @font-face {
   font-family: 'fontello';
-  src: url("../font/fontello.eot?50550644");
-  src: url("../font/fontello.eot?50550644#iefix") format("embedded-opentype"), url("../font/fontello.woff?50550644") format("woff"), url("../font/fontello.ttf?50550644") format("truetype"), url("../font/fontello.svg?50550644#fontello") format("svg");
+  src: url("../font/fontello.eot?81601967");
+  src: url("../font/fontello.eot?81601967#iefix") format("embedded-opentype"), url("../font/fontello.woff?81601967") format("woff"), url("../font/fontello.ttf?81601967") format("truetype"), url("../font/fontello.svg?81601967#fontello") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -470,11 +475,11 @@ aside.post-meta li.post-tags li a {
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'fontello';
-    src: url('../font/fontello.svg?50550644#fontello') format('svg');
+    src: url('../font/fontello.svg?81601967#fontello') format('svg');
   }
 }
 */
-/* line 19, ../sass/fontello/fontello.scss */
+/* line 21, ../sass/fontello/fontello.scss */
 [class^="icon-"]:before,
 [class*=" icon-"]:before {
   font-family: 'fontello';
@@ -498,30 +503,54 @@ aside.post-meta li.post-tags li a {
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
 
-/* line 41, ../sass/fontello/fontello.scss */
+/* line 43, ../sass/fontello/fontello.scss */
+.icon-tag:before {
+  content: '\e70c';
+}
+
+/* '' */
+/* line 44, ../sass/fontello/fontello.scss */
+.icon-comment:before {
+  content: '\e718';
+}
+
+/* '' */
+/* line 45, ../sass/fontello/fontello.scss */
 .icon-rss:before {
   content: '\e73a';
 }
 
 /* '' */
-/* line 42, ../sass/fontello/fontello.scss */
+/* line 46, ../sass/fontello/fontello.scss */
 .icon-github:before {
   content: '\f300';
 }
 
 /* '' */
-/* line 43, ../sass/fontello/fontello.scss */
+/* line 47, ../sass/fontello/fontello.scss */
 .icon-twitter:before {
   content: '\f309';
 }
 
 /* '' */
-/* line 44, ../sass/fontello/fontello.scss */
+/* line 48, ../sass/fontello/fontello.scss */
 .icon-facebook:before {
   content: '\f30c';
 }
 
 /* '' */
+/* line 49, ../sass/fontello/fontello.scss */
+.icon-author:before {
+  content: '👤';
+}
+
+/* '\1f464' */
+/* line 50, ../sass/fontello/fontello.scss */
+.icon-calendar:before {
+  content: '📅';
+}
+
+/* '\1f4c5' */
 /* line 1, ../sass/pygments.scss */
 .highlight {
   color: #f6f3e8;
