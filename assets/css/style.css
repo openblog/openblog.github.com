@@ -1,8 +1,9 @@
 @charset "UTF-8";
-/* Welcome to Compass.
- * In this file you should write your main styles. (or centralize your imports)
- * Import this file using the following HTML or equivalent:
- * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/*
+	=================================================================
+	.openBlog() stylesheet file by Vagner Santana using sass/compass
+	=================================================================
+*/
 /* line 17, ../../../../.rvm/gems/ruby-1.9.3-p385/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -71,31 +72,31 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 /* ----------- Vars ----------- */
 /* ----------- Mixins ----------- */
 /* ----------- Geral ----------- */
-/* line 19, ../sass/style.scss */
+/* line 20, ../sass/style.scss */
 body {
   background: url("/img/patterns/darkdenim3.png") #fbfbfb;
   background-attachment: fixed;
   border-top: 5px solid #20747b;
 }
 
-/* line 25, ../sass/style.scss */
+/* line 26, ../sass/style.scss */
 #main {
   margin-bottom: 50px;
 }
 
-/* line 29, ../sass/style.scss */
+/* line 30, ../sass/style.scss */
 #wrapper {
   width: 900px;
   margin: 0 auto;
 }
 
-/* line 34, ../sass/style.scss */
+/* line 35, ../sass/style.scss */
 #content .post-container {
   position: relative;
   margin-bottom: 50px;
 }
 
-/* line 39, ../sass/style.scss */
+/* line 40, ../sass/style.scss */
 .btn {
   width: 100px;
   height: 40px;
@@ -105,12 +106,12 @@ body {
   color: #d8d8d8;
 }
 
-/* line 48, ../sass/style.scss */
+/* line 49, ../sass/style.scss */
 .btn:hover {
   background: #26929b;
 }
 
-/* line 52, ../sass/style.scss */
+/* line 53, ../sass/style.scss */
 .btn-demo {
   width: 100px;
   height: 70px;
@@ -118,18 +119,36 @@ body {
   margin-left: 300px;
 }
 
-/* line 59, ../sass/style.scss */
+/* line 60, ../sass/style.scss */
 .demo-cont {
   margin-top: 50px;
 }
 
-/* line 63, ../sass/style.scss */
+/* line 64, ../sass/style.scss */
+.rss div {
+  width: 35px;
+  height: 35px;
+  background: url("/img/rss.png");
+  background-size: 35px 35px;
+}
+
+/* line 71, ../sass/style.scss */
 .hidden {
   display: none;
 }
 
+/* line 72, ../sass/style.scss */
+.al-rg {
+  float: right;
+}
+
+/* line 73, ../sass/style.scss */
+.al-lf {
+  float: left;
+}
+
 /* ----------- Tabelas ----------- */
-/* line 66, ../sass/style.scss */
+/* line 76, ../sass/style.scss */
 .tbl table {
   width: 700px;
   border-collapse: collapse;
@@ -137,75 +156,86 @@ body {
   margin: 20px 0;
 }
 
-/* line 72, ../sass/style.scss */
+/* line 82, ../sass/style.scss */
 .tbl table td, th {
   padding: 6px;
   border: 1px solid #545454;
 }
 
-/* line 77, ../sass/style.scss */
+/* line 87, ../sass/style.scss */
 .tbl table th {
   background: #3c3d3e;
 }
 
 /* ----------- Fonts ----------- */
-/* line 82, ../sass/style.scss */
+/* line 92, ../sass/style.scss */
 #wrapper {
   font-size: 15px;
   color: #d8d8d8;
   font-family: "Ubuntu", sans-serif;
 }
 
-/* line 87, ../sass/style.scss */
+/* line 97, ../sass/style.scss */
 #wrapper h1 {
   font-size: 36px;
 }
 
-/* line 91, ../sass/style.scss */
+/* line 101, ../sass/style.scss */
 #wrapper h2, h3, h4, h5, h6 {
   font-size: 26px;
   margin: 20px 0;
   color: #20747b;
 }
 
-/* line 97, ../sass/style.scss */
+/* line 107, ../sass/style.scss */
 #main h1 {
   font-size: 50px;
   font-family: Courier;
 }
 
-/* line 102, ../sass/style.scss */
+/* line 112, ../sass/style.scss */
 a {
   color: #20747b;
   text-decoration: none;
 }
 
-/* line 106, ../sass/style.scss */
+/* line 116, ../sass/style.scss */
 a:hover {
   color: #26929b;
 }
 
+/* ----------- Icons ----------- */
+/* line 121, ../sass/style.scss */
+.icons {
+  font-size: 26px;
+}
+
+/* line 125, ../sass/style.scss */
+.icons li {
+  float: left;
+}
+
 /* ----------- Content ----------- */
-/* line 113, ../sass/style.scss */
+/* line 132, ../sass/style.scss */
 #content .post-container {
   position: relative;
   margin: 30px 0 60px 0;
   border-bottom: 1px dotted #636363;
 }
-/* line 119, ../sass/style.scss */
+/* line 138, ../sass/style.scss */
 #content .post-container .post-image {
   border-width: 0;
 }
-/* line 123, ../sass/style.scss */
+/* line 142, ../sass/style.scss */
 #content .post-container header {
   line-height: 250%;
 }
-/* line 127, ../sass/style.scss */
+/* line 146, ../sass/style.scss */
 #content .post-container article {
   width: 700px;
   line-height: 200%;
 }
-/* line 131, ../sass/style.scss */
+/* line 150, ../sass/style.scss */
 #content .post-container article code {
   background-color: #bababa;
   padding: 2px 3px;
@@ -214,7 +244,7 @@ a:hover {
   font-size: 12px;
   font-family: Monaco, Menlo, Consolas, "Courier New", monospace !important;
 }
-/* line 140, ../sass/style.scss */
+/* line 159, ../sass/style.scss */
 #content .post-container article pre {
   width: 600px;
   position: relative;
@@ -227,7 +257,7 @@ a:hover {
   white-space: pre-wrap;
   margin: 20px 0;
 }
-/* line 152, ../sass/style.scss */
+/* line 171, ../sass/style.scss */
 #content .post-container article pre code {
   background: none;
   color: white;
@@ -235,51 +265,51 @@ a:hover {
   padding: 0px;
   border: none;
 }
-/* line 160, ../sass/style.scss */
+/* line 179, ../sass/style.scss */
 #content .post-container article pre.prettyprint {
   position: relative;
   width: 600px;
   padding: 10px 50px;
   font-size: 14px;
 }
-/* line 169, ../sass/style.scss */
+/* line 188, ../sass/style.scss */
 #content .post-container article .image-code pre {
   margin-top: -9px !important;
 }
-/* line 174, ../sass/style.scss */
+/* line 193, ../sass/style.scss */
 #content .post-container article p.obs {
   color: #999;
   font-size: 13px;
   font-style: italic;
   line-height: 170%;
 }
-/* line 182, ../sass/style.scss */
+/* line 201, ../sass/style.scss */
 #content .post-container article > section {
   padding-bottom: 45px;
 }
-/* line 185, ../sass/style.scss */
+/* line 204, ../sass/style.scss */
 #content .post-container article > section > ul, #content .post-container article > section > ol {
   margin: 25px 0;
   list-style-position: inside;
 }
-/* line 190, ../sass/style.scss */
+/* line 209, ../sass/style.scss */
 #content .post-container article > section > li {
   margin: 5px 0px;
 }
-/* line 195, ../sass/style.scss */
+/* line 214, ../sass/style.scss */
 #content .post-container article > section .img,
 #content .post-container article > section img {
   position: relative;
   width: 700px;
   margin: 20px 0;
 }
-/* line 200, ../sass/style.scss */
+/* line 219, ../sass/style.scss */
 #content .post-container article > section .img.bordered,
 #content .post-container article > section img.bordered {
   border-top: 1px solid #dddddd;
   border-bottom: 1px solid #dddddd;
 }
-/* line 205, ../sass/style.scss */
+/* line 224, ../sass/style.scss */
 #content .post-container article > section .img.example,
 #content .post-container article > section img.example {
   padding: 20px 50px;
@@ -287,33 +317,33 @@ a:hover {
   background-color: whiteSmoke;
   margin: 25px 0px;
 }
-/* line 213, ../sass/style.scss */
+/* line 232, ../sass/style.scss */
 #content .post-container article > section img {
   background-color: white;
   background-size: 30px 30px;
   background-position: 0 0, 15px 15px;
 }
-/* line 220, ../sass/style.scss */
+/* line 239, ../sass/style.scss */
 #content .post-container article > section figure.content {
   line-height: 100%;
 }
-/* line 224, ../sass/style.scss */
+/* line 243, ../sass/style.scss */
 #content .post-container article > section figure.content img {
   position: static;
   left: 0;
   width: auto;
 }
-/* line 230, ../sass/style.scss */
+/* line 249, ../sass/style.scss */
 #content .post-container article > section figure.content.left {
   float: left;
   margin-right: 30px;
 }
-/* line 235, ../sass/style.scss */
+/* line 254, ../sass/style.scss */
 #content .post-container article > section figure.content.right {
   float: right;
   margin-left: 30px;
 }
-/* line 242, ../sass/style.scss */
+/* line 261, ../sass/style.scss */
 #content .post-container article blockquote {
   margin: 20px 0;
   padding-left: 20px;
@@ -321,11 +351,11 @@ a:hover {
   color: #999;
   display: block;
 }
-/* line 249, ../sass/style.scss */
+/* line 268, ../sass/style.scss */
 #content .post-container article blockquote footer {
   font-size: 14px;
 }
-/* line 254, ../sass/style.scss */
+/* line 273, ../sass/style.scss */
 #content .post-container article abbr {
   border-bottom: 1px dotted #cccccc;
   padding-bottom: 1px;
@@ -333,36 +363,36 @@ a:hover {
 
 /* Paginação
 ---------------------------------------- */
-/* line 264, ../sass/style.scss */
+/* line 283, ../sass/style.scss */
 #post-pagination {
   width: 700px;
   height: 30px;
   position: relative;
   margin: -50px 0 30px 0;
 }
-/* line 270, ../sass/style.scss */
+/* line 289, ../sass/style.scss */
 #post-pagination p {
   position: absolute;
   width: 150px;
 }
-/* line 274, ../sass/style.scss */
+/* line 293, ../sass/style.scss */
 #post-pagination p a {
   line-height: 25px;
   text-decoration: none;
   font-size: 16px;
 }
-/* line 280, ../sass/style.scss */
+/* line 299, ../sass/style.scss */
 #post-pagination p.recentes {
   left: 50px;
 }
-/* line 284, ../sass/style.scss */
+/* line 303, ../sass/style.scss */
 #post-pagination p.antigos {
   right: 50px;
   text-align: right;
 }
 
 /* ----------- Post Meta ----------- */
-/* line 292, ../sass/style.scss */
+/* line 311, ../sass/style.scss */
 aside.post-meta {
   width: 170px;
   position: absolute;
@@ -371,7 +401,7 @@ aside.post-meta {
   font-size: 13px;
   margin-top: 30px;
 }
-/* line 300, ../sass/style.scss */
+/* line 319, ../sass/style.scss */
 aside.post-meta li {
   margin: 20px 0 0 0;
   height: 20px;
@@ -379,53 +409,119 @@ aside.post-meta li {
   position: relative;
   color: #8a8a8a;
 }
-/* line 307, ../sass/style.scss */
+/* line 326, ../sass/style.scss */
 aside.post-meta li span.icon-aside {
   width: 20px;
   height: 16px;
   position: absolute;
   top: 3px;
 }
-/* line 314, ../sass/style.scss */
+/* line 333, ../sass/style.scss */
 aside.post-meta li > a {
   margin-left: 32px;
   display: inline-block;
   color: #8a8a8a;
 }
-/* line 319, ../sass/style.scss */
+/* line 338, ../sass/style.scss */
 aside.post-meta li a:hover {
   color: #7d7d7d;
 }
-/* line 325, ../sass/style.scss */
+/* line 344, ../sass/style.scss */
 aside.post-meta li.post-data time {
   margin-left: 32px;
 }
-/* line 330, ../sass/style.scss */
+/* line 349, ../sass/style.scss */
 aside.post-meta li.post-comentarios {
   height: auto;
   min-height: 20px;
 }
-/* line 335, ../sass/style.scss */
+/* line 354, ../sass/style.scss */
 aside.post-meta li.post-tags {
   padding-bottom: 2px;
   height: auto;
 }
-/* line 339, ../sass/style.scss */
+/* line 358, ../sass/style.scss */
 aside.post-meta li.post-tags ul {
   margin-left: 32px;
 }
-/* line 343, ../sass/style.scss */
+/* line 362, ../sass/style.scss */
 aside.post-meta li.post-tags li {
   display: inline;
   padding: 0px;
   line-height: 24px;
 }
-/* line 348, ../sass/style.scss */
+/* line 367, ../sass/style.scss */
 aside.post-meta li.post-tags li a {
   margin-left: 0px;
 }
 
-/* ----------- Code Highligth ----------- */
+/* ----------- Import ----------- */
+@font-face {
+  font-family: 'fontello';
+  src: url("../font/fontello.eot?50550644");
+  src: url("../font/fontello.eot?50550644#iefix") format("embedded-opentype"), url("../font/fontello.woff?50550644") format("woff"), url("../font/fontello.ttf?50550644") format("truetype"), url("../font/fontello.svg?50550644#fontello") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'fontello';
+    src: url('../font/fontello.svg?50550644#fontello') format('svg');
+  }
+}
+*/
+/* line 19, ../sass/fontello/fontello.scss */
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: 'fontello';
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: 0.2em;
+  text-align: center;
+  /* opacity .8 */
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+  /* Animation center compensation - magrins should be symmetric */
+  /* remove if not needed */
+  margin-left: 0.2em;
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+/* line 41, ../sass/fontello/fontello.scss */
+.icon-rss:before {
+  content: '\e73a';
+}
+
+/* '' */
+/* line 42, ../sass/fontello/fontello.scss */
+.icon-github:before {
+  content: '\f300';
+}
+
+/* '' */
+/* line 43, ../sass/fontello/fontello.scss */
+.icon-twitter:before {
+  content: '\f309';
+}
+
+/* '' */
+/* line 44, ../sass/fontello/fontello.scss */
+.icon-facebook:before {
+  content: '\f30c';
+}
+
+/* '' */
 /* line 1, ../sass/pygments.scss */
 .highlight {
   color: #f6f3e8;

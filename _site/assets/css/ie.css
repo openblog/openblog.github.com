@@ -1,5 +1,36 @@
-/* Welcome to Compass. Use this file to write IE specific override styles.
- * Import this file using the following HTML or equivalent:
- * <!--[if IE]>
- *   <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
- * <![endif]--> */
+/*
+	=================================================================
+	.openBlog() stylesheet file by Vagner Santana using sass/compass;
+	=================================================================
+*/
+/* line 2, ../sass/fontello/fontello-ie7.scss */
+[class^="icon-"],
+[class*=" icon-"] {
+  font-family: 'fontello';
+  font-style: normal;
+  font-weight: normal;
+  /* fix buttons height */
+  line-height: 1em;
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+}
+
+/* line 12, ../sass/fontello/fontello-ie7.scss */
+.icon-rss {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe73a;&nbsp;');
+}
+
+/* line 13, ../sass/fontello/fontello-ie7.scss */
+.icon-github {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf300;&nbsp;');
+}
+
+/* line 14, ../sass/fontello/fontello-ie7.scss */
+.icon-twitter {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf309;&nbsp;');
+}
+
+/* line 15, ../sass/fontello/fontello-ie7.scss */
+.icon-facebook {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf30c;&nbsp;');
+}

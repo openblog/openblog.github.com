@@ -1,7 +1,8 @@
-/* Welcome to Compass.
- * In this file you should write your main styles. (or centralize your imports)
- * Import this file using the following HTML or equivalent:
- * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/*
+	=================================================================
+	.openBlog() stylesheet file by Vagner Santana using sass/compass
+	=================================================================
+*/
 
 @import "compass/reset";
 
@@ -60,7 +61,16 @@ body {
 	margin-top: 50px;
 }
 
+.rss div{
+	width: 35px;
+	height: 35px;
+	background: url('/img/rss.png');
+	background-size: 35px 35px;
+}
+
 .hidden{display: none;}
+.al-rg{ float: right;}
+.al-lf{ float: left;}
 
 /* ----------- Tabelas ----------- */
 .tbl table {
@@ -105,6 +115,15 @@ a{
 }
 a:hover{
 	color: $cl_main2;
+}
+
+/* ----------- Icons ----------- */
+.icons{
+	font-size: 26px;
+}
+
+.icons li{
+	float: left;
 }
 
 /* ----------- Content ----------- */
@@ -353,5 +372,6 @@ aside.post-meta {
 	}
 }
 
-/* ----------- Code Highligth ----------- */
+/* ----------- Import ----------- */
+@import "fontello/fontello.scss";
 @import "pygments";

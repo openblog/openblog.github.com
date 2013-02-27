@@ -18,6 +18,6 @@ $ git clone git://github.com/openblog/openblog.github.com.git
 
 Gerando o blog
 ```bash
-$ cd lopenblog.github.com
+$ cd openblog.github.com
 $ jekyll --server
 ```

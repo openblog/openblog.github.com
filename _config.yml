@@ -15,7 +15,7 @@ lsi:         false
 pygments:    true
 markdown:    maruku
 permalink:   pretty
-exclude:     [ie.scss, print.scss, screen.scss, config.rb]
+exclude:     [ie.scss, print.scss, screen.scss, config.rb, fontelo.json]
 
 maruku:
   use_tex:    false

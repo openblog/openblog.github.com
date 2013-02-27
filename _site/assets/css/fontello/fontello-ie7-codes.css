@@ -1,0 +1,19 @@
+/* line 2, ../../sass/fontello/fontello-ie7-codes.scss */
+.icon-rss {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe73a;&nbsp;');
+}
+
+/* line 3, ../../sass/fontello/fontello-ie7-codes.scss */
+.icon-github {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf300;&nbsp;');
+}
+
+/* line 4, ../../sass/fontello/fontello-ie7-codes.scss */
+.icon-twitter {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf309;&nbsp;');
+}
+
+/* line 5, ../../sass/fontello/fontello-ie7-codes.scss */
+.icon-facebook {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf30c;&nbsp;');
+}

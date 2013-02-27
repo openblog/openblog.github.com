@@ -1,9 +1,4 @@
-/*
-	=================================================================
-	.openBlog() stylesheet file by Vagner Santana using sass/compass;
-	=================================================================
-*/
-/* line 2, ../sass/fontello/fontello-ie7.scss */
+/* line 2, ../../sass/fontello/fontello-ie7.scss */
 [class^="icon-"],
 [class*=" icon-"] {
   font-family: 'fontello';
@@ -15,22 +10,22 @@
   /* font-size: 120%; */
 }
 
-/* line 12, ../sass/fontello/fontello-ie7.scss */
+/* line 12, ../../sass/fontello/fontello-ie7.scss */
 .icon-rss {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe73a;&nbsp;');
 }
 
-/* line 13, ../sass/fontello/fontello-ie7.scss */
+/* line 13, ../../sass/fontello/fontello-ie7.scss */
 .icon-github {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf300;&nbsp;');
 }
 
-/* line 14, ../sass/fontello/fontello-ie7.scss */
+/* line 14, ../../sass/fontello/fontello-ie7.scss */
 .icon-twitter {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf309;&nbsp;');
 }
 
-/* line 15, ../sass/fontello/fontello-ie7.scss */
+/* line 15, ../../sass/fontello/fontello-ie7.scss */
 .icon-facebook {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf30c;&nbsp;');
 }

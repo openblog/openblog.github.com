@@ -1,0 +1,25 @@
+@charset "UTF-8";
+/* line 2, ../../sass/fontello/fontello-codes.scss */
+.icon-rss:before {
+  content: '\e73a';
+}
+
+/* '' */
+/* line 3, ../../sass/fontello/fontello-codes.scss */
+.icon-github:before {
+  content: '\f300';
+}
+
+/* '' */
+/* line 4, ../../sass/fontello/fontello-codes.scss */
+.icon-twitter:before {
+  content: '\f309';
+}
+
+/* '' */
+/* line 5, ../../sass/fontello/fontello-codes.scss */
+.icon-facebook:before {
+  content: '\f30c';
+}
+
+/* '' */
