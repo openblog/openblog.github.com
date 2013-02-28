@@ -16,6 +16,46 @@ $cl_ft: #d8d8d8; //cinza claro
 	font-family: 'Ubuntu', sans-serif;
 }
 
+@mixin textLight($color) {
+	color: $color;
+	text-shadow: 0 1px 0 #ccc, 
+	               0 2px 0 #c9c9c9,
+	               0 3px 0 #bbb,
+	               0 4px 0 #b9b9b9,
+	               0 5px 0 #aaa,
+	               0 6px 1px rgba(0,0,0,.1),
+	               0 0 5px rgba(0,0,0,.1),
+	               0 1px 3px rgba(0,0,0,.3),
+	               0 3px 5px rgba(0,0,0,.2),
+	               0 5px 10px rgba(0,0,0,.25),
+	               0 10px 10px rgba(0,0,0,.2),
+	               0 20px 20px rgba(0,0,0,.15);
+}
+
+// keyframes mixin
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content; 
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  } 
+}
+
+/* ----------- Keyframes ----------- */
+@include keyframes(anima) {
+	0%{
+	}
+	100%{
+	}
+}
+
 /* ----------- Geral ----------- */
 body {
 	background: url('/img/patterns/darkdenim3.png') #fbfbfb;
@@ -109,6 +149,28 @@ body {
 	font-family: Courier; 
 }
 
+#main a{
+	-webkit-transition: all .7s ease-out;
+	-moz-transition: all .7s ease-out;
+	-ms-transition: all .7s ease-out;
+	-o-transition: all .7s ease-out;
+	transition: all .7s ease-out;
+}
+
+#main a:hover{
+	color: #228791;
+	text-shadow: 0px 0px 0 #21848d,
+				-1px 1px 0 #1c757f,
+				-2px 2px 0 #186872,
+				-3px 3px 0 #145b64,
+				-4px 4px 0 #104f57,
+				-5px 5px 0 #0c3e45,
+				-6px 6px 5px rgba(0,0,0,0.5),
+				-6px 6px 1px rgba(0,0,0,0.5),
+				 0px 0px 5px rgba(0,0,0,.2);
+}
+
+
 a{
 	color: $cl_main;
 	text-decoration: none;
@@ -130,6 +192,14 @@ a:hover{
 .icons li{
 	float: left;
 }
+
+// .icons li a:hover{
+// 	-webkit-animation: anima .1s  normal;
+// 	-moz-animation: anima .1s  normal;
+// 	-ms-animation: anima .1s  normal;
+// 	-o-animation: anima .1s  normal;
+// 	animation: anima .1s  normal;
+// }
 
 .icons-lt span{
 	font-size: 16px;
