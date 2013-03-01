@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="pt-BR">
+
+{% include head.html %}
+
+<body>
+
+	<div id="wrapper">
+		
+		{% include main.html %}
+		<section id="content">
+			<section class="post-container" itemscope itemtype="http://schema.org/BlogPosting">
+				<article>
+					<header>
+						<h1><a href="{{ page.url }}" itemprop="headline">{{ page.title }}</a></h1>
+					</header>
+					<section >
+						{{ content }}
+					</section>
+
+				</article>
+			</section>
+
+		</section><!-- end #content -->
+
+	</div><!-- end #wrapper -->
+
+</body>
+</html>
