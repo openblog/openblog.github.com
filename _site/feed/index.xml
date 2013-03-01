@@ -3,9 +3,173 @@
   <id>http://openblog.github.com/</id>
   <title>Open Blog</title>
   <icon>http://openblog.github.com/img/favicon.png</icon>
-  <updated>2013-02-28T01:45:20-03:00</updated>
+  <updated>2013-03-01T10:02:26-03:00</updated>
   <link rel="self" href="http://openblog.github.com/feed/index.xml" />
   <link href="http://openblog.github.com/" />
+  
+  <entry>
+    <id>http://loopinfinito.com.br/2013/02/25/html5-web-messaging-api</id>
+    <title>Web Messaging API</title>
+    <updated>2013-02-25T00:00:00-03:00</updated>
+    <link href="http://openblog.github.com/2013/02/25/html5-web-messaging-api/" />
+    <author>
+      <name>Vagner Santana</name>
+      <uri>http://twitter.com/vagnervjs</uri>
+    </author>
+    <content type="html">
+      
+      
+      &lt;p&gt;&lt;img itemprop=&quot;thumbnailUrl&quot; src=&quot;http://openblog.github.com/img/posts/2013-02-25-message.jpg&quot; alt=&quot;Web Messaging API&quot; title=&quot;Web Messaging API&quot; width=&quot;700&quot; height=&quot;432&quot; /&gt;&lt;/p&gt;
+      
+      &lt;p&gt;Provavelmente em algum projeto você já foi obrigado a utilizar um &lt;code&gt;iframe&lt;/code&gt; para carregar conteúdo de uma página externa, e desde então só era possível visualizar o conteúdo do mesmo, e ele funciona como uma sandbox onde não existe comunicação com sua aplicação. Nas especificações do W3C o &lt;abbr title='HyperText Markup Language 5'&gt;HTML5&lt;/abbr&gt; possui algumas &lt;abbr title='Application Program Interface'&gt;APIs&lt;/abbr&gt; para comunicação. Este post trata especificamente uma delas: a HTML5 Web Messaging API que resolve o problema descrito.&lt;/p&gt;
+
+&lt;h2 id='api'&gt;API&lt;/h2&gt;
+
+&lt;p&gt;Essa é uma &lt;abbr title='Application Program Interface'&gt;API&lt;/abbr&gt; simples, que resolve o problema de comunicação entre aplicações hospedadas em diferentes origens. Antes da existência dessa API, não era possível essa comunicação devido a &amp;#8220;política da mesma origem&amp;#8221;, onde não é possivel uma programação client-side de uma origem acesse ou interfira em um documento de outra origem. Resumindo: um script hopedado em um lugar não consegue acessar o DOM de um documento de outra origem. A origem pode ser 3 tipos: protocolo, host e porta. &lt;br /&gt;&lt;br /&gt; Exemplo: digamos que a origem de minha aplicação seja o URL: http://openblog.com.br/mensagem.php&lt;/p&gt;
+&lt;div class='tbl'&gt;
+  &lt;table&gt;
+    &lt;tr&gt;
+      &lt;th&gt;URL&lt;/th&gt;
+      &lt;th&gt;Mesma origem?&lt;/th&gt;
+      &lt;th&gt;Razão&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;http://openblog.com.br/recebe.php&lt;/td&gt;
+      &lt;td&gt;Sim&lt;/td&gt;
+      &lt;td&gt;-&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;http://openblog.com.br&lt;/td&gt;
+      &lt;td&gt;Sim&lt;/td&gt;
+      &lt;td&gt;-&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;https://openblog.com.br/auth.php&lt;/td&gt;
+      &lt;td&gt;Não&lt;/td&gt;
+      &lt;td&gt;Protocolo diferente&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;http://openblog.com.br:9000/recebe.php&lt;/td&gt;
+      &lt;td&gt;Não&lt;/td&gt;
+      &lt;td&gt;Porta Diferente&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;http://blog.openblog.com.br/recebe.php&lt;/td&gt;
+      &lt;td&gt;Não&lt;/td&gt;
+      &lt;td&gt;Host Diferente&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/div&gt;
+&lt;h2 id='mtodo_windowpostmessage'&gt;Método window.postMessage()&lt;/h2&gt;
+
+&lt;p&gt;Este método é o responsável por criar uma mensagem a ser enviada para um objeto &lt;code&gt;window&lt;/code&gt; em uma origem diferente. O padrão do tipo da mensagem é uma &lt;i&gt;string&lt;/i&gt;. O método recebe três parâmetros: dois obrigatórios e um opcional.&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;  &lt;span class='nb'&gt;window&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;postMessage&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;mensagem&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nx'&gt;destino&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='nx'&gt;portas&lt;/span&gt;&lt;span class='p'&gt;])&lt;/span&gt;  
+  &lt;span class='c1'&gt;//mensagem: string a ser enviada&lt;/span&gt;
+  &lt;span class='c1'&gt;//destino: endereço a ser enviado&lt;/span&gt;
+  &lt;span class='c1'&gt;//portas: array de portas válidas para o destino&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;O destino pode ser um URL absoluto, um caractere curinga &lt;code&gt;*&lt;/code&gt; que servirá para qualquer destino ou um caractere barra &lt;code&gt;/&lt;/code&gt; que adota a política da mesma origem (ou seja, apenas o mesmo host da página).&lt;/p&gt;
+
+&lt;h2 id='evento_message'&gt;Evento message&lt;/h2&gt;
+
+&lt;p&gt;A &lt;abbr title='Application Program Interface'&gt;API&lt;/abbr&gt; prevê o evento &lt;code&gt;message&lt;/code&gt; que é disparado no documento destino da mensagem. Quando disparado ele chama a seguinte função callback:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;  &lt;span class='k'&gt;if&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nb'&gt;window&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;addEventListener&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+      &lt;span class='nb'&gt;window&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;addEventListener&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;message&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nx'&gt;receberMsg&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kc'&gt;false&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='k'&gt;else&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+      &lt;span class='nb'&gt;window&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;attachEvent&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;onmessage&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nx'&gt;receberMsg&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+  &lt;span class='p'&gt;};&lt;/span&gt;
+
+  &lt;span class='kd'&gt;function&lt;/span&gt; &lt;span class='nx'&gt;receberMsg&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;e&lt;/span&gt;&lt;span class='p'&gt;){&lt;/span&gt;
+      &lt;span class='c1'&gt;//faça algo com a mensagem&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;A função &lt;code&gt;receberMsg&lt;/code&gt; como o nome já diz, recebe um parâmetro que retorna um objeto-evento com as propriedades:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;  &lt;span class='nx'&gt;e&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;data&lt;/span&gt; &lt;span class='c1'&gt;//text da mensagem&lt;/span&gt;
+  &lt;span class='nx'&gt;e&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;origin&lt;/span&gt; &lt;span class='c1'&gt;//origem da mensagem&lt;/span&gt;
+  &lt;span class='nx'&gt;e&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;lastEventId&lt;/span&gt; &lt;span class='c1'&gt;//string identificadora do último evento&lt;/span&gt;
+  &lt;span class='nx'&gt;e&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;source&lt;/span&gt; &lt;span class='c1'&gt;//retorna WindowProxy do destino&lt;/span&gt;
+  &lt;span class='nx'&gt;e&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;ports&lt;/span&gt; &lt;span class='c1'&gt;//array das portas enviadas&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id='mos_na_massa'&gt;Mãos na massa&lt;/h2&gt;
+
+&lt;p&gt;Vamos criar a situação mencionada no início do post, onde um documento de origem A tenta se comunicar com um documento de origem B. A idéia é postar uma mensagem e ela aparecer no &lt;code&gt;iframe&lt;/code&gt;. Vamos lá&amp;#8230;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Documento A (http://openblog.github.com/demos/html5_msg_origin)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;  &lt;span class='c1'&gt;//Javascript&lt;/span&gt;
+  &lt;span class='o'&gt;&amp;lt;&lt;/span&gt;&lt;span class='nx'&gt;script&lt;/span&gt;&lt;span class='o'&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class='nb'&gt;window&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;onload&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='kd'&gt;function&lt;/span&gt;&lt;span class='p'&gt;(){&lt;/span&gt;
+      &lt;span class='kd'&gt;var&lt;/span&gt; &lt;span class='nx'&gt;objIframe&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nb'&gt;document&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;getElementsByTagName&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;iframe&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;)[&lt;/span&gt;&lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;];&lt;/span&gt;
+      &lt;span class='kd'&gt;var&lt;/span&gt; &lt;span class='nx'&gt;btnEnviar&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt;  &lt;span class='nb'&gt;document&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;getElementsByTagName&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;button&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;)[&lt;/span&gt;&lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;];&lt;/span&gt;
+
+      &lt;span class='nx'&gt;btnEnviar&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;onclick&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='kd'&gt;function&lt;/span&gt;&lt;span class='p'&gt;(){&lt;/span&gt;
+        &lt;span class='kd'&gt;var&lt;/span&gt; &lt;span class='nx'&gt;textoMsg&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nb'&gt;document&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;getElementsByTagName&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;input&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;)[&lt;/span&gt;&lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;].&lt;/span&gt;&lt;span class='nx'&gt;value&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+
+        &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;textoMsg&lt;/span&gt; &lt;span class='o'&gt;==&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;){&lt;/span&gt;
+          &lt;span class='nx'&gt;alert&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;Digite uma mensagem!&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+        &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='k'&gt;else&lt;/span&gt;&lt;span class='p'&gt;{&lt;/span&gt;
+          &lt;span class='nx'&gt;objIframe&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;contentWindow&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;postMessage&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;textoMsg&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;http://labs.vagnersantana.com&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+        &lt;span class='p'&gt;}&lt;/span&gt;
+      &lt;span class='p'&gt;}&lt;/span&gt;
+    &lt;span class='p'&gt;}&lt;/span&gt;
+  &lt;span class='o'&gt;&amp;lt;&lt;/span&gt;&lt;span class='err'&gt;/script&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='html'&gt;  &lt;span class='c'&gt;&amp;lt;!-- HTML --&amp;gt;&lt;/span&gt;
+  &lt;span class='nt'&gt;&amp;lt;section&amp;gt;&lt;/span&gt;
+    &lt;span class='nt'&gt;&amp;lt;p&amp;gt;&lt;/span&gt;
+      &lt;span class='nt'&gt;&amp;lt;label&amp;gt;&lt;/span&gt;Mensagem: &lt;span class='nt'&gt;&amp;lt;input&lt;/span&gt; &lt;span class='na'&gt;type=&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;text&amp;quot;&lt;/span&gt;&lt;span class='nt'&gt;&amp;gt;&amp;lt;/label&amp;gt;&lt;/span&gt;
+      &lt;span class='nt'&gt;&amp;lt;button&lt;/span&gt; &lt;span class='na'&gt;type=&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;button&amp;quot;&lt;/span&gt;&lt;span class='nt'&gt;&amp;gt;&lt;/span&gt;Enviar mensagem&lt;span class='nt'&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+    &lt;span class='nt'&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+    &lt;span class='nt'&gt;&amp;lt;iframe&lt;/span&gt; &lt;span class='na'&gt;src=&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;http://labs.vagnersantana.com/html5_msg_iframe.html&amp;quot;&lt;/span&gt;&lt;span class='nt'&gt;&amp;gt;&amp;lt;/iframe&amp;gt;&lt;/span&gt;
+  &lt;span class='nt'&gt;&amp;lt;/section&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Documento B (http://labs.vagnersantana.com/html5_msg_iframe.html)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;  &lt;span class='c1'&gt;//Javascript &lt;/span&gt;
+  &lt;span class='o'&gt;&amp;lt;&lt;/span&gt;&lt;span class='nx'&gt;script&lt;/span&gt;&lt;span class='o'&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nb'&gt;window&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;addEventListener&lt;/span&gt;&lt;span class='p'&gt;){&lt;/span&gt;
+      &lt;span class='nb'&gt;window&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;addEventListener&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;message&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nx'&gt;receberMsg&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kc'&gt;false&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+    &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='k'&gt;else&lt;/span&gt;&lt;span class='p'&gt;{&lt;/span&gt;
+      &lt;span class='nb'&gt;window&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;attachEvent&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;onmessage&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nx'&gt;receberMsg&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+    &lt;span class='p'&gt;};&lt;/span&gt;
+
+    &lt;span class='kd'&gt;function&lt;/span&gt; &lt;span class='nx'&gt;receberMsg&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;e&lt;/span&gt;&lt;span class='p'&gt;){&lt;/span&gt;
+      &lt;span class='kd'&gt;var&lt;/span&gt; &lt;span class='nx'&gt;msg&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+      &lt;span class='kd'&gt;var&lt;/span&gt; &lt;span class='nx'&gt;containerMsg&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nb'&gt;document&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;getElementById&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;recebe-msg&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+
+      &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;e&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;origin&lt;/span&gt; &lt;span class='o'&gt;==&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;http://openblog.github.com&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;){&lt;/span&gt;
+        &lt;span class='nx'&gt;msg&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;Mensagem recebida: &amp;lt;br&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+        &lt;span class='nx'&gt;msg&lt;/span&gt; &lt;span class='o'&gt;+=&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;Msg: &amp;#39;&lt;/span&gt; &lt;span class='o'&gt;+&lt;/span&gt; &lt;span class='nx'&gt;e&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;data&lt;/span&gt; &lt;span class='o'&gt;+&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;&amp;lt;br&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+        &lt;span class='nx'&gt;msg&lt;/span&gt; &lt;span class='o'&gt;+=&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;Origem: &amp;#39;&lt;/span&gt; &lt;span class='o'&gt;+&lt;/span&gt; &lt;span class='nx'&gt;e&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;origin&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+
+        &lt;span class='nx'&gt;containerMsg&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;innerHTML&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nx'&gt;msg&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+      &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='k'&gt;else&lt;/span&gt;&lt;span class='p'&gt;{&lt;/span&gt;
+        &lt;span class='nx'&gt;containerMsg&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;innerHTML&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;Origem não autorizada!&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+      &lt;span class='p'&gt;}&lt;/span&gt;
+    &lt;span class='p'&gt;}&lt;/span&gt;
+  &lt;span class='o'&gt;&amp;lt;&lt;/span&gt;&lt;span class='err'&gt;/script&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='html'&gt;  //HTML
+  &lt;span class='nt'&gt;&amp;lt;p&lt;/span&gt; &lt;span class='na'&gt;id=&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;recebe-msg&amp;quot;&lt;/span&gt;&lt;span class='nt'&gt;&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;O Web Messaging envia uma string, porém não precisa se desesperar e pensar em ir separando os dados por &lt;code&gt;|&lt;/code&gt; ou &lt;code&gt;;&lt;/code&gt; pois felizmente existe o maravilhoso &lt;code&gt;JSON&lt;/code&gt; que oferece a funcionalidade de se transformar em string com o método &lt;code&gt;JSON.stringify&lt;/code&gt; e recuperá-lo usando o &lt;code&gt;JSON.parse()&lt;/code&gt;, desta forma podemos trocar e manipular dados de maneira fácil somando o Web Messaging com JSON.&lt;/p&gt;
+
+&lt;h2 id='can_i_use_'&gt;Can i use ?&lt;/h2&gt;
+&lt;a alt='Can i use: Web Messaging API' href='http://caniuse.com/#search=messaging' target='_blank' title='Can i use: Web Messaging API'&gt;
+  &lt;img alt='Can i use table of Web Messaging API' src='http://openblog.github.com/img/posts/ciu_messaging.png' /&gt;
+&lt;/a&gt;
+&lt;p&gt;Para ver a &lt;abbr title='Application Program Interface'&gt;API&lt;/abbr&gt; em ação é só clicar no demo abaixo, sinta-se à vontade em inspecionar o código e também fazer um fork no github. Divirta-se.&lt;/p&gt;
+&lt;a alt='Demo' href='/demos/html5_msg_origin/' target='_blank' title='Demo'&gt;
+    &lt;button class='btn'&gt;DEMO&lt;/button&gt;
+  &lt;/a&gt;&lt;a alt='Demo no github' href='https://github.com/vagnervjs/Web-Messaging-API' target='_blank' title='Demo no github'&gt;
+    &lt;button class='btn'&gt;Github&lt;/button&gt;
+  &lt;/a&gt;&lt;h3&gt;Referências&lt;/h3&gt;&lt;ul&gt;
+    &lt;li&gt;→&lt;a alt='Livro HTML5 do Maujor' href='http://livrohtml5.com.br/' title='Livro HTML5 do Maujor'&gt;Livro HTML5 do Maujor, Capítulo 9&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;→&lt;a alt='W3C Working Draft: HTML5 Web Messaging' href='http://www.w3.org/TR/2010/WD-webmessaging-20101118/' title='W3C Working Draft: HTML5 Web Messaging'&gt;W3C Working Draft: HTML5 Web Messaging&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;→&lt;a alt='Damon Oehlman: Talk HTML5 Messaging' href='https://github.com/DamonOehlman/talk-html5-messaging' title='Damon Oehlman: Talk HTML5 Messaging'&gt;Damon Oehlman: Talk HTML5 Messaging&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+    </content>
+  </entry>
   
   <entry>
     <id>http://loopinfinito.com.br/2013/02/24/hello-world</id>
