@@ -3,7 +3,7 @@
   <id>http://openblog.github.com/</id>
   <title>Open Blog</title>
   <icon>http://openblog.github.com/img/favicon.png</icon>
-  <updated>2013-03-15T12:04:34-03:00</updated>
+  <updated>2013-03-15T13:27:46-03:00</updated>
   <link rel="self" href="http://openblog.github.com/feed/index.xml" />
   <link href="http://openblog.github.com/" />
   
@@ -275,7 +275,7 @@
 
 &lt;li&gt;→ &lt;a href='http://expressjs.com/api.html' target='_blank'&gt;Express API Reference&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;!-- Tweet Button --&gt;&lt;a class='twitter-share-button' data-lang='pt' href='https://twitter.com/share'&gt;Tweetar&lt;/a&gt;&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=&quot;//platform.twitter.com/widgets.js&quot;;fjs.parentNode.insertBefore(js,fjs);}}(document,&quot;script&quot;,&quot;twitter-wjs&quot;);&lt;/script&gt;&lt;!-- Facebook Like --&gt;&lt;div class='fb-like' data-font='verdana' data-href='http://openblog.github.com/2013/03/15/player.io/' data-layout='button_count' data-send='true' data-show-faces='true' data-width='450' /&gt;
+&lt;!-- Tweet Button --&gt;&lt;a class='twitter-share-button' data-lang='pt' href='https://twitter.com/share'&gt;Tweetar&lt;/a&gt;&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=&quot;//platform.twitter.com/widgets.js&quot;;fjs.parentNode.insertBefore(js,fjs);}}(document,&quot;script&quot;,&quot;twitter-wjs&quot;);&lt;/script&gt;&lt;!-- Facebook Like --&gt;&lt;div class='fb-like' data-font='segoe ui' data-href='http://openblog.github.com/2013/03/15/player.io' data-layout='button_count' data-send='true' data-show-faces='true' data-width='450' /&gt;
     </content>
   </entry>
   
