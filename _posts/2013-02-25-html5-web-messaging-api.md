@@ -106,22 +106,20 @@ A idéia é postar uma mensagem e ela aparecer no `iframe`. Vamos lá...
 - Documento A (http://openblog.github.com/demos/html5_msg_origin)
 {% highlight javascript %}
   //Javascript
-  <script>
-    window.onload = function(){
-      var objIframe = document.getElementsByTagName('iframe')[0];
-      var btnEnviar =  document.getElementsByTagName('button')[0];
+  window.onload = function(){
+    var objIframe = document.getElementsByTagName('iframe')[0];
+    var btnEnviar =  document.getElementsByTagName('button')[0];
 
-      btnEnviar.onclick = function(){
-        var textoMsg = document.getElementsByTagName('input')[0].value;
+    btnEnviar.onclick = function(){
+      var textoMsg = document.getElementsByTagName('input')[0].value;
 
-        if(textoMsg == ''){
-          alert('Digite uma mensagem!');
-        } else{
-          objIframe.contentWindow.postMessage(textoMsg, 'http://labs.vagnersantana.com');
-        }
+      if(textoMsg == ''){
+        alert('Digite uma mensagem!');
+      } else{
+        objIframe.contentWindow.postMessage(textoMsg, 'http://labs.vagnersantana.com');
       }
     }
-  </script>
+  }
 {% endhighlight %}
 
 {% highlight html %}
@@ -138,28 +136,26 @@ A idéia é postar uma mensagem e ela aparecer no `iframe`. Vamos lá...
 - Documento B (http://labs.vagnersantana.com/html5_msg_iframe.html)
 {% highlight javascript %}
   //Javascript 
-  <script>
-    if(window.addEventListener){
-      window.addEventListener('message', receberMsg, false);
+  if(window.addEventListener){
+    window.addEventListener('message', receberMsg, false);
+  } else{
+    window.attachEvent("onmessage", receberMsg);
+  };
+
+  function receberMsg(e){
+    var msg;
+    var containerMsg = document.getElementById('recebe-msg');
+
+    if(e.origin == 'http://openblog.github.com'){
+      msg = 'Mensagem recebida: <br>';
+      msg += 'Msg: ' + e.data + '<br>';
+      msg += 'Origem: ' + e.origin;
+
+      containerMsg.innerHTML = msg;
     } else{
-      window.attachEvent("onmessage", receberMsg);
-    };
-
-    function receberMsg(e){
-      var msg;
-      var containerMsg = document.getElementById('recebe-msg');
-
-      if(e.origin == 'http://openblog.github.com'){
-        msg = 'Mensagem recebida: <br>';
-        msg += 'Msg: ' + e.data + '<br>';
-        msg += 'Origem: ' + e.origin;
-
-        containerMsg.innerHTML = msg;
-      } else{
-        containerMsg.innerHTML = 'Origem não autorizada!';
-      }
+      containerMsg.innerHTML = 'Origem não autorizada!';
     }
-  </script>
+  }
 {% endhighlight %}
 
 {% highlight html %}
@@ -192,3 +188,6 @@ Para ver a <abbr title="Application Program Interface">API</abbr> em ação é s
     <li>→<a href="http://www.w3.org/TR/2010/WD-webmessaging-20101118/" alt="W3C Working Draft: HTML5 Web Messaging" title="W3C Working Draft: HTML5 Web Messaging">W3C Working Draft: HTML5 Web Messaging</a></li>
     <li>→<a href="https://github.com/DamonOehlman/talk-html5-messaging" alt="Damon Oehlman: Talk HTML5 Messaging" title="Damon Oehlman: Talk HTML5 Messaging">Damon Oehlman: Talk HTML5 Messaging</a></li>
   </ul>
+
+
+<div class="fb-like" data-href="http://openblog.github.com/2013/02/25/html5-web-messaging-api/" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true" data-font="verdana"></div>

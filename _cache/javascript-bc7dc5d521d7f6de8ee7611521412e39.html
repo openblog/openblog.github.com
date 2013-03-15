@@ -1,0 +1,19 @@
+<div class="highlight"><pre><span class="c1">// File: app.js</span>
+
+<span class="c1">// Criando socket que fica aguardando na porta 8080 por conexões</span>
+<span class="kd">var</span> <span class="nx">io</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;socket.io&#39;</span><span class="p">).</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">);</span>
+
+<span class="c1">// Declarando array para armazenar cada cliente</span>
+<span class="kd">var</span> <span class="nx">sockets</span> <span class="o">=</span> <span class="p">{};</span>
+
+<span class="c1">// Quando uma nova conexão é estabeleciada</span>
+<span class="nx">io</span><span class="p">.</span><span class="nx">sockets</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;connection&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">socket</span><span class="p">)</span> <span class="p">{</span>
+
+	<span class="c1">// O evento setId é definido no cliente</span>
+    <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;setId&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;THE ID: &quot;</span> <span class="o">+</span> <span class="nx">id</span><span class="p">);</span>
+        <span class="nx">sockets</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">socket</span><span class="p">;</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+	
+</pre></div>

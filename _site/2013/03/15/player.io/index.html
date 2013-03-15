@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+	<meta charset="UTF-8" />
+	
+		<title>Player.IO - Um media player que roda no navegador, feito com Node.JS, Socket.IO e é controlado pelo seu smartphone | Open Blog</title>
+	
+	
+		<meta name="author" content="Vagner Santana" />
+	
+	
+		<meta name="keywords" content="node.js, socket.io, javascript, html5, media, audio, video
+" />
+	
+	
+		<meta name="description" content="Se você acompanha o mundo do desenvolvimento web , provavelmente já ouviu algo sobre o Node.JS e sua incrível capacidade de rodar aplicações altamente escaláveis escritas em JavaScript no servidor. Minha idéia inicial era criar um post onde abordaria como iniciar uma aplicação utilizando o Node.JS, porém quando comecei trabalhar com ele, vi que a coisa era tão bacana que acabei criando esse experimento: Um media player que roda no seu navegador, carrega arquivos de media locais utilizando a File Access API, e você pode controlar do seu smartphone trocando dados em tempo real graças ao Socket.IO." />
+	
+	<meta name="language" content="pt" />
+	<meta name="content-language" content="pt-BR" />
+	<meta name="robots" content="all" />
+	<meta name="distribution" content="Global" />
+	<meta name="resource-type" content="document" />
+
+	<link rel="icon" type="image/png" href="/assets/img/favicon.png" />
+    <link href="/assets/css/style.css?2013-03-15" media="screen, projection" rel="stylesheet" type="text/css" />
+
+    <!--[if IE]>
+    	<link href="/assets/css/ie.css?2013-03-15" media="screen, projection" rel="stylesheet" type="text/css" />
+  	<![endif]-->
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
+
+	<script>
+		// google analytics
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-38744993-1']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	</script>
+</head>
+
+<body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=320707991385542";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+	<div id="wrapper">
+		
+		<header id="main">
+	<h1><a href="/" id="logo">.openBlog()</a></h1>
+
+	<nav class="al-rg">
+		<ul class="icons">
+			<li>
+				<a href="http://fb.com/openblogbrasil" title="Facebook" alt="Facebook" target="_blank">
+					<div class="ico"><i class="icon-facebook"></i></div>
+				</a>
+			</li>
+			<li>
+				<a href="http://github.com/openblog" title="Github" alt="Github" target="_blank">
+					<div class="ico"><i class="icon-github"></i></div>
+				</a>
+			</li>
+			<li class="rss">
+				<a href="http://feeds.feedburner.com/openblogbrasil" title="Assine o feed" alt="Assine o feed" target="_blank">
+					<div class="ico"><i class="icon-rss"></i></div>
+				</a>
+			</li>
+			<!-- <li><i class="icon-twitter"></i></li>
+			<li><i class="icon-facebook"></i></li> -->
+		</ul>
+	</nav>
+</header>
+		<section id="content">
+			<section class="post-container" itemscope itemtype="http://schema.org/BlogPosting">
+				<span class="hidden" itemprop="publisher">Open Blog</span>
+				<aside class="post-meta">
+					<ul class="icons-lt">
+						<li class="post-data">
+							<span class="icon-aside"><i class="icon-calendar"></i></span>
+							<time itemprop="datePublished" datetime="2013-03-15">15/03/2013</time>
+						</li>
+						<li class="post-autor">
+							<span class="icon-aside"><i class="icon-author"></i></span>
+							<a href="http://vagnersantana.com" data-link="http://twitter.com/vagnervjs" title="Vagner Santana" alt="Vagner Santana" rel="author" itemprop="author" onclick="_gaq.push(['_trackEvent', 'post_author', 'Post View', 'Vagner Santana'])">Vagner Santana</a>
+						</li>
+						
+						<li class="post-comentarios">
+							<span class="icon-aside"><i class="icon-comment"></i></span>
+							<a href="/2013/03/15/player.io/#disqus_thread" data-disqus-identifier="/2013/03/15/player.io" itemprop="interactionCount" onclick="_gaq.push(['_trackEvent', 'post_comments', 'Post View', ''])">Carregando...</a>
+						</li>
+						
+						
+						<li class="post-tags">
+							<span class="icon-aside"><i class="icon-tag"></i></span>
+							<ul>
+								
+								<li><a href="/tag/node.js"><span>#</span>node.js</a></li>,
+								
+								<li><a href="/tag/socket.io"><span>#</span>socket.io</a></li>,
+								
+								<li><a href="/tag/javascript"><span>#</span>javascript</a></li>,
+								
+								<li><a href="/tag/html5"><span>#</span>html5</a></li>,
+								
+								<li><a href="/tag/media"><span>#</span>media</a></li>
+								
+							</ul>
+							
+							<span class="hidden" itemprop="keywords">node.js, socket.io, javascript, html5, media, audio, video
+</span>
+							
+						</li>
+						
+					</ul>
+				</aside>
+				<article>
+					<header>
+						<h1><a href="/2013/03/15/player.io/" itemprop="headline">Player.IO - Um media player que roda no navegador, feito com Node.JS, Socket.IO e é controlado pelo seu smartphone</a></h1>
+					</header>
+					<section itemprop="articleBody">
+						
+						<figure>
+							<img itemprop="thumbnailUrl" src="/img/posts/2013-03-13-player.io.png" class="post-image" alt="Player.IO - Um media player que roda no navegador, feito com Node.JS, Socket.IO e é controlado pelo seu smartphone" title="Player.IO - Um media player que roda no navegador, feito com Node.JS, Socket.IO e é controlado pelo seu smartphone" width="700" height="432" />
+						</figure>
+						
+						<p>Se você acompanha o mundo do desenvolvimento web , provavelmente já ouviu algo sobre o Node.JS e sua incrível capacidade de rodar aplicações altamente escaláveis escritas em JavaScript no servidor. Minha idéia inicial era criar um post onde abordaria como iniciar uma aplicação utilizando o Node.JS, porém quando comecei trabalhar com ele, vi que a coisa era tão bacana que acabei criando esse experimento: Um media player que roda no seu navegador, carrega arquivos de media locais utilizando a File Access API, e você pode controlar do seu smartphone trocando dados em tempo real graças ao Socket.IO.</p>
+<br />
+<p>Antes de continuar lendo o post, você pode conferir o experimento e entender melhor como o ele se comporta. É altamente recomendado utilizar o Google Chrome e arquivos nos formatos: m4a, mp3, mp4 ou webm. Vai lá e depois volte aqui, fico aguardando&#8230;</p>
+<a alt='Player.IO' href='http://vagnersantana.com/player.io' target='_blank' title='Player.IO'>
+<button class='btn'>Player.IO</button>
+</a><a alt='Demo no github' href='https://github.com/vagnervjs/player.io' target='_blank' title='Demo no github'>
+<button class='btn'>Github</button>
+</a>
+<h2 id='nodejs'>Node.JS</h2>
+
+<p>Talvez você já saiba o que é, mas vou repetir a explicação aqui para quem não conhece.</p>
+
+<p>O Node.JS é um interpretador de JavaScript que utiliza a engine V8 do Google (a mesma do Chrome). Ele roda no servidor, mas não confunda ele com um Apache por exemplo, porque talvez ele seja mais que isso.</p>
+
+<p>Definicão oficial:</p>
+
+<blockquote>
+<p>Node.js is a platform built on Chrome&#8217;s JavaScript runtime for easily building fast, scalable network applications. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.</p>
+</blockquote>
+
+<p>→ <a href='http://nodejs.org' target='_blank'>Site oficial</a></p>
+
+<h2 id='socketio'>Socket.IO</h2>
+
+<p>Nas especificações do HTML5 está a WebSocket API que possibilita trocar dados com um servidor e múltiplos clientes de forma assíncrona, ou seja, troca de dados em tempo real (exemplos de aplicações: chats, games), porém para essa API ainda é restrita pois nem todos os navegadores suportam WebSockets. Devido essa jovialidade do WebSocket, existem bibliotecas que fornecem a tecnologia de socket e conexão em tempo real no navegador, e uma das mais conhecidas é o Socket.IO, que inclui a biblioteca javascript no código do cliente, e roda no servidor com o node.js, dessa forma temos uma aplicação de tempo real cross-browser.</p>
+
+<p>→ <a href='http://socket.io' target='_blank'>Site oficial</a></p>
+
+<h2 id='playerio'>Player.IO</h2>
+
+<p>Eu acredito que o experimento, apesar de simples, tem como principal objetivo mostrar como é possível criar uma interação de usuário rica utilizando apenas HTML5 e o poder do JavaScript, e isso deixa claro que, cada vez mais, a Web é a plataforma.</p>
+<br />
+<p>A idéia é que o usuário carregue uma playlist de arquivos (áudio e vídeo) locais ou de um links diretos (ex: http://dominio.com/arquivo.mp4), após isso, abra uma página no smartphone que irá funcionar como um controle remoto. Para abrir a página o usuário tem como opção ler um <code>QR Code</code> ou abrir um link (que também pode ser aberto na mesma máquina). Essa página envia dados para o servidor que por sua vez se comunica com a página de origem no computador e assim é possível executar comandos remotamente, como: troca de arquivo, play/pause, aumentar e diminuir volume, entrar ou sair do modo tela cheia, etc.</p>
+
+<p>A aplicação é multiusuário, isto é: várias pessoas podem usar o serviço simultaneamente (e o Node.JS suporta muitas conexões) e cada usuário pode enviar comandos de onde quer que esteja pois tudo é feito online.</p>
+
+<h2 id='fases_de_desenvolvimento'>Fases de Desenvolvimento</h2>
+
+<p>Antes de mostrar código, vou listar as fases mais importantes do desenvolvimento.</p>
+
+<ul>
+<li>→ Utilizar a API File Acces para acessar arquivos locais.</li>
+
+<li>→ Tratar tipos de arquivos suportados pelos navegadores.</li>
+
+<li>→ Gerar Blob URL para cada arquivo local (e também tratar suporte dos navegadores)</li>
+
+<li>→ Criar conexão com o Node.JS</li>
+
+<li>→ Implementar conexão com o Socket.IO e gerar array de sockets</li>
+
+<li>→ Servir páginas com o Node.JS utilizando o express</li>
+
+<li>→ Criar layout para página requisitada pelo express utilizando Jade</li>
+
+<li>→ Implementar evendos de servidor/cliente para troca de dados</li>
+
+<li>→ Criar novo cliente para página de controle</li>
+
+<li>→ Fazer tudo isso funcionar</li>
+</ul>
+
+<h2 id='iniciando_com_o_nodejs_e_socketio'>Iniciando com o Node.JS e Socket.IO</h2>
+
+<p>Bom, já conversamos bastante, agora lets go to the code. Como o tópico principal do post é Node.JS e Socket.IO, não vou entrar em detalhes sobre a manipulação de arquivos utilizando a File Access API, gerar Blobs URLs e outras coisas que utilizei no experimento, o código está lá para quem quiser se divertir, aqui vou focar em como iniciar a aplicação com o Node.JS. Vamos lá… <br /><br /></p>
+
+<p>O arquivo <code>app.js</code> é onde fica o código do servidor, que é interpretado pelo Node.JS. Nele definimos as dependências que iremos utilizar (ex: socket.io, express), configurações necessárias (como a engine de templates) e claro os eventos de servidor que serão disparados, com as operações que o Node.JS terá de fazer para a aplicação. <br /><br /> Criando conexão entre cliente e servidor com o Socket.IO</p>
+<div class='highlight'><pre><code class='javascript'><span class='c1'>// File: app.js</span>
+
+<span class='c1'>// Criando socket que fica aguardando na porta 8080 por conexões</span>
+<span class='kd'>var</span> <span class='nx'>io</span> <span class='o'>=</span> <span class='nx'>require</span><span class='p'>(</span><span class='s1'>&#39;socket.io&#39;</span><span class='p'>).</span><span class='nx'>listen</span><span class='p'>(</span><span class='mi'>8080</span><span class='p'>);</span>
+
+<span class='c1'>// Declarando array para armazenar cada cliente</span>
+<span class='kd'>var</span> <span class='nx'>sockets</span> <span class='o'>=</span> <span class='p'>{};</span>
+
+<span class='c1'>// Evento connection: quando uma nova conexão é estabeleciada</span>
+<span class='nx'>io</span><span class='p'>.</span><span class='nx'>sockets</span><span class='p'>.</span><span class='nx'>on</span><span class='p'>(</span><span class='s1'>&#39;connection&#39;</span><span class='p'>,</span> <span class='kd'>function</span> <span class='p'>(</span><span class='nx'>socket</span><span class='p'>)</span> <span class='p'>{</span>
+    <span class='c1'>// Aguarda o evento setId que será disparado pelo cliente</span>
+    <span class='nx'>socket</span><span class='p'>.</span><span class='nx'>on</span><span class='p'>(</span><span class='s1'>&#39;setId&#39;</span><span class='p'>,</span> <span class='kd'>function</span> <span class='p'>(</span><span class='nx'>id</span><span class='p'>)</span> <span class='p'>{</span>
+    	<span class='c1'>// setId é responsável por gerar um identificador para cada conexão</span>
+        <span class='nx'>console</span><span class='p'>.</span><span class='nx'>log</span><span class='p'>(</span><span class='s2'>&quot;ID : &quot;</span> <span class='o'>+</span> <span class='nx'>id</span><span class='p'>);</span>
+        <span class='c1'>// a nova conexão é armazenada no array sockets com o identificador</span>
+        <span class='nx'>sockets</span><span class='p'>[</span><span class='nx'>id</span><span class='p'>]</span> <span class='o'>=</span> <span class='nx'>socket</span><span class='p'>;</span>
+    <span class='p'>});</span>
+<span class='p'>});</span>
+</code></pre></div><div class='highlight'><pre><code class='javascript'><span class='c1'>// File: client.js</span>
+
+<span class='c1'>// Definindo id para a conexão</span>
+<span class='kd'>var</span> <span class='nx'>id</span> <span class='o'>=</span> <span class='nx'>randomId</span><span class='p'>();</span>
+
+<span class='c1'>// Conectando ao socket utilizando host e porta definida em app.js</span>
+<span class='kd'>var</span> <span class='nx'>socket</span> <span class='o'>=</span> <span class='nx'>io</span><span class='p'>.</span><span class='nx'>connect</span><span class='p'>(</span><span class='s1'>&#39;http://localhost:8080&#39;</span><span class='p'>);</span>
+
+<span class='c1'>// Emitindo evento para o servidor e passando o id como parâmetro</span>
+<span class='nx'>socket</span><span class='p'>.</span><span class='nx'>emit</span><span class='p'>(</span><span class='s1'>&#39;setId&#39;</span><span class='p'>,</span> <span class='nx'>id</span><span class='p'>);</span>
+</code></pre></div>
+<p>Bom, até agora o que aconteceu acima foi simples, criamos um socket no arquivo app.js que fica escutando conexões na porta 8080 (se você não definir uma porta pode ocorrer conflito). Declaramos um array onde cada nova conexão é armazenada, a partir do evento <code>conection</code>. No arquivo do cliente, é feita a conexão e emitido um evento chamado <code>setId</code> para o servidor, nesse evento do lado do servidor foi definida uma função anônima que recebe como parâmetro um <code>id</code> que serve para identificar cada conexão.</p>
+<br />
+<p>No arquivo index.html</p>
+<div class='highlight'><pre><code class='html'><span class='c'>&lt;!-- Arquivo para conexão com o socket.io (ele é gerado automáticamente) --&gt;</span>
+<span class='nt'>&lt;script </span><span class='na'>src=</span><span class='s'>&quot;http://localhost:8080/socket.io/socket.io.js&quot;</span><span class='nt'>&gt;&lt;/script&gt;</span>
+<span class='c'>&lt;!-- Script do Cliente --&gt;</span>
+<span class='nt'>&lt;script </span><span class='na'>src=</span><span class='s'>&quot;client.js&quot;</span><span class='nt'>&gt;&lt;/script&gt;</span>
+</code></pre></div>
+<p>Agora precisamos rodar a aplicação e testar. Você deve ter instalado o Node.JS junto do npm (gerenciador de pacotes do node). Como fazer isso é simples, e existem vários tutoriais por ai. Com o node e o npm instalados, iremos instalar as dependências:</p>
+<br />
+<p>Antes, precisamos criar o arquivo <code>package.json</code> responsável por gerenciar as dependências do projeto, e conter suas informações.</p>
+<div class='highlight'><pre><code class='javascript'><span class='c1'>// File: package.json</span>
+
+<span class='p'>{</span>
+  <span class='s2'>&quot;name&quot;</span><span class='o'>:</span> <span class='s2'>&quot;Player.IO&quot;</span><span class='p'>,</span>
+  <span class='s2'>&quot;version&quot;</span><span class='o'>:</span> <span class='s2'>&quot;0.1.0&quot;</span><span class='p'>,</span>
+  <span class='s2'>&quot;description&quot;</span><span class='o'>:</span> <span class='s2'>&quot;A real-time media player...&quot;</span><span class='p'>,</span>
+  <span class='s2'>&quot;repository&quot;</span><span class='o'>:</span> <span class='s2'>&quot;https://github.com/vagnervjs/player.io.git&quot;</span><span class='p'>,</span>
+  <span class='s2'>&quot;dependencies&quot;</span><span class='o'>:</span> <span class='p'>{</span>
+    <span class='s2'>&quot;express&quot;</span><span class='o'>:</span> <span class='s2'>&quot;3.x&quot;</span><span class='p'>,</span>
+    <span class='s2'>&quot;socket.io&quot;</span><span class='o'>:</span> <span class='s2'>&quot;0.9.x&quot;</span><span class='p'>,</span> 
+    <span class='s2'>&quot;jade&quot;</span> <span class='o'>:</span> <span class='s2'>&quot;0.28.x&quot;</span>
+  <span class='p'>},</span>
+  <span class='s2'>&quot;author&quot;</span><span class='o'>:</span> <span class='s2'>&quot;Vagner Santana&quot;</span>
+<span class='p'>}</span>
+</code></pre></div>
+<p>Instalando as dependências:</p>
+<div class='highlight'><pre><code class='javascript'><span class='c1'>// acessando pasta do projeto</span>
+<span class='nx'>cd</span> <span class='nx'>player</span><span class='p'>.</span><span class='nx'>io</span> 
+<span class='c1'>// utilize sudo Mac ou Linux</span>
+<span class='nx'>sudo</span> <span class='nx'>npm</span> <span class='nx'>install</span> 
+</code></pre></div>
+<p>Não é nescessário passar o nome do pacote que deseja instalar para o comando <code>npm install</code>, pois estamos utilizando o arquivo <code>package.json</code>.</p>
+
+<p>Com as dependências instaladas, vamos rodar o arquivo <code>app.js</code>:</p>
+<div class='highlight'><pre><code class='javascript'><span class='nx'>node</span> <span class='nx'>app</span><span class='p'>.</span><span class='nx'>js</span> 
+</code></pre></div>
+<p>Se tudo ocorreu bem, ao abrir o arquivo <code>index.html</code> no navegador um novo socket foi criado. Lembrando que a função <code>randomId</code> foi criada por mim, se estiver realizando este teste você pode atribuir à varíavel <code>id</code> uma string qualquer. No console do Node.JS a saída deve conter uma linha com: <code>ID: &lt;id que foi passado&gt;</code>.</p>
+
+<h2 id='servindo_pginas_com_express'>Servindo páginas com Express</h2>
+
+<p>O Express é um framework minimalista e flexível de desenvolvimento web para o Node.JS que possui vários métodos HTTP tornando possível servir páginas a partir de requisições de usuários, tudo isso com um ótimo desempenho.</p>
+
+<p>→ <a href='http://expressjs.com/' target='_blank'>Site oficial</a></p>
+
+<p>Iremos utilizar ele para servir a página de controle. Veja:</p>
+<div class='highlight'><pre><code class='javascript'><span class='c1'>// File app.js</span>
+
+<span class='c1'>// solicitando dependência do express</span>
+<span class='kd'>var</span> <span class='nx'>express</span> <span class='o'>=</span> <span class='nx'>require</span><span class='p'>(</span><span class='s2'>&quot;express&quot;</span><span class='p'>);</span>
+
+<span class='c1'>// criando uma aplicação express</span>
+<span class='kd'>var</span> <span class='nx'>app</span> <span class='o'>=</span> <span class='nx'>express</span><span class='p'>();</span>
+
+<span class='c1'>// definindo engine para as views</span>
+<span class='nx'>app</span><span class='p'>.</span><span class='nx'>set</span><span class='p'>(</span><span class='s1'>&#39;view engine&#39;</span><span class='p'>,</span> <span class='s1'>&#39;jade&#39;</span><span class='p'>);</span>
+
+<span class='c1'>// ao receber uma requisição com o valor /mb/:id</span>
+<span class='c1'>// onde :id é uma string </span>
+<span class='c1'>// chama uma função callback</span>
+<span class='nx'>app</span><span class='p'>.</span><span class='nx'>get</span><span class='p'>(</span><span class='s1'>&#39;/mb/:id&#39;</span><span class='p'>,</span> <span class='kd'>function</span> <span class='p'>(</span><span class='nx'>req</span><span class='p'>,</span> <span class='nx'>res</span><span class='p'>)</span> <span class='p'>{</span>
+    <span class='c1'>// armazenando valor do parâmetro id</span>
+    <span class='kd'>var</span> <span class='nx'>id</span> <span class='o'>=</span> <span class='nx'>req</span><span class='p'>.</span><span class='nx'>params</span><span class='p'>.</span><span class='nx'>id</span><span class='p'>;</span>
+    <span class='c1'>// imprimindo</span>
+    <span class='nx'>console</span><span class='p'>.</span><span class='nx'>log</span><span class='p'>(</span><span class='s2'>&quot;ID Mb: &quot;</span> <span class='o'>+</span> <span class='nx'>id</span><span class='p'>);</span>
+    <span class='c1'>// chama uma a view (arquivo jade), passando algumas variáveis (id e title)</span>
+    <span class='nx'>res</span><span class='p'>.</span><span class='nx'>render</span><span class='p'>(</span><span class='s1'>&#39;mobile.jade&#39;</span><span class='p'>,</span> <span class='p'>{</span><span class='nx'>id</span><span class='o'>:</span><span class='nx'>id</span><span class='p'>,</span> <span class='nx'>title</span><span class='o'>:</span><span class='s1'>&#39;Player.IO | Control&#39;</span><span class='p'>});</span>
+<span class='p'>});</span>
+
+<span class='c1'>// a aplicação express fica escutando na porta 8000</span>
+<span class='nx'>app</span><span class='p'>.</span><span class='nx'>listen</span><span class='p'>(</span><span class='mi'>8000</span><span class='p'>);</span>
+</code></pre></div>
+<p>Certo, neste ponto nossa aplicação já abre um socket para cada conexão, e agora acabamos de criar um servidor HTTP com o express que fica aguardando requisições na porta 8000. Lembre-se que iniciamos o socket.io e também definimos uma porta para ele, portanto a porta do express deve ser diferente da porta definida para o socket.io (no nosso caso utilizamos as portas 8000 e 8080).</p>
+
+<p>Com a aplicação express criada e escutando na porta 8000, ao fazermos uma requisição do tipo <code>localhost:8000/mb/novoId123</code> o express irá chamar uma função callback, que recebe os parâmetros req e res, respectivamente: request e response. O req é um objeto que contém informações sobre a requisição HTTP, já o res é o objeto responsável por enviar uma resposta HTTP, como renderizar uma página por exemplo. <br /> Nesse callback armazenamos o valor do parâmetro id que foi passado na requisição, para isso utilizamos o método <code>param</code> do objeto req. É obrigatório o uso de <code>:</code> antes do nome do parâmetro esperado, se o paramêtro for opcional deve ser utilzado o símbolo de interrogação após o nome, ex: <code>:id?</code>. Com o id armazenado, a próxima operação (além de imprimir o valor de id) é chamado o método <code>render()</code> do objeto response. Ele é responsável por renderizar uma view utilizando a engine de templates definida acima em <code>aap.set(&#39;view engine&#39;, &#39;jade&#39;)</code>. Esse método aceita três parâmetros: o primeiro e obrigatório é o nome da view a ser renderizada, os outros dois são: <span>opções</span> para serem utilizadas na view, e uma função callback. Nesse caso não fiz callback.</p>
+<br />
+<p>Pronto, para o express é isso. O método <code>get()</code> fica encarregado de verificar qual chamada está sendo feita, e executar seu respectivo callback. Não podemos esquecer de chamar o método <code>listen</code> para o express funcionar, ele aceita um parâmero único que é a porta. O método listen é idêntico ao <code>http.Server#listen().</code> do node.</p>
+<br />
+<p>Agora é só executar a aplicação novamente e testar.</p>
+
+<h2 id='enviando_dados_do_controle_para_o_player'>Enviando dados do controle para o player</h2>
+
+<p>Agora que servimos a página (que veio da requisição /mb/id), é ela que irá enviar os comandos para o player, portanto precisamos emitir eventos para o socket.io, esses valores defini como: ação e valor para a ação (caso houver). Por exemplo: para trocar de arquivo a página de controle precisa enviar para o servidor a ação que dei nome de &#8220;change&#8221;, e o valor que é o id do arquivo escolhido. Além desses dois valores, preciso também devolver aquele id que foi passado como opção para a view, lembram ? Esse id serve para identificar para qual socket devo enviar os comandos, do contrário, minha unica opção seria enviar os dados por bradcast, o que bloquearia a idéia da aplicação ser multiusuário. Quer ver parte do código ? Lá vai</p>
+<div class='highlight'><pre><code class='javascript'><span class='c1'>// File: mobile.jade</span>
+
+<span class='c1'>// Volume Up</span>
+<span class='nx'>$</span><span class='p'>(</span><span class='s1'>&#39;#vol_up&#39;</span><span class='p'>).</span><span class='nx'>on</span><span class='p'>(</span><span class='s2'>&quot;tap&quot;</span><span class='p'>,</span> <span class='kd'>function</span><span class='p'>()</span> <span class='p'>{</span>
+    <span class='nx'>$</span><span class='p'>.</span><span class='nx'>get</span><span class='p'>(</span><span class='s1'>&#39;/player/#{id}/volup&#39;</span><span class='p'>,</span> <span class='kd'>function</span><span class='p'>()</span> <span class='p'>{});</span>
+<span class='p'>});</span>
+</code></pre></div>
+<p>O código acima é simples: quando houver um toque no botão de aumentar o volume (#vol_up) é chamado o método <code>get</code> do jQuery que faz uma requisição para <code>localhost:8000/player/idQualquer/volup</code>. Ou seja, uma requisição para o express. Não é preciso definir locaholst:8000 no código pois estamos trabalhando com caminho relativo, portanto ele irá utilizar o mesmo domínio e porta da página.</p>
+<br />
+<p>Mas, espera ai, onde foi definido esse caminho <code>/player/</code> ? Você pode ver logo a seguir:</p>
+<div class='highlight'><pre><code class='javascript'><span class='c1'>// File: app.js</span>
+
+<span class='nx'>app</span><span class='p'>.</span><span class='nx'>get</span><span class='p'>(</span><span class='s1'>&#39;/player/:id/:action/:val?&#39;</span><span class='p'>,</span> <span class='kd'>function</span> <span class='p'>(</span><span class='nx'>req</span><span class='p'>,</span> <span class='nx'>res</span><span class='p'>)</span> <span class='p'>{</span>
+    <span class='kd'>var</span> <span class='nx'>id</span> <span class='o'>=</span> <span class='nx'>req</span><span class='p'>.</span><span class='nx'>params</span><span class='p'>.</span><span class='nx'>id</span><span class='p'>;</span>
+    <span class='kd'>var</span> <span class='nx'>action</span> <span class='o'>=</span> <span class='nx'>req</span><span class='p'>.</span><span class='nx'>params</span><span class='p'>.</span><span class='nx'>action</span><span class='p'>;</span>
+    <span class='kd'>var</span> <span class='nx'>val</span> <span class='o'>=</span> <span class='nx'>req</span><span class='p'>.</span><span class='nx'>params</span><span class='p'>.</span><span class='nx'>val</span><span class='p'>;</span>
+    <span class='nx'>sockets</span><span class='p'>[</span><span class='nx'>id</span><span class='p'>].</span><span class='nx'>emit</span><span class='p'>(</span><span class='s1'>&#39;play&#39;</span><span class='p'>,</span> <span class='p'>{</span><span class='nx'>action</span><span class='o'>:</span><span class='nx'>action</span><span class='p'>,</span> <span class='nx'>val</span><span class='o'>:</span><span class='nx'>val</span><span class='p'>});</span>
+    <span class='nx'>res</span><span class='p'>.</span><span class='nx'>send</span><span class='p'>(</span><span class='s1'>&#39;ok&#39;</span><span class='p'>);</span>
+<span class='p'>});</span>
+</code></pre></div>
+<p>O que está acontecendo ali você já viu anteriormente, o express espera por uma requisição com o valor &#8220;player&#8221;, dois parâmetros obrigatórios (id e action) e um opcional (val). Ali pegamos os valores, e emitimos o o evento <code>play</code> para um único socket,. Um único socket pois a variável <code>sckets</code> é um array, e seus índices são os ids de cada conexão, por isso devolvemos o id como um parâmetro da requisição <code>/player/</code>. Emitimos junto do evento, os dados (action e val) e seus respectivos valores.</p>
+<br />
+<p>Agora, é só ir la no cliente (o player), e tratar esse evento <code>play</code> certo?</p>
+<div class='highlight'><pre><code class='javascript'><span class='c1'>// File: client.js</span>
+
+<span class='c1'>// selecionando a tag &lt;video&gt; do arquivo index.html</span>
+<span class='kd'>var</span> <span class='nx'>media</span> <span class='o'>=</span> <span class='nb'>document</span><span class='p'>.</span><span class='nx'>getElementById</span><span class='p'>(</span><span class='s2'>&quot;player&quot;</span><span class='p'>);</span>
+
+<span class='nx'>socket</span><span class='p'>.</span><span class='nx'>on</span><span class='p'>(</span><span class='s1'>&#39;play&#39;</span><span class='p'>,</span> <span class='kd'>function</span> <span class='p'>(</span><span class='nx'>data</span><span class='p'>)</span> <span class='p'>{</span>
+	<span class='k'>if</span> <span class='p'>(</span><span class='nx'>data</span><span class='p'>.</span><span class='nx'>action</span> <span class='o'>==</span> <span class='s1'>&#39;volup&#39;</span><span class='p'>){</span>
+        <span class='nx'>media</span><span class='p'>.</span><span class='nx'>volume</span> <span class='o'>+=</span> <span class='mf'>0.1</span><span class='p'>;</span>
+    <span class='p'>}</span>
+<span class='p'>}</span>
+</code></pre></div>
+<p>No lado do cliente, com o evento <code>on()</code> do socket, recebemos o evento emitido pelo servidor, e chamamos uma função callback. Essa função recebe como parâmetro os dados que também foram passados pelo servidor. Assim, é só tratar os dados. Foi o que fiz para verificar qual ação foi enviada, no if comparo se o valor do dado action é igual &#8216;volup&#8217;, se for, aumento o volume do arquivo (utilizando a Web Audio API). Isso vale para todos os outros comandos.</p>
+
+<h2 id='pedras_no_caminho'>Pedras no caminho</h2>
+
+<p>Durante o desenvolvimento desse experimento fui descobrindo algumas coisas que talvez nunca iria descobrir se não fosse programando.</p>
+
+<ul>
+<li>→ A FullScreen API não aceita que seja disparado o evento <code>requestFullScreen()</code> sem a interação do usuário, ou seja, só é possível via clique. Para resolver isso, ou tentar, fiz um full screen manual, alterando o tamanho do player para o tamanho da janela.</li>
+
+<li>→ O Chrome e o Firefox são os únicos navegadores que suportão reproduzir blobs urls. Os outros navegadores, mesmo tendo suporte para blobs urls, não conseguem reproduzir um vídeo o música. Foi ai que resolvi adicionar o campo para adicionar uma media por URL, dessa forma consigo reproduzir o arquivo.</li>
+
+<li>→ Para manter o Node.JS rodando no meu servidor (em http://vagnersantana.com/player.io), estou utilizando o <code>forever</code>. Para instalar é só mandar o comando <code>npm install forever</code> e para executá-lo: <code>forever start app.js</code>. Assim o socket.io e o express ficaram escutando constantemente nas portas 8080 e 8000. Para visualizar quais arquivos o forever está executando use o comando <code>forever list</code>.</li>
+</ul>
+
+<h2 id='concluso'>Conclusão</h2>
+
+<p>Tem muito mais código na aplicação toda, o post já está gigantesco, mas espero ter explicado todo o conceito de utilizar o Node.JS e o Socket.IO.</p>
+<br />
+<p>Apesar de ser um experimento simples, foi extremamente empolgante ter desenvolvido, pois só assim é possível aprender de verdade. Espero que este post ajude você de alguma forma, seja com node.js, socket.io ou express, ou seja para incentivar a desenvolver experimentos, brincar mais, fazer qualquer tipo de coisa que te faça adquirir mais conhecimento sempre, buscar mais informações, e depois, contribuir ensinando.</p>
+<br />
+<p>O código está disponível no Github, espero que você vá até lá, de um fork, envie pull requests, reportem bugs e tudo mais que tiver direito.</p>
+<br /><a alt='Player.IO' href='http://vagnersantana.com/player.io' target='_blank' title='Player.IO'>
+<button class='btn'>Player.IO</button>
+</a><a alt='Demo no github' href='https://github.com/vagnervjs/player.io' target='_blank' title='Demo no github'>
+<button class='btn'>Github</button>
+</a>
+<h3 id='referncias'>Referências</h3>
+
+<ul>
+<li>→ <a href='http://www.html5rocks.com/en/tutorials/websockets/basics/' target='_blank'>HTML5 Rocks - Introducing WebSockets: Bringing Sockets to the Web</a></li>
+
+<li>→ <a href='http://davidwalsh.name/websocket' target='_blank'>David Walsh - WebSocket and Socket.IO</a></li>
+
+<li>→ <a href='http://imasters.com.br/desenvolvimento/conectando-no-socket-io-avancado/' target='_blank'>iMasters - Conectando no Socket.IO – avançado</a></li>
+
+<li>→ <a href='http://socket.io/#how-to-use' target='_blank'>Socket.IO - How to use</a></li>
+
+<li>→ <a href='http://www.ibm.com/developerworks/br/library/os-nodejs/' target='_blank'>IBM - O que exatamente é o Node.js?</a></li>
+
+<li>→ <a href='http://expressjs.com/api.html' target='_blank'>Express API Reference</a></li>
+</ul>
+<div class='fb-like' data-font='verdana' data-href='http://openblog.github.com/2013/03/15/player.io/' data-layout='button_count' data-send='true' data-show-faces='true' data-width='450' />
+						
+						<br>
+						<!-- Tweet Button -->
+						<a href="https://twitter.com/share" class="twitter-share-button" data-lang="pt">Tweetar</a>
+						<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+						<!-- +1 Button -->
+						<div class="g-plusone"></div>
+						<script type="text/javascript">
+						  window.___gcfg = {lang: 'pt-BR'};
+
+						  (function() {
+						    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+						    po.src = 'https://apis.google.com/js/plusone.js';
+						    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+						  })();
+						</script>
+					</section>
+
+					
+					<footer id="disqus_thread">
+						<noscript>Por favor, habilite JavaScript para ver os comentários. <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+					</footer>
+					
+				</article>
+			</section>
+
+		</section><!-- end #content -->
+
+	</div><!-- end #wrapper -->
+	
+	<script>
+
+	    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+	    var disqus_shortname = 'opblog'; // required: replace example with your forum shortname
+	    var disqus_identifier = '/2013/03/15/player.io';
+	    // var disqus_developer = 1;
+
+	    // callback do Disqus
+	    function disqus_callback() {
+	    	// modifica o título da caixa de comentários
+	    	$('#dsq-reply h3').html('Comentários')
+	    }
+
+	    /* * * DON'T EDIT BELOW THIS LINE * * */
+	    (function() {
+	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+	        // comment count
+	        var s = document.createElement('script'); s.async = true;
+	        s.type = 'text/javascript';
+	        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+	        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+	    })();
+
+	</script>
+	
+
+</body>
+</html>

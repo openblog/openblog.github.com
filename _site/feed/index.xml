@@ -3,9 +3,281 @@
   <id>http://openblog.github.com/</id>
   <title>Open Blog</title>
   <icon>http://openblog.github.com/img/favicon.png</icon>
-  <updated>2013-03-08T11:03:28-03:00</updated>
+  <updated>2013-03-15T11:46:14-03:00</updated>
   <link rel="self" href="http://openblog.github.com/feed/index.xml" />
   <link href="http://openblog.github.com/" />
+  
+  <entry>
+    <id>http://loopinfinito.com.br/2013/03/15/player.io</id>
+    <title>Player.IO - Um media player que roda no navegador, feito com Node.JS, Socket.IO e é controlado pelo seu smartphone</title>
+    <updated>2013-03-15T00:00:00-03:00</updated>
+    <link href="http://openblog.github.com/2013/03/15/player.io/" />
+    <author>
+      <name>Vagner Santana</name>
+      <uri>http://twitter.com/vagnervjs</uri>
+    </author>
+    <content type="html">
+      
+      
+      &lt;p&gt;&lt;img itemprop=&quot;thumbnailUrl&quot; src=&quot;http://openblog.github.com/img/posts/2013-03-13-player.io.png&quot; alt=&quot;Player.IO - Um media player que roda no navegador, feito com Node.JS, Socket.IO e é controlado pelo seu smartphone&quot; title=&quot;Player.IO - Um media player que roda no navegador, feito com Node.JS, Socket.IO e é controlado pelo seu smartphone&quot; width=&quot;700&quot; height=&quot;432&quot; /&gt;&lt;/p&gt;
+      
+      &lt;p&gt;Se você acompanha o mundo do desenvolvimento web , provavelmente já ouviu algo sobre o Node.JS e sua incrível capacidade de rodar aplicações altamente escaláveis escritas em JavaScript no servidor. Minha idéia inicial era criar um post onde abordaria como iniciar uma aplicação utilizando o Node.JS, porém quando comecei trabalhar com ele, vi que a coisa era tão bacana que acabei criando esse experimento: Um media player que roda no seu navegador, carrega arquivos de media locais utilizando a File Access API, e você pode controlar do seu smartphone trocando dados em tempo real graças ao Socket.IO.&lt;/p&gt;
+&lt;br /&gt;
+&lt;p&gt;Antes de continuar lendo o post, você pode conferir o experimento e entender melhor como o ele se comporta. É altamente recomendado utilizar o Google Chrome e arquivos nos formatos: m4a, mp3, mp4 ou webm. Vai lá e depois volte aqui, fico aguardando&amp;#8230;&lt;/p&gt;
+&lt;a alt='Player.IO' href='http://vagnersantana.com/player.io' target='_blank' title='Player.IO'&gt;
+&lt;button class='btn'&gt;Player.IO&lt;/button&gt;
+&lt;/a&gt;&lt;a alt='Demo no github' href='https://github.com/vagnervjs/player.io' target='_blank' title='Demo no github'&gt;
+&lt;button class='btn'&gt;Github&lt;/button&gt;
+&lt;/a&gt;
+&lt;h2 id='nodejs'&gt;Node.JS&lt;/h2&gt;
+
+&lt;p&gt;Talvez você já saiba o que é, mas vou repetir a explicação aqui para quem não conhece.&lt;/p&gt;
+
+&lt;p&gt;O Node.JS é um interpretador de JavaScript que utiliza a engine V8 do Google (a mesma do Chrome). Ele roda no servidor, mas não confunda ele com um Apache por exemplo, porque talvez ele seja mais que isso.&lt;/p&gt;
+
+&lt;p&gt;Definicão oficial:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Node.js is a platform built on Chrome&amp;#8217;s JavaScript runtime for easily building fast, scalable network applications. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;→ &lt;a href='http://nodejs.org' target='_blank'&gt;Site oficial&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id='socketio'&gt;Socket.IO&lt;/h2&gt;
+
+&lt;p&gt;Nas especificações do HTML5 está a WebSocket API que possibilita trocar dados com um servidor e múltiplos clientes de forma assíncrona, ou seja, troca de dados em tempo real (exemplos de aplicações: chats, games), porém para essa API ainda é restrita pois nem todos os navegadores suportam WebSockets. Devido essa jovialidade do WebSocket, existem bibliotecas que fornecem a tecnologia de socket e conexão em tempo real no navegador, e uma das mais conhecidas é o Socket.IO, que inclui a biblioteca javascript no código do cliente, e roda no servidor com o node.js, dessa forma temos uma aplicação de tempo real cross-browser.&lt;/p&gt;
+
+&lt;p&gt;→ &lt;a href='http://socket.io' target='_blank'&gt;Site oficial&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id='playerio'&gt;Player.IO&lt;/h2&gt;
+
+&lt;p&gt;Eu acredito que o experimento, apesar de simples, tem como principal objetivo mostrar como é possível criar uma interação de usuário rica utilizando apenas HTML5 e o poder do JavaScript, e isso deixa claro que, cada vez mais, a Web é a plataforma.&lt;/p&gt;
+&lt;br /&gt;
+&lt;p&gt;A idéia é que o usuário carregue uma playlist de arquivos (áudio e vídeo) locais ou de um links diretos (ex: http://dominio.com/arquivo.mp4), após isso, abra uma página no smartphone que irá funcionar como um controle remoto. Para abrir a página o usuário tem como opção ler um &lt;code&gt;QR Code&lt;/code&gt; ou abrir um link (que também pode ser aberto na mesma máquina). Essa página envia dados para o servidor que por sua vez se comunica com a página de origem no computador e assim é possível executar comandos remotamente, como: troca de arquivo, play/pause, aumentar e diminuir volume, entrar ou sair do modo tela cheia, etc.&lt;/p&gt;
+
+&lt;p&gt;A aplicação é multiusuário, isto é: várias pessoas podem usar o serviço simultaneamente (e o Node.JS suporta muitas conexões) e cada usuário pode enviar comandos de onde quer que esteja pois tudo é feito online.&lt;/p&gt;
+
+&lt;h2 id='fases_de_desenvolvimento'&gt;Fases de Desenvolvimento&lt;/h2&gt;
+
+&lt;p&gt;Antes de mostrar código, vou listar as fases mais importantes do desenvolvimento.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;→ Utilizar a API File Acces para acessar arquivos locais.&lt;/li&gt;
+
+&lt;li&gt;→ Tratar tipos de arquivos suportados pelos navegadores.&lt;/li&gt;
+
+&lt;li&gt;→ Gerar Blob URL para cada arquivo local (e também tratar suporte dos navegadores)&lt;/li&gt;
+
+&lt;li&gt;→ Criar conexão com o Node.JS&lt;/li&gt;
+
+&lt;li&gt;→ Implementar conexão com o Socket.IO e gerar array de sockets&lt;/li&gt;
+
+&lt;li&gt;→ Servir páginas com o Node.JS utilizando o express&lt;/li&gt;
+
+&lt;li&gt;→ Criar layout para página requisitada pelo express utilizando Jade&lt;/li&gt;
+
+&lt;li&gt;→ Implementar evendos de servidor/cliente para troca de dados&lt;/li&gt;
+
+&lt;li&gt;→ Criar novo cliente para página de controle&lt;/li&gt;
+
+&lt;li&gt;→ Fazer tudo isso funcionar&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id='iniciando_com_o_nodejs_e_socketio'&gt;Iniciando com o Node.JS e Socket.IO&lt;/h2&gt;
+
+&lt;p&gt;Bom, já conversamos bastante, agora lets go to the code. Como o tópico principal do post é Node.JS e Socket.IO, não vou entrar em detalhes sobre a manipulação de arquivos utilizando a File Access API, gerar Blobs URLs e outras coisas que utilizei no experimento, o código está lá para quem quiser se divertir, aqui vou focar em como iniciar a aplicação com o Node.JS. Vamos lá… &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;O arquivo &lt;code&gt;app.js&lt;/code&gt; é onde fica o código do servidor, que é interpretado pelo Node.JS. Nele definimos as dependências que iremos utilizar (ex: socket.io, express), configurações necessárias (como a engine de templates) e claro os eventos de servidor que serão disparados, com as operações que o Node.JS terá de fazer para a aplicação. &lt;br /&gt;&lt;br /&gt; Criando conexão entre cliente e servidor com o Socket.IO&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;&lt;span class='c1'&gt;// File: app.js&lt;/span&gt;
+
+&lt;span class='c1'&gt;// Criando socket que fica aguardando na porta 8080 por conexões&lt;/span&gt;
+&lt;span class='kd'&gt;var&lt;/span&gt; &lt;span class='nx'&gt;io&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nx'&gt;require&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;socket.io&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;).&lt;/span&gt;&lt;span class='nx'&gt;listen&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;8080&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+
+&lt;span class='c1'&gt;// Declarando array para armazenar cada cliente&lt;/span&gt;
+&lt;span class='kd'&gt;var&lt;/span&gt; &lt;span class='nx'&gt;sockets&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;{};&lt;/span&gt;
+
+&lt;span class='c1'&gt;// Evento connection: quando uma nova conexão é estabeleciada&lt;/span&gt;
+&lt;span class='nx'&gt;io&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;sockets&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;on&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;connection&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kd'&gt;function&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;socket&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='c1'&gt;// Aguarda o evento setId que será disparado pelo cliente&lt;/span&gt;
+    &lt;span class='nx'&gt;socket&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;on&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;setId&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kd'&gt;function&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;id&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    	&lt;span class='c1'&gt;// setId é responsável por gerar um identificador para cada conexão&lt;/span&gt;
+        &lt;span class='nx'&gt;console&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;log&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;ID : &amp;quot;&lt;/span&gt; &lt;span class='o'&gt;+&lt;/span&gt; &lt;span class='nx'&gt;id&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+        &lt;span class='c1'&gt;// a nova conexão é armazenada no array sockets com o identificador&lt;/span&gt;
+        &lt;span class='nx'&gt;sockets&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='nx'&gt;id&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nx'&gt;socket&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='p'&gt;});&lt;/span&gt;
+&lt;span class='p'&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;&lt;span class='c1'&gt;// File: client.js&lt;/span&gt;
+
+&lt;span class='c1'&gt;// Definindo id para a conexão&lt;/span&gt;
+&lt;span class='kd'&gt;var&lt;/span&gt; &lt;span class='nx'&gt;id&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nx'&gt;randomId&lt;/span&gt;&lt;span class='p'&gt;();&lt;/span&gt;
+
+&lt;span class='c1'&gt;// Conectando ao socket utilizando host e porta definida em app.js&lt;/span&gt;
+&lt;span class='kd'&gt;var&lt;/span&gt; &lt;span class='nx'&gt;socket&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nx'&gt;io&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;connect&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;http://localhost:8080&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+
+&lt;span class='c1'&gt;// Emitindo evento para o servidor e passando o id como parâmetro&lt;/span&gt;
+&lt;span class='nx'&gt;socket&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;emit&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;setId&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nx'&gt;id&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Bom, até agora o que aconteceu acima foi simples, criamos um socket no arquivo app.js que fica escutando conexões na porta 8080 (se você não definir uma porta pode ocorrer conflito). Declaramos um array onde cada nova conexão é armazenada, a partir do evento &lt;code&gt;conection&lt;/code&gt;. No arquivo do cliente, é feita a conexão e emitido um evento chamado &lt;code&gt;setId&lt;/code&gt; para o servidor, nesse evento do lado do servidor foi definida uma função anônima que recebe como parâmetro um &lt;code&gt;id&lt;/code&gt; que serve para identificar cada conexão.&lt;/p&gt;
+&lt;br /&gt;
+&lt;p&gt;No arquivo index.html&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='html'&gt;&lt;span class='c'&gt;&amp;lt;!-- Arquivo para conexão com o socket.io (ele é gerado automáticamente) --&amp;gt;&lt;/span&gt;
+&lt;span class='nt'&gt;&amp;lt;script &lt;/span&gt;&lt;span class='na'&gt;src=&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;http://localhost:8080/socket.io/socket.io.js&amp;quot;&lt;/span&gt;&lt;span class='nt'&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class='c'&gt;&amp;lt;!-- Script do Cliente --&amp;gt;&lt;/span&gt;
+&lt;span class='nt'&gt;&amp;lt;script &lt;/span&gt;&lt;span class='na'&gt;src=&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;client.js&amp;quot;&lt;/span&gt;&lt;span class='nt'&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Agora precisamos rodar a aplicação e testar. Você deve ter instalado o Node.JS junto do npm (gerenciador de pacotes do node). Como fazer isso é simples, e existem vários tutoriais por ai. Com o node e o npm instalados, iremos instalar as dependências:&lt;/p&gt;
+&lt;br /&gt;
+&lt;p&gt;Antes, precisamos criar o arquivo &lt;code&gt;package.json&lt;/code&gt; responsável por gerenciar as dependências do projeto, e conter suas informações.&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;&lt;span class='c1'&gt;// File: package.json&lt;/span&gt;
+
+&lt;span class='p'&gt;{&lt;/span&gt;
+  &lt;span class='s2'&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;Player.IO&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+  &lt;span class='s2'&gt;&amp;quot;version&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;0.1.0&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+  &lt;span class='s2'&gt;&amp;quot;description&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;A real-time media player...&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+  &lt;span class='s2'&gt;&amp;quot;repository&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;https://github.com/vagnervjs/player.io.git&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+  &lt;span class='s2'&gt;&amp;quot;dependencies&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='s2'&gt;&amp;quot;express&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;3.x&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+    &lt;span class='s2'&gt;&amp;quot;socket.io&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;0.9.x&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; 
+    &lt;span class='s2'&gt;&amp;quot;jade&amp;quot;&lt;/span&gt; &lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;0.28.x&amp;quot;&lt;/span&gt;
+  &lt;span class='p'&gt;},&lt;/span&gt;
+  &lt;span class='s2'&gt;&amp;quot;author&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;Vagner Santana&amp;quot;&lt;/span&gt;
+&lt;span class='p'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Instalando as dependências:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;&lt;span class='c1'&gt;// acessando pasta do projeto&lt;/span&gt;
+&lt;span class='nx'&gt;cd&lt;/span&gt; &lt;span class='nx'&gt;player&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;io&lt;/span&gt; 
+&lt;span class='c1'&gt;// utilize sudo Mac ou Linux&lt;/span&gt;
+&lt;span class='nx'&gt;sudo&lt;/span&gt; &lt;span class='nx'&gt;npm&lt;/span&gt; &lt;span class='nx'&gt;install&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Não é nescessário passar o nome do pacote que deseja instalar para o comando &lt;code&gt;npm install&lt;/code&gt;, pois estamos utilizando o arquivo &lt;code&gt;package.json&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Com as dependências instaladas, vamos rodar o arquivo &lt;code&gt;app.js&lt;/code&gt;:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;&lt;span class='nx'&gt;node&lt;/span&gt; &lt;span class='nx'&gt;app&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;js&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Se tudo ocorreu bem, ao abrir o arquivo &lt;code&gt;index.html&lt;/code&gt; no navegador um novo socket foi criado. Lembrando que a função &lt;code&gt;randomId&lt;/code&gt; foi criada por mim, se estiver realizando este teste você pode atribuir à varíavel &lt;code&gt;id&lt;/code&gt; uma string qualquer. No console do Node.JS a saída deve conter uma linha com: &lt;code&gt;ID: &amp;lt;id que foi passado&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id='servindo_pginas_com_express'&gt;Servindo páginas com Express&lt;/h2&gt;
+
+&lt;p&gt;O Express é um framework minimalista e flexível de desenvolvimento web para o Node.JS que possui vários métodos HTTP tornando possível servir páginas a partir de requisições de usuários, tudo isso com um ótimo desempenho.&lt;/p&gt;
+
+&lt;p&gt;→ &lt;a href='http://expressjs.com/' target='_blank'&gt;Site oficial&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Iremos utilizar ele para servir a página de controle. Veja:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;&lt;span class='c1'&gt;// File app.js&lt;/span&gt;
+
+&lt;span class='c1'&gt;// solicitando dependência do express&lt;/span&gt;
+&lt;span class='kd'&gt;var&lt;/span&gt; &lt;span class='nx'&gt;express&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nx'&gt;require&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;express&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+
+&lt;span class='c1'&gt;// criando uma aplicação express&lt;/span&gt;
+&lt;span class='kd'&gt;var&lt;/span&gt; &lt;span class='nx'&gt;app&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nx'&gt;express&lt;/span&gt;&lt;span class='p'&gt;();&lt;/span&gt;
+
+&lt;span class='c1'&gt;// definindo engine para as views&lt;/span&gt;
+&lt;span class='nx'&gt;app&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;set&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;view engine&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;jade&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+
+&lt;span class='c1'&gt;// ao receber uma requisição com o valor /mb/:id&lt;/span&gt;
+&lt;span class='c1'&gt;// onde :id é uma string &lt;/span&gt;
+&lt;span class='c1'&gt;// chama uma função callback&lt;/span&gt;
+&lt;span class='nx'&gt;app&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;get&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;/mb/:id&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kd'&gt;function&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;req&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nx'&gt;res&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='c1'&gt;// armazenando valor do parâmetro id&lt;/span&gt;
+    &lt;span class='kd'&gt;var&lt;/span&gt; &lt;span class='nx'&gt;id&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nx'&gt;req&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;params&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;id&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='c1'&gt;// imprimindo&lt;/span&gt;
+    &lt;span class='nx'&gt;console&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;log&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;ID Mb: &amp;quot;&lt;/span&gt; &lt;span class='o'&gt;+&lt;/span&gt; &lt;span class='nx'&gt;id&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+    &lt;span class='c1'&gt;// chama uma a view (arquivo jade), passando algumas variáveis (id e title)&lt;/span&gt;
+    &lt;span class='nx'&gt;res&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;render&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;mobile.jade&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;&lt;span class='nx'&gt;id&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt;&lt;span class='nx'&gt;id&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nx'&gt;title&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;Player.IO | Control&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;});&lt;/span&gt;
+&lt;span class='p'&gt;});&lt;/span&gt;
+
+&lt;span class='c1'&gt;// a aplicação express fica escutando na porta 8000&lt;/span&gt;
+&lt;span class='nx'&gt;app&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;listen&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;8000&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Certo, neste ponto nossa aplicação já abre um socket para cada conexão, e agora acabamos de criar um servidor HTTP com o express que fica aguardando requisições na porta 8000. Lembre-se que iniciamos o socket.io e também definimos uma porta para ele, portanto a porta do express deve ser diferente da porta definida para o socket.io (no nosso caso utilizamos as portas 8000 e 8080).&lt;/p&gt;
+
+&lt;p&gt;Com a aplicação express criada e escutando na porta 8000, ao fazermos uma requisição do tipo &lt;code&gt;localhost:8000/mb/novoId123&lt;/code&gt; o express irá chamar uma função callback, que recebe os parâmetros req e res, respectivamente: request e response. O req é um objeto que contém informações sobre a requisição HTTP, já o res é o objeto responsável por enviar uma resposta HTTP, como renderizar uma página por exemplo. &lt;br /&gt; Nesse callback armazenamos o valor do parâmetro id que foi passado na requisição, para isso utilizamos o método &lt;code&gt;param&lt;/code&gt; do objeto req. É obrigatório o uso de &lt;code&gt;:&lt;/code&gt; antes do nome do parâmetro esperado, se o paramêtro for opcional deve ser utilzado o símbolo de interrogação após o nome, ex: &lt;code&gt;:id?&lt;/code&gt;. Com o id armazenado, a próxima operação (além de imprimir o valor de id) é chamado o método &lt;code&gt;render()&lt;/code&gt; do objeto response. Ele é responsável por renderizar uma view utilizando a engine de templates definida acima em &lt;code&gt;aap.set(&amp;#39;view engine&amp;#39;, &amp;#39;jade&amp;#39;)&lt;/code&gt;. Esse método aceita três parâmetros: o primeiro e obrigatório é o nome da view a ser renderizada, os outros dois são: &lt;span&gt;opções&lt;/span&gt; para serem utilizadas na view, e uma função callback. Nesse caso não fiz callback.&lt;/p&gt;
+&lt;br /&gt;
+&lt;p&gt;Pronto, para o express é isso. O método &lt;code&gt;get()&lt;/code&gt; fica encarregado de verificar qual chamada está sendo feita, e executar seu respectivo callback. Não podemos esquecer de chamar o método &lt;code&gt;listen&lt;/code&gt; para o express funcionar, ele aceita um parâmero único que é a porta. O método listen é idêntico ao &lt;code&gt;http.Server#listen().&lt;/code&gt; do node.&lt;/p&gt;
+&lt;br /&gt;
+&lt;p&gt;Agora é só executar a aplicação novamente e testar.&lt;/p&gt;
+
+&lt;h2 id='enviando_dados_do_controle_para_o_player'&gt;Enviando dados do controle para o player&lt;/h2&gt;
+
+&lt;p&gt;Agora que servimos a página (que veio da requisição /mb/id), é ela que irá enviar os comandos para o player, portanto precisamos emitir eventos para o socket.io, esses valores defini como: ação e valor para a ação (caso houver). Por exemplo: para trocar de arquivo a página de controle precisa enviar para o servidor a ação que dei nome de &amp;#8220;change&amp;#8221;, e o valor que é o id do arquivo escolhido. Além desses dois valores, preciso também devolver aquele id que foi passado como opção para a view, lembram ? Esse id serve para identificar para qual socket devo enviar os comandos, do contrário, minha unica opção seria enviar os dados por bradcast, o que bloquearia a idéia da aplicação ser multiusuário. Quer ver parte do código ? Lá vai&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;&lt;span class='c1'&gt;// File: mobile.jade&lt;/span&gt;
+
+&lt;span class='c1'&gt;// Volume Up&lt;/span&gt;
+&lt;span class='nx'&gt;$&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;#vol_up&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;).&lt;/span&gt;&lt;span class='nx'&gt;on&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;tap&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kd'&gt;function&lt;/span&gt;&lt;span class='p'&gt;()&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='nx'&gt;$&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;get&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;/player/#{id}/volup&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kd'&gt;function&lt;/span&gt;&lt;span class='p'&gt;()&lt;/span&gt; &lt;span class='p'&gt;{});&lt;/span&gt;
+&lt;span class='p'&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;O código acima é simples: quando houver um toque no botão de aumentar o volume (#vol_up) é chamado o método &lt;code&gt;get&lt;/code&gt; do jQuery que faz uma requisição para &lt;code&gt;localhost:8000/player/idQualquer/volup&lt;/code&gt;. Ou seja, uma requisição para o express. Não é preciso definir locaholst:8000 no código pois estamos trabalhando com caminho relativo, portanto ele irá utilizar o mesmo domínio e porta da página.&lt;/p&gt;
+&lt;br /&gt;
+&lt;p&gt;Mas, espera ai, onde foi definido esse caminho &lt;code&gt;/player/&lt;/code&gt; ? Você pode ver logo a seguir:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;&lt;span class='c1'&gt;// File: app.js&lt;/span&gt;
+
+&lt;span class='nx'&gt;app&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;get&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;/player/:id/:action/:val?&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kd'&gt;function&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;req&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nx'&gt;res&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='kd'&gt;var&lt;/span&gt; &lt;span class='nx'&gt;id&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nx'&gt;req&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;params&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;id&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='kd'&gt;var&lt;/span&gt; &lt;span class='nx'&gt;action&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nx'&gt;req&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;params&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;action&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='kd'&gt;var&lt;/span&gt; &lt;span class='nx'&gt;val&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nx'&gt;req&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;params&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;val&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='nx'&gt;sockets&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='nx'&gt;id&lt;/span&gt;&lt;span class='p'&gt;].&lt;/span&gt;&lt;span class='nx'&gt;emit&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;play&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;&lt;span class='nx'&gt;action&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt;&lt;span class='nx'&gt;action&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nx'&gt;val&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt;&lt;span class='nx'&gt;val&lt;/span&gt;&lt;span class='p'&gt;});&lt;/span&gt;
+    &lt;span class='nx'&gt;res&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;send&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;ok&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+&lt;span class='p'&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;O que está acontecendo ali você já viu anteriormente, o express espera por uma requisição com o valor &amp;#8220;player&amp;#8221;, dois parâmetros obrigatórios (id e action) e um opcional (val). Ali pegamos os valores, e emitimos o o evento &lt;code&gt;play&lt;/code&gt; para um único socket,. Um único socket pois a variável &lt;code&gt;sckets&lt;/code&gt; é um array, e seus índices são os ids de cada conexão, por isso devolvemos o id como um parâmetro da requisição &lt;code&gt;/player/&lt;/code&gt;. Emitimos junto do evento, os dados (action e val) e seus respectivos valores.&lt;/p&gt;
+&lt;br /&gt;
+&lt;p&gt;Agora, é só ir la no cliente (o player), e tratar esse evento &lt;code&gt;play&lt;/code&gt; certo?&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;&lt;span class='c1'&gt;// File: client.js&lt;/span&gt;
+
+&lt;span class='c1'&gt;// selecionando a tag &amp;lt;video&amp;gt; do arquivo index.html&lt;/span&gt;
+&lt;span class='kd'&gt;var&lt;/span&gt; &lt;span class='nx'&gt;media&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nb'&gt;document&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;getElementById&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;player&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+
+&lt;span class='nx'&gt;socket&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;on&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;play&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kd'&gt;function&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;data&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+	&lt;span class='k'&gt;if&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;data&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;action&lt;/span&gt; &lt;span class='o'&gt;==&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;volup&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;){&lt;/span&gt;
+        &lt;span class='nx'&gt;media&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;volume&lt;/span&gt; &lt;span class='o'&gt;+=&lt;/span&gt; &lt;span class='mf'&gt;0.1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='p'&gt;}&lt;/span&gt;
+&lt;span class='p'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;No lado do cliente, com o evento &lt;code&gt;on()&lt;/code&gt; do socket, recebemos o evento emitido pelo servidor, e chamamos uma função callback. Essa função recebe como parâmetro os dados que também foram passados pelo servidor. Assim, é só tratar os dados. Foi o que fiz para verificar qual ação foi enviada, no if comparo se o valor do dado action é igual &amp;#8216;volup&amp;#8217;, se for, aumento o volume do arquivo (utilizando a Web Audio API). Isso vale para todos os outros comandos.&lt;/p&gt;
+
+&lt;h2 id='pedras_no_caminho'&gt;Pedras no caminho&lt;/h2&gt;
+
+&lt;p&gt;Durante o desenvolvimento desse experimento fui descobrindo algumas coisas que talvez nunca iria descobrir se não fosse programando.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;→ A FullScreen API não aceita que seja disparado o evento &lt;code&gt;requestFullScreen()&lt;/code&gt; sem a interação do usuário, ou seja, só é possível via clique. Para resolver isso, ou tentar, fiz um full screen manual, alterando o tamanho do player para o tamanho da janela.&lt;/li&gt;
+
+&lt;li&gt;→ O Chrome e o Firefox são os únicos navegadores que suportão reproduzir blobs urls. Os outros navegadores, mesmo tendo suporte para blobs urls, não conseguem reproduzir um vídeo o música. Foi ai que resolvi adicionar o campo para adicionar uma media por URL, dessa forma consigo reproduzir o arquivo.&lt;/li&gt;
+
+&lt;li&gt;→ Para manter o Node.JS rodando no meu servidor (em http://vagnersantana.com/player.io), estou utilizando o &lt;code&gt;forever&lt;/code&gt;. Para instalar é só mandar o comando &lt;code&gt;npm install forever&lt;/code&gt; e para executá-lo: &lt;code&gt;forever start app.js&lt;/code&gt;. Assim o socket.io e o express ficaram escutando constantemente nas portas 8080 e 8000. Para visualizar quais arquivos o forever está executando use o comando &lt;code&gt;forever list&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id='concluso'&gt;Conclusão&lt;/h2&gt;
+
+&lt;p&gt;Tem muito mais código na aplicação toda, o post já está gigantesco, mas espero ter explicado todo o conceito de utilizar o Node.JS e o Socket.IO.&lt;/p&gt;
+&lt;br /&gt;
+&lt;p&gt;Apesar de ser um experimento simples, foi extremamente empolgante ter desenvolvido, pois só assim é possível aprender de verdade. Espero que este post ajude você de alguma forma, seja com node.js, socket.io ou express, ou seja para incentivar a desenvolver experimentos, brincar mais, fazer qualquer tipo de coisa que te faça adquirir mais conhecimento sempre, buscar mais informações, e depois, contribuir ensinando.&lt;/p&gt;
+&lt;br /&gt;
+&lt;p&gt;O código está disponível no Github, espero que você vá até lá, de um fork, envie pull requests, reportem bugs e tudo mais que tiver direito.&lt;/p&gt;
+&lt;br /&gt;&lt;a alt='Player.IO' href='http://vagnersantana.com/player.io' target='_blank' title='Player.IO'&gt;
+&lt;button class='btn'&gt;Player.IO&lt;/button&gt;
+&lt;/a&gt;&lt;a alt='Demo no github' href='https://github.com/vagnervjs/player.io' target='_blank' title='Demo no github'&gt;
+&lt;button class='btn'&gt;Github&lt;/button&gt;
+&lt;/a&gt;
+&lt;h3 id='referncias'&gt;Referências&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;→ &lt;a href='http://www.html5rocks.com/en/tutorials/websockets/basics/' target='_blank'&gt;HTML5 Rocks - Introducing WebSockets: Bringing Sockets to the Web&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;→ &lt;a href='http://davidwalsh.name/websocket' target='_blank'&gt;David Walsh - WebSocket and Socket.IO&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;→ &lt;a href='http://imasters.com.br/desenvolvimento/conectando-no-socket-io-avancado/' target='_blank'&gt;iMasters - Conectando no Socket.IO – avançado&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;→ &lt;a href='http://socket.io/#how-to-use' target='_blank'&gt;Socket.IO - How to use&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;→ &lt;a href='http://www.ibm.com/developerworks/br/library/os-nodejs/' target='_blank'&gt;IBM - O que exatamente é o Node.js?&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;→ &lt;a href='http://expressjs.com/api.html' target='_blank'&gt;Express API Reference&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class='fb-like' data-font='verdana' data-href='http://openblog.github.com/2013/03/15/player.io/' data-layout='button_count' data-send='true' data-show-faces='true' data-width='450' /&gt;
+    </content>
+  </entry>
   
   <entry>
     <id>http://loopinfinito.com.br/2013/02/25/html5-web-messaging-api</id>
@@ -98,22 +370,20 @@
 &lt;li&gt;Documento A (http://openblog.github.com/demos/html5_msg_origin)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;  &lt;span class='c1'&gt;//Javascript&lt;/span&gt;
-  &lt;span class='o'&gt;&amp;lt;&lt;/span&gt;&lt;span class='nx'&gt;script&lt;/span&gt;&lt;span class='o'&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class='nb'&gt;window&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;onload&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='kd'&gt;function&lt;/span&gt;&lt;span class='p'&gt;(){&lt;/span&gt;
-      &lt;span class='kd'&gt;var&lt;/span&gt; &lt;span class='nx'&gt;objIframe&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nb'&gt;document&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;getElementsByTagName&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;iframe&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;)[&lt;/span&gt;&lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;];&lt;/span&gt;
-      &lt;span class='kd'&gt;var&lt;/span&gt; &lt;span class='nx'&gt;btnEnviar&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt;  &lt;span class='nb'&gt;document&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;getElementsByTagName&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;button&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;)[&lt;/span&gt;&lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;];&lt;/span&gt;
+  &lt;span class='nb'&gt;window&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;onload&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='kd'&gt;function&lt;/span&gt;&lt;span class='p'&gt;(){&lt;/span&gt;
+    &lt;span class='kd'&gt;var&lt;/span&gt; &lt;span class='nx'&gt;objIframe&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nb'&gt;document&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;getElementsByTagName&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;iframe&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;)[&lt;/span&gt;&lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;];&lt;/span&gt;
+    &lt;span class='kd'&gt;var&lt;/span&gt; &lt;span class='nx'&gt;btnEnviar&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt;  &lt;span class='nb'&gt;document&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;getElementsByTagName&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;button&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;)[&lt;/span&gt;&lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;];&lt;/span&gt;
 
-      &lt;span class='nx'&gt;btnEnviar&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;onclick&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='kd'&gt;function&lt;/span&gt;&lt;span class='p'&gt;(){&lt;/span&gt;
-        &lt;span class='kd'&gt;var&lt;/span&gt; &lt;span class='nx'&gt;textoMsg&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nb'&gt;document&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;getElementsByTagName&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;input&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;)[&lt;/span&gt;&lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;].&lt;/span&gt;&lt;span class='nx'&gt;value&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='nx'&gt;btnEnviar&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;onclick&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='kd'&gt;function&lt;/span&gt;&lt;span class='p'&gt;(){&lt;/span&gt;
+      &lt;span class='kd'&gt;var&lt;/span&gt; &lt;span class='nx'&gt;textoMsg&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nb'&gt;document&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;getElementsByTagName&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;input&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;)[&lt;/span&gt;&lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;].&lt;/span&gt;&lt;span class='nx'&gt;value&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
 
-        &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;textoMsg&lt;/span&gt; &lt;span class='o'&gt;==&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;){&lt;/span&gt;
-          &lt;span class='nx'&gt;alert&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;Digite uma mensagem!&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-        &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='k'&gt;else&lt;/span&gt;&lt;span class='p'&gt;{&lt;/span&gt;
-          &lt;span class='nx'&gt;objIframe&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;contentWindow&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;postMessage&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;textoMsg&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;http://labs.vagnersantana.com&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-        &lt;span class='p'&gt;}&lt;/span&gt;
+      &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;textoMsg&lt;/span&gt; &lt;span class='o'&gt;==&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;){&lt;/span&gt;
+        &lt;span class='nx'&gt;alert&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;Digite uma mensagem!&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+      &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='k'&gt;else&lt;/span&gt;&lt;span class='p'&gt;{&lt;/span&gt;
+        &lt;span class='nx'&gt;objIframe&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;contentWindow&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;postMessage&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;textoMsg&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;http://labs.vagnersantana.com&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
       &lt;span class='p'&gt;}&lt;/span&gt;
     &lt;span class='p'&gt;}&lt;/span&gt;
-  &lt;span class='o'&gt;&amp;lt;&lt;/span&gt;&lt;span class='err'&gt;/script&amp;gt;&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='html'&gt;  &lt;span class='c'&gt;&amp;lt;!-- HTML --&amp;gt;&lt;/span&gt;
   &lt;span class='nt'&gt;&amp;lt;section&amp;gt;&lt;/span&gt;
     &lt;span class='nt'&gt;&amp;lt;p&amp;gt;&lt;/span&gt;
@@ -127,28 +397,26 @@
 &lt;li&gt;Documento B (http://labs.vagnersantana.com/html5_msg_iframe.html)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;  &lt;span class='c1'&gt;//Javascript &lt;/span&gt;
-  &lt;span class='o'&gt;&amp;lt;&lt;/span&gt;&lt;span class='nx'&gt;script&lt;/span&gt;&lt;span class='o'&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nb'&gt;window&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;addEventListener&lt;/span&gt;&lt;span class='p'&gt;){&lt;/span&gt;
-      &lt;span class='nb'&gt;window&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;addEventListener&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;message&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nx'&gt;receberMsg&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kc'&gt;false&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nb'&gt;window&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;addEventListener&lt;/span&gt;&lt;span class='p'&gt;){&lt;/span&gt;
+    &lt;span class='nb'&gt;window&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;addEventListener&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;message&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nx'&gt;receberMsg&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kc'&gt;false&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='k'&gt;else&lt;/span&gt;&lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='nb'&gt;window&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;attachEvent&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;onmessage&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nx'&gt;receberMsg&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+  &lt;span class='p'&gt;};&lt;/span&gt;
+
+  &lt;span class='kd'&gt;function&lt;/span&gt; &lt;span class='nx'&gt;receberMsg&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;e&lt;/span&gt;&lt;span class='p'&gt;){&lt;/span&gt;
+    &lt;span class='kd'&gt;var&lt;/span&gt; &lt;span class='nx'&gt;msg&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='kd'&gt;var&lt;/span&gt; &lt;span class='nx'&gt;containerMsg&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nb'&gt;document&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;getElementById&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;recebe-msg&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+
+    &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;e&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;origin&lt;/span&gt; &lt;span class='o'&gt;==&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;http://openblog.github.com&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;){&lt;/span&gt;
+      &lt;span class='nx'&gt;msg&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;Mensagem recebida: &amp;lt;br&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+      &lt;span class='nx'&gt;msg&lt;/span&gt; &lt;span class='o'&gt;+=&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;Msg: &amp;#39;&lt;/span&gt; &lt;span class='o'&gt;+&lt;/span&gt; &lt;span class='nx'&gt;e&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;data&lt;/span&gt; &lt;span class='o'&gt;+&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;&amp;lt;br&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+      &lt;span class='nx'&gt;msg&lt;/span&gt; &lt;span class='o'&gt;+=&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;Origem: &amp;#39;&lt;/span&gt; &lt;span class='o'&gt;+&lt;/span&gt; &lt;span class='nx'&gt;e&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;origin&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+
+      &lt;span class='nx'&gt;containerMsg&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;innerHTML&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nx'&gt;msg&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
     &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='k'&gt;else&lt;/span&gt;&lt;span class='p'&gt;{&lt;/span&gt;
-      &lt;span class='nb'&gt;window&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;attachEvent&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;onmessage&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nx'&gt;receberMsg&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-    &lt;span class='p'&gt;};&lt;/span&gt;
-
-    &lt;span class='kd'&gt;function&lt;/span&gt; &lt;span class='nx'&gt;receberMsg&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;e&lt;/span&gt;&lt;span class='p'&gt;){&lt;/span&gt;
-      &lt;span class='kd'&gt;var&lt;/span&gt; &lt;span class='nx'&gt;msg&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-      &lt;span class='kd'&gt;var&lt;/span&gt; &lt;span class='nx'&gt;containerMsg&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nb'&gt;document&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;getElementById&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;recebe-msg&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-
-      &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;e&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;origin&lt;/span&gt; &lt;span class='o'&gt;==&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;http://openblog.github.com&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;){&lt;/span&gt;
-        &lt;span class='nx'&gt;msg&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;Mensagem recebida: &amp;lt;br&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-        &lt;span class='nx'&gt;msg&lt;/span&gt; &lt;span class='o'&gt;+=&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;Msg: &amp;#39;&lt;/span&gt; &lt;span class='o'&gt;+&lt;/span&gt; &lt;span class='nx'&gt;e&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;data&lt;/span&gt; &lt;span class='o'&gt;+&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;&amp;lt;br&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-        &lt;span class='nx'&gt;msg&lt;/span&gt; &lt;span class='o'&gt;+=&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;Origem: &amp;#39;&lt;/span&gt; &lt;span class='o'&gt;+&lt;/span&gt; &lt;span class='nx'&gt;e&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;origin&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-
-        &lt;span class='nx'&gt;containerMsg&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;innerHTML&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nx'&gt;msg&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-      &lt;span class='p'&gt;}&lt;/span&gt; &lt;span class='k'&gt;else&lt;/span&gt;&lt;span class='p'&gt;{&lt;/span&gt;
-        &lt;span class='nx'&gt;containerMsg&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;innerHTML&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;Origem não autorizada!&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-      &lt;span class='p'&gt;}&lt;/span&gt;
+      &lt;span class='nx'&gt;containerMsg&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;innerHTML&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;Origem não autorizada!&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
     &lt;span class='p'&gt;}&lt;/span&gt;
-  &lt;span class='o'&gt;&amp;lt;&lt;/span&gt;&lt;span class='err'&gt;/script&amp;gt;&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='html'&gt;  //HTML
   &lt;span class='nt'&gt;&amp;lt;p&lt;/span&gt; &lt;span class='na'&gt;id=&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;recebe-msg&amp;quot;&lt;/span&gt;&lt;span class='nt'&gt;&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -167,7 +435,7 @@
     &lt;li&gt;→&lt;a alt='Livro HTML5 do Maujor' href='http://livrohtml5.com.br/' title='Livro HTML5 do Maujor'&gt;Livro HTML5 do Maujor, Capítulo 9&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;→&lt;a alt='W3C Working Draft: HTML5 Web Messaging' href='http://www.w3.org/TR/2010/WD-webmessaging-20101118/' title='W3C Working Draft: HTML5 Web Messaging'&gt;W3C Working Draft: HTML5 Web Messaging&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;→&lt;a alt='Damon Oehlman: Talk HTML5 Messaging' href='https://github.com/DamonOehlman/talk-html5-messaging' title='Damon Oehlman: Talk HTML5 Messaging'&gt;Damon Oehlman: Talk HTML5 Messaging&lt;/a&gt;&lt;/li&gt;
-  &lt;/ul&gt;
+  &lt;/ul&gt;&lt;div class='fb-like' data-font='verdana' data-href='http://openblog.github.com/2013/02/25/html5-web-messaging-api/' data-layout='button_count' data-send='true' data-show-faces='true' data-width='450' /&gt;
     </content>
   </entry>
   

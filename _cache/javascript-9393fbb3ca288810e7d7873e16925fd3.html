@@ -1,0 +1,11 @@
+<div class="highlight"><pre><span class="c1">// File: client.js</span>
+
+<span class="c1">// selecionando a tag &lt;video&gt; do arquivo index.html</span>
+<span class="kd">var</span> <span class="nx">media</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;player&quot;</span><span class="p">);</span>
+
+<span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;play&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">action</span> <span class="o">==</span> <span class="s1">&#39;volup&#39;</span><span class="p">){</span>
+        <span class="nx">media</span><span class="p">.</span><span class="nx">volume</span> <span class="o">+=</span> <span class="mf">0.1</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>

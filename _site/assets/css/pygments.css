@@ -88,7 +88,7 @@
 }
 /* line 8, ../sass/pygments.scss */
 .highlight .k {
-  color: #8ac6f2;
+  color: #4ec1cd;
 }
 /* line 9, ../sass/pygments.scss */
 .highlight .l {
@@ -100,7 +100,7 @@
 }
 /* line 11, ../sass/pygments.scss */
 .highlight .o {
-  color: #f6f3e8;
+  color: #d30062;
 }
 /* line 12, ../sass/pygments.scss */
 .highlight .x {
@@ -171,23 +171,23 @@
 }
 /* line 28, ../sass/pygments.scss */
 .highlight .kc {
-  color: #8ac6f2;
+  color: #9667de;
 }
 /* line 29, ../sass/pygments.scss */
 .highlight .kd {
-  color: #8ac6f2;
+  color: #4ec1cd;
 }
 /* line 30, ../sass/pygments.scss */
 .highlight .kn {
-  color: #8ac6f2;
+  color: #4ec1cd;
 }
 /* line 31, ../sass/pygments.scss */
 .highlight .kp {
-  color: #8ac6f2;
+  color: #4ec1cd;
 }
 /* line 32, ../sass/pygments.scss */
 .highlight .kr {
-  color: #8ac6f2;
+  color: #4ec1cd;
 }
 /* line 33, ../sass/pygments.scss */
 .highlight .kt {
@@ -203,15 +203,15 @@
 }
 /* line 36, ../sass/pygments.scss */
 .highlight .s {
-  color: #95e454;
+  color: #e5e080;
 }
 /* line 37, ../sass/pygments.scss */
 .highlight .na {
-  color: #cae682;
+  color: #95e454;
 }
 /* line 38, ../sass/pygments.scss */
 .highlight .nb {
-  color: #8AC6F2;
+  color: #4ec1cd;
 }
 /* line 39, ../sass/pygments.scss */
 .highlight .nc {
@@ -255,7 +255,7 @@
 }
 /* line 49, ../sass/pygments.scss */
 .highlight .nt {
-  color: #8ac6f2;
+  color: #d30062;
 }
 /* line 50, ../sass/pygments.scss */
 .highlight .nv {
@@ -279,7 +279,7 @@
 }
 /* line 55, ../sass/pygments.scss */
 .highlight .mi {
-  color: #e5786d;
+  color: #9667de;
 }
 /* line 56, ../sass/pygments.scss */
 .highlight .mo {
@@ -323,7 +323,7 @@
 }
 /* line 66, ../sass/pygments.scss */
 .highlight .s1 {
-  color: #95e454;
+  color: #e5e080;
 }
 /* line 67, ../sass/pygments.scss */
 .highlight .ss {

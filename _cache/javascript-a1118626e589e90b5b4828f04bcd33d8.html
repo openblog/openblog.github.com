@@ -1,0 +1,26 @@
+<div class="highlight"><pre><span class="c1">// File app.js</span>
+
+<span class="c1">// solicitando dependência do express</span>
+<span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;express&quot;</span><span class="p">);</span>
+
+<span class="c1">// criando uma aplicação express</span>
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+
+<span class="c1">// definindo engine para as views</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;view engine&#39;</span><span class="p">,</span> <span class="s1">&#39;jade&#39;</span><span class="p">);</span>
+
+<span class="c1">// ao receber uma requisição com o valor /mb/:id</span>
+<span class="c1">// onde :id é uma string </span>
+<span class="c1">// chama uma função callback</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/mb/:id&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// armazenando valor do parâmetro id</span>
+    <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+    <span class="c1">// imprimindo</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;ID Mb: &quot;</span> <span class="o">+</span> <span class="nx">id</span><span class="p">);</span>
+    <span class="c1">// chama uma a view (arquivo jade), passando algumas variáveis (id e title)</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;mobile.jade&#39;</span><span class="p">,</span> <span class="p">{</span><span class="nx">id</span><span class="o">:</span><span class="nx">id</span><span class="p">,</span> <span class="nx">title</span><span class="o">:</span><span class="s1">&#39;Player.IO | Control&#39;</span><span class="p">});</span>
+<span class="p">});</span>
+
+<span class="c1">// a aplicação express fica escutando na porta 8000</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8000</span><span class="p">);</span>
+</pre></div>

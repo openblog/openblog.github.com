@@ -1,0 +1,11 @@
+<div class="highlight"><pre><span class="c1">// File: client.js</span>
+
+<span class="c1">// Definindo id para a conexão</span>
+<span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">randomId</span><span class="p">();</span>
+
+<span class="c1">// Conectando ao socket utilizando host e porta definida em app.js</span>
+<span class="kd">var</span> <span class="nx">socket</span> <span class="o">=</span> <span class="nx">io</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">&#39;http://localhost:8080&#39;</span><span class="p">);</span>
+
+<span class="c1">// Emitindo evento para o servidor e passando o id como parâmetro</span>
+<span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;setId&#39;</span><span class="p">,</span> <span class="nx">id</span><span class="p">);</span>
+</pre></div>

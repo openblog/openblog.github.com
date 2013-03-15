@@ -23,10 +23,10 @@
 	<meta name="resource-type" content="document" />
 
 	<link rel="icon" type="image/png" href="/assets/img/favicon.png" />
-    <link href="/assets/css/style.css?2013-03-08" media="screen, projection" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/style.css?2013-03-15" media="screen, projection" rel="stylesheet" type="text/css" />
 
     <!--[if IE]>
-    	<link href="/assets/css/ie.css?2013-03-08" media="screen, projection" rel="stylesheet" type="text/css" />
+    	<link href="/assets/css/ie.css?2013-03-15" media="screen, projection" rel="stylesheet" type="text/css" />
   	<![endif]-->
 	<link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
 
@@ -45,6 +45,14 @@
 </head>
 
 <body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=320707991385542";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 	<div id="wrapper">
 		
@@ -199,22 +207,20 @@
 <li>Documento A (http://openblog.github.com/demos/html5_msg_origin)</li>
 </ul>
 <div class='highlight'><pre><code class='javascript'>  <span class='c1'>//Javascript</span>
-  <span class='o'>&lt;</span><span class='nx'>script</span><span class='o'>&gt;</span>
-    <span class='nb'>window</span><span class='p'>.</span><span class='nx'>onload</span> <span class='o'>=</span> <span class='kd'>function</span><span class='p'>(){</span>
-      <span class='kd'>var</span> <span class='nx'>objIframe</span> <span class='o'>=</span> <span class='nb'>document</span><span class='p'>.</span><span class='nx'>getElementsByTagName</span><span class='p'>(</span><span class='s1'>&#39;iframe&#39;</span><span class='p'>)[</span><span class='mi'>0</span><span class='p'>];</span>
-      <span class='kd'>var</span> <span class='nx'>btnEnviar</span> <span class='o'>=</span>  <span class='nb'>document</span><span class='p'>.</span><span class='nx'>getElementsByTagName</span><span class='p'>(</span><span class='s1'>&#39;button&#39;</span><span class='p'>)[</span><span class='mi'>0</span><span class='p'>];</span>
+  <span class='nb'>window</span><span class='p'>.</span><span class='nx'>onload</span> <span class='o'>=</span> <span class='kd'>function</span><span class='p'>(){</span>
+    <span class='kd'>var</span> <span class='nx'>objIframe</span> <span class='o'>=</span> <span class='nb'>document</span><span class='p'>.</span><span class='nx'>getElementsByTagName</span><span class='p'>(</span><span class='s1'>&#39;iframe&#39;</span><span class='p'>)[</span><span class='mi'>0</span><span class='p'>];</span>
+    <span class='kd'>var</span> <span class='nx'>btnEnviar</span> <span class='o'>=</span>  <span class='nb'>document</span><span class='p'>.</span><span class='nx'>getElementsByTagName</span><span class='p'>(</span><span class='s1'>&#39;button&#39;</span><span class='p'>)[</span><span class='mi'>0</span><span class='p'>];</span>
 
-      <span class='nx'>btnEnviar</span><span class='p'>.</span><span class='nx'>onclick</span> <span class='o'>=</span> <span class='kd'>function</span><span class='p'>(){</span>
-        <span class='kd'>var</span> <span class='nx'>textoMsg</span> <span class='o'>=</span> <span class='nb'>document</span><span class='p'>.</span><span class='nx'>getElementsByTagName</span><span class='p'>(</span><span class='s1'>&#39;input&#39;</span><span class='p'>)[</span><span class='mi'>0</span><span class='p'>].</span><span class='nx'>value</span><span class='p'>;</span>
+    <span class='nx'>btnEnviar</span><span class='p'>.</span><span class='nx'>onclick</span> <span class='o'>=</span> <span class='kd'>function</span><span class='p'>(){</span>
+      <span class='kd'>var</span> <span class='nx'>textoMsg</span> <span class='o'>=</span> <span class='nb'>document</span><span class='p'>.</span><span class='nx'>getElementsByTagName</span><span class='p'>(</span><span class='s1'>&#39;input&#39;</span><span class='p'>)[</span><span class='mi'>0</span><span class='p'>].</span><span class='nx'>value</span><span class='p'>;</span>
 
-        <span class='k'>if</span><span class='p'>(</span><span class='nx'>textoMsg</span> <span class='o'>==</span> <span class='s1'>&#39;&#39;</span><span class='p'>){</span>
-          <span class='nx'>alert</span><span class='p'>(</span><span class='s1'>&#39;Digite uma mensagem!&#39;</span><span class='p'>);</span>
-        <span class='p'>}</span> <span class='k'>else</span><span class='p'>{</span>
-          <span class='nx'>objIframe</span><span class='p'>.</span><span class='nx'>contentWindow</span><span class='p'>.</span><span class='nx'>postMessage</span><span class='p'>(</span><span class='nx'>textoMsg</span><span class='p'>,</span> <span class='s1'>&#39;http://labs.vagnersantana.com&#39;</span><span class='p'>);</span>
-        <span class='p'>}</span>
+      <span class='k'>if</span><span class='p'>(</span><span class='nx'>textoMsg</span> <span class='o'>==</span> <span class='s1'>&#39;&#39;</span><span class='p'>){</span>
+        <span class='nx'>alert</span><span class='p'>(</span><span class='s1'>&#39;Digite uma mensagem!&#39;</span><span class='p'>);</span>
+      <span class='p'>}</span> <span class='k'>else</span><span class='p'>{</span>
+        <span class='nx'>objIframe</span><span class='p'>.</span><span class='nx'>contentWindow</span><span class='p'>.</span><span class='nx'>postMessage</span><span class='p'>(</span><span class='nx'>textoMsg</span><span class='p'>,</span> <span class='s1'>&#39;http://labs.vagnersantana.com&#39;</span><span class='p'>);</span>
       <span class='p'>}</span>
     <span class='p'>}</span>
-  <span class='o'>&lt;</span><span class='err'>/script&gt;</span>
+  <span class='p'>}</span>
 </code></pre></div><div class='highlight'><pre><code class='html'>  <span class='c'>&lt;!-- HTML --&gt;</span>
   <span class='nt'>&lt;section&gt;</span>
     <span class='nt'>&lt;p&gt;</span>
@@ -228,28 +234,26 @@
 <li>Documento B (http://labs.vagnersantana.com/html5_msg_iframe.html)</li>
 </ul>
 <div class='highlight'><pre><code class='javascript'>  <span class='c1'>//Javascript </span>
-  <span class='o'>&lt;</span><span class='nx'>script</span><span class='o'>&gt;</span>
-    <span class='k'>if</span><span class='p'>(</span><span class='nb'>window</span><span class='p'>.</span><span class='nx'>addEventListener</span><span class='p'>){</span>
-      <span class='nb'>window</span><span class='p'>.</span><span class='nx'>addEventListener</span><span class='p'>(</span><span class='s1'>&#39;message&#39;</span><span class='p'>,</span> <span class='nx'>receberMsg</span><span class='p'>,</span> <span class='kc'>false</span><span class='p'>);</span>
+  <span class='k'>if</span><span class='p'>(</span><span class='nb'>window</span><span class='p'>.</span><span class='nx'>addEventListener</span><span class='p'>){</span>
+    <span class='nb'>window</span><span class='p'>.</span><span class='nx'>addEventListener</span><span class='p'>(</span><span class='s1'>&#39;message&#39;</span><span class='p'>,</span> <span class='nx'>receberMsg</span><span class='p'>,</span> <span class='kc'>false</span><span class='p'>);</span>
+  <span class='p'>}</span> <span class='k'>else</span><span class='p'>{</span>
+    <span class='nb'>window</span><span class='p'>.</span><span class='nx'>attachEvent</span><span class='p'>(</span><span class='s2'>&quot;onmessage&quot;</span><span class='p'>,</span> <span class='nx'>receberMsg</span><span class='p'>);</span>
+  <span class='p'>};</span>
+
+  <span class='kd'>function</span> <span class='nx'>receberMsg</span><span class='p'>(</span><span class='nx'>e</span><span class='p'>){</span>
+    <span class='kd'>var</span> <span class='nx'>msg</span><span class='p'>;</span>
+    <span class='kd'>var</span> <span class='nx'>containerMsg</span> <span class='o'>=</span> <span class='nb'>document</span><span class='p'>.</span><span class='nx'>getElementById</span><span class='p'>(</span><span class='s1'>&#39;recebe-msg&#39;</span><span class='p'>);</span>
+
+    <span class='k'>if</span><span class='p'>(</span><span class='nx'>e</span><span class='p'>.</span><span class='nx'>origin</span> <span class='o'>==</span> <span class='s1'>&#39;http://openblog.github.com&#39;</span><span class='p'>){</span>
+      <span class='nx'>msg</span> <span class='o'>=</span> <span class='s1'>&#39;Mensagem recebida: &lt;br&gt;&#39;</span><span class='p'>;</span>
+      <span class='nx'>msg</span> <span class='o'>+=</span> <span class='s1'>&#39;Msg: &#39;</span> <span class='o'>+</span> <span class='nx'>e</span><span class='p'>.</span><span class='nx'>data</span> <span class='o'>+</span> <span class='s1'>&#39;&lt;br&gt;&#39;</span><span class='p'>;</span>
+      <span class='nx'>msg</span> <span class='o'>+=</span> <span class='s1'>&#39;Origem: &#39;</span> <span class='o'>+</span> <span class='nx'>e</span><span class='p'>.</span><span class='nx'>origin</span><span class='p'>;</span>
+
+      <span class='nx'>containerMsg</span><span class='p'>.</span><span class='nx'>innerHTML</span> <span class='o'>=</span> <span class='nx'>msg</span><span class='p'>;</span>
     <span class='p'>}</span> <span class='k'>else</span><span class='p'>{</span>
-      <span class='nb'>window</span><span class='p'>.</span><span class='nx'>attachEvent</span><span class='p'>(</span><span class='s2'>&quot;onmessage&quot;</span><span class='p'>,</span> <span class='nx'>receberMsg</span><span class='p'>);</span>
-    <span class='p'>};</span>
-
-    <span class='kd'>function</span> <span class='nx'>receberMsg</span><span class='p'>(</span><span class='nx'>e</span><span class='p'>){</span>
-      <span class='kd'>var</span> <span class='nx'>msg</span><span class='p'>;</span>
-      <span class='kd'>var</span> <span class='nx'>containerMsg</span> <span class='o'>=</span> <span class='nb'>document</span><span class='p'>.</span><span class='nx'>getElementById</span><span class='p'>(</span><span class='s1'>&#39;recebe-msg&#39;</span><span class='p'>);</span>
-
-      <span class='k'>if</span><span class='p'>(</span><span class='nx'>e</span><span class='p'>.</span><span class='nx'>origin</span> <span class='o'>==</span> <span class='s1'>&#39;http://openblog.github.com&#39;</span><span class='p'>){</span>
-        <span class='nx'>msg</span> <span class='o'>=</span> <span class='s1'>&#39;Mensagem recebida: &lt;br&gt;&#39;</span><span class='p'>;</span>
-        <span class='nx'>msg</span> <span class='o'>+=</span> <span class='s1'>&#39;Msg: &#39;</span> <span class='o'>+</span> <span class='nx'>e</span><span class='p'>.</span><span class='nx'>data</span> <span class='o'>+</span> <span class='s1'>&#39;&lt;br&gt;&#39;</span><span class='p'>;</span>
-        <span class='nx'>msg</span> <span class='o'>+=</span> <span class='s1'>&#39;Origem: &#39;</span> <span class='o'>+</span> <span class='nx'>e</span><span class='p'>.</span><span class='nx'>origin</span><span class='p'>;</span>
-
-        <span class='nx'>containerMsg</span><span class='p'>.</span><span class='nx'>innerHTML</span> <span class='o'>=</span> <span class='nx'>msg</span><span class='p'>;</span>
-      <span class='p'>}</span> <span class='k'>else</span><span class='p'>{</span>
-        <span class='nx'>containerMsg</span><span class='p'>.</span><span class='nx'>innerHTML</span> <span class='o'>=</span> <span class='s1'>&#39;Origem não autorizada!&#39;</span><span class='p'>;</span>
-      <span class='p'>}</span>
+      <span class='nx'>containerMsg</span><span class='p'>.</span><span class='nx'>innerHTML</span> <span class='o'>=</span> <span class='s1'>&#39;Origem não autorizada!&#39;</span><span class='p'>;</span>
     <span class='p'>}</span>
-  <span class='o'>&lt;</span><span class='err'>/script&gt;</span>
+  <span class='p'>}</span>
 </code></pre></div><div class='highlight'><pre><code class='html'>  //HTML
   <span class='nt'>&lt;p</span> <span class='na'>id=</span><span class='s'>&quot;recebe-msg&quot;</span><span class='nt'>&gt;&lt;/p&gt;</span>
 </code></pre></div>
@@ -268,8 +272,26 @@
     <li>→<a alt='Livro HTML5 do Maujor' href='http://livrohtml5.com.br/' title='Livro HTML5 do Maujor'>Livro HTML5 do Maujor, Capítulo 9</a></li>
     <li>→<a alt='W3C Working Draft: HTML5 Web Messaging' href='http://www.w3.org/TR/2010/WD-webmessaging-20101118/' title='W3C Working Draft: HTML5 Web Messaging'>W3C Working Draft: HTML5 Web Messaging</a></li>
     <li>→<a alt='Damon Oehlman: Talk HTML5 Messaging' href='https://github.com/DamonOehlman/talk-html5-messaging' title='Damon Oehlman: Talk HTML5 Messaging'>Damon Oehlman: Talk HTML5 Messaging</a></li>
-  </ul>
+  </ul><div class='fb-like' data-font='verdana' data-href='http://openblog.github.com/2013/02/25/html5-web-messaging-api/' data-layout='button_count' data-send='true' data-show-faces='true' data-width='450' />
+						
+						<br>
+						<!-- Tweet Button -->
+						<a href="https://twitter.com/share" class="twitter-share-button" data-lang="pt">Tweetar</a>
+						<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+						<!-- +1 Button -->
+						<div class="g-plusone"></div>
+						<script type="text/javascript">
+						  window.___gcfg = {lang: 'pt-BR'};
+
+						  (function() {
+						    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+						    po.src = 'https://apis.google.com/js/plusone.js';
+						    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+						  })();
+						</script>
 					</section>
+
 					
 					<footer id="disqus_thread">
 						<noscript>Por favor, habilite JavaScript para ver os comentários. <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
