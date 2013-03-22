@@ -3,7 +3,7 @@
   <id>http://openblog.github.com/</id>
   <title>Open Blog</title>
   <icon>http://openblog.github.com/img/favicon.png</icon>
-  <updated>2013-03-22T10:37:43-03:00</updated>
+  <updated>2013-03-22T11:14:43-03:00</updated>
   <link rel="self" href="http://openblog.github.com/feed/index.xml" />
   <link href="http://openblog.github.com/" />
   
@@ -21,15 +21,15 @@
       
       &lt;p&gt;&lt;img itemprop=&quot;thumbnailUrl&quot; src=&quot;http://openblog.github.com/img/posts/2013-03-22-grunt.png&quot; alt=&quot;Grunt: você deveria estar usando!&quot; title=&quot;Grunt: você deveria estar usando!&quot; width=&quot;700&quot; height=&quot;432&quot; /&gt;&lt;/p&gt;
       
-      &lt;p&gt;Todo programador é preguiçoso, e isso é fato, pois sempre estamos procurando ferramentas que automatizem o trabalho para nós. Mas isso nescessáriamente não é algo ruim, pelo contrário, automatizar tarefas implica em ganho de produção e isso é ótimo. O que não podemos deixar acontecer é a não realização de tarefas primordiais para que uma aplicação tenha qualidade.&lt;/p&gt;
+      &lt;p&gt;Todo programador é preguiçoso, e isso é fato, pois sempre estamos procurando ferramentas que automatizem o trabalho para nós. Mas isso necessariamente não é algo ruim, pelo contrário, automatizar tarefas implica em ganho de produção e isso é ótimo. O que não podemos deixar acontecer é a não realização de tarefas primordiais para que uma aplicação tenha qualidade.&lt;/p&gt;
 
-&lt;p&gt;Minificação e concatenação de arquivos por exemplo são tarefas básicas e você não deve deixar isso de lado, mas fazer isso usando um plugin no editor (que seja o Sublime Text) ou um site, copiar o código minificado, colar em um novo arquivo renameado com .min no final e por fim salvar, e toda vez que alterar o código ter que repetir essa operação é um saco.&lt;/p&gt;
+&lt;p&gt;Minificação e concatenação de arquivos por exemplo são tarefas básicas e você não deve deixar isso de lado, mas fazer isso usando um plugin no editor (que seja o Sublime Text) ou um site, copiar o código minificado, colar em um novo arquivo renomeado com .min no final e por fim salvar, e toda vez que alterar o código ter que repetir essa operação é um saco.&lt;/p&gt;
 
-&lt;p&gt;E o deploy ? Se você utiliza FTP sabe o quão lento é fazer upload de arquivos, pricipalmente se forem muitos, e o pior de tudo, ele abre e fecha uma conexão para cada arquivo, é um sofrimento. E se você esquece de enviar um arquivo que alterou ? Melhor nem pensar&amp;#8230;&lt;/p&gt;
+&lt;p&gt;E o deploy ? Se você utiliza FTP sabe o quão lento é fazer upload de arquivos, principalmente se forem muitos, e o pior de tudo, ele abre e fecha uma conexão para cada arquivo, é um sofrimento. E se você esquece de enviar um arquivo que alterou ? Melhor nem pensar&amp;#8230;&lt;/p&gt;
 
 &lt;h2 id='o_que__o_grunt'&gt;O que é o Grunt?&lt;/h2&gt;
 
-&lt;p&gt;Foi pensando nessas e várias outras atividades que o Ben Alman, conhecido como &lt;a href='https://twitter.com//cowboy' target='_blank'&gt;Cowboy&lt;/a&gt; criou essa ferramenta íncrivel. O Grunt é uma aplicação de linha de comando que tem como objetivo automatizar tarefas, principalmente tarefas em aplicações JavaScript. Essas tarefas são como as descritas acima. E como isso é feito? Escrevendo as tarefas em JavaScript e rodando no Node.JS. &lt;br /&gt; Link oficial: &lt;a href='http://gruntjs.com' target='_blank'&gt;http://gruntjs.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Foi pensando nessas e várias outras atividades que o Ben Alman, conhecido como &lt;a href='https://twitter.com//cowboy' target='_blank'&gt;Cowboy&lt;/a&gt; criou essa ferramenta incrível. O Grunt é uma aplicação de linha de comando que tem como objetivo automatizar tarefas, principalmente tarefas em aplicações JavaScript. Essas tarefas são como as descritas acima. E como isso é feito? Escrevendo as tarefas em JavaScript e rodando no Node.JS. &lt;br /&gt; Link oficial: &lt;a href='http://gruntjs.com' target='_blank'&gt;http://gruntjs.com&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id='ok_quero_usar'&gt;Ok, quero usar!&lt;/h2&gt;
 
@@ -43,11 +43,11 @@
 &lt;p&gt;Agora para instalar:&lt;/p&gt;
 &lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='bash'&gt;  sudo npm install -g grunt-cli
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Isso irá deixar disponível o comando &lt;code&gt;grunt&lt;/code&gt; em seu terminal. Perceba que instalamos o &lt;code&gt;grunt-cli&lt;/code&gt; e não o &lt;code&gt;grunt&lt;/code&gt; em si, a tarefa do grunt-cli é rodar qualquer versão do grunt, isso permite que você tenha diversas versões do grunt disponíveis em diferentes projetos, e você poderá rodar (inclusive simultaneamente) em sua máquina sem ter problemas.&lt;/p&gt;
+&lt;p&gt;Isso irá deixar disponível o comando &lt;code&gt;grunt&lt;/code&gt; em seu terminal. Perceba que instalamos o &lt;code&gt;grunt-cli&lt;/code&gt; e não o &lt;code&gt;grunt&lt;/code&gt; em si, a tarefa do grunt-cli é rodar qualquer versão do grunt, isso permite que você tenha diversas versões do grunt disponíveis em diferentes projetos, e você poderá rodar (inclusive simultâneamente) em sua máquina sem ter problemas.&lt;/p&gt;
 
 &lt;h2 id='mas_como_ele_funciona_'&gt;Mas como ele funciona ?&lt;/h2&gt;
 
-&lt;p&gt;Para utilizar o Grunt em um projeto, é nescessário que exista dois arquivos: o &lt;code&gt;Gruntfile.js&lt;/code&gt; e o &lt;code&gt;package.json&lt;/code&gt;. Eles devem estar na raiz (diretório principal, root) do projeto. Vou falar sobre esses arquivos logo mais. &lt;br /&gt; Se você estiver trabalhando em um projeto que já utiliza o Grunt (isto é, exista os arquivos Gruntfile.js e package.json), para rodar é simples.&lt;/p&gt;
+&lt;p&gt;Para utilizar o Grunt em um projeto, é necessário que exista dois arquivos: o &lt;code&gt;Gruntfile.js&lt;/code&gt; e o &lt;code&gt;package.json&lt;/code&gt;. Eles devem estar na raiz (diretório principal, root) do projeto. Vou falar sobre esses arquivos logo mais. &lt;br /&gt; Se você estiver trabalhando em um projeto que já utiliza o Grunt (isto é, exista os arquivos Gruntfile.js e package.json), para rodar é simples.&lt;/p&gt;
 &lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='bash'&gt;  // Acesse a pasta &lt;span class='k'&gt;do &lt;/span&gt;projeto
   &lt;span class='nb'&gt;cd &lt;/span&gt;project-folder
 
@@ -145,7 +145,7 @@
 
 &lt;h3 id='e_o_deploy'&gt;E o deploy?&lt;/h3&gt;
 
-&lt;p&gt;É, eu disse lá no ínicio que é possível até fazer deploy com o Grunt, e sim, isso é perfeitamente possível. Agora que você já viu como ele funciona vou falar sobre esse plugin em específico.&lt;/p&gt;
+&lt;p&gt;É, eu disse lá no início que é possível até fazer deploy com o Grunt, e sim, isso é perfeitamente possível. Agora que você já viu como ele funciona vou falar sobre esse plugin em específico.&lt;/p&gt;
 
 &lt;p&gt;Para deploy estou utilizando o &lt;code&gt;grunt-rsync&lt;/code&gt;. Esse plugin cria uma tarefa de sincronização, tanto local como para um servidor remoto, usando o &lt;code&gt;rsync&lt;/code&gt; que já vem presente em sistemas operacionais &amp;#8220;unix like&amp;#8221;. O rsync é excelente pois mantém o diretório remoto sempre em sincronia com o diretório base, e só envia os arquivos que foram alterados, além de não enviar os arquivos um-a-um como faz o FTP. Outro ponto positivo é que ele utiliza SSH, portanto se você tiver uma chave publica adicionada as chaves autorizadas no servidor, você executa o deploy direto do Grunt e sem digitar senha.&lt;/p&gt;
 
@@ -178,7 +178,7 @@
 
 &lt;h2 id='grunt_boilerplate'&gt;Grunt Boilerplate&lt;/h2&gt;
 
-&lt;p&gt;Depois que comecei a utilizar o Grunt, percebi que sempre iria executar tarefas em comum para vários projetos, e isso me fez criar um padrão do Grunt com tudo que preciso em comum, e caso algum projeto nescessitar de outras tarefas, é só ir lá e adicionar. Nesse boilerplate defini (por enquanto): min, cssmin e rsync. Não adicionei o JSHint pois utilizo direto no Sublime. Dessa forma com esse boilerplate pronto, para iniciar um projeto eu apaenas clono o projeto grunt-boilerplate, mudo o nome da pasta, configuro o package.json, altero os caminhos e nomes de arquivos de acordo com o projeto, e pronto, é lindo =D&lt;/p&gt;
+&lt;p&gt;Depois que comecei a utilizar o Grunt, percebi que sempre iria executar tarefas em comum para vários projetos, e isso me fez criar um padrão do Grunt com tudo que preciso em comum, e caso algum projeto necessitar de outras tarefas, é só ir lá e adicionar. Nesse boilerplate defini (por enquanto): min, cssmin e rsync. Não adicionei o JSHint pois utilizo direto no Sublime. Dessa forma com esse boilerplate pronto, para iniciar um projeto eu apenas clono o projeto grunt-boilerplate, mudo o nome da pasta, configuro o package.json, altero os caminhos e nomes de arquivos de acordo com o projeto, e pronto, é lindo =D&lt;/p&gt;
 &lt;br /&gt;
 &lt;p&gt;Ficou com vontade de utilizar também? É só ir lá repositório no meu github, clonar o projeto e alterar para suas necessidades. Sá basta ter o grunt-cli e o node instalados para tudo funcionar.&lt;/p&gt;
 &lt;br /&gt;&lt;a alt='Demo no github' href='https://github.com/vagnervjs/grunt-boilerplate' target='_blank' title='Github'&gt;

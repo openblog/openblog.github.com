@@ -134,15 +134,15 @@
 							<img itemprop="thumbnailUrl" src="/img/posts/2013-03-22-grunt.png" class="post-image" alt="Grunt: você deveria estar usando!" title="Grunt: você deveria estar usando!" width="700" height="432" />
 						</figure>
 						
-						<p>Todo programador é preguiçoso, e isso é fato, pois sempre estamos procurando ferramentas que automatizem o trabalho para nós. Mas isso nescessáriamente não é algo ruim, pelo contrário, automatizar tarefas implica em ganho de produção e isso é ótimo. O que não podemos deixar acontecer é a não realização de tarefas primordiais para que uma aplicação tenha qualidade.</p>
+						<p>Todo programador é preguiçoso, e isso é fato, pois sempre estamos procurando ferramentas que automatizem o trabalho para nós. Mas isso necessariamente não é algo ruim, pelo contrário, automatizar tarefas implica em ganho de produção e isso é ótimo. O que não podemos deixar acontecer é a não realização de tarefas primordiais para que uma aplicação tenha qualidade.</p>
 
-<p>Minificação e concatenação de arquivos por exemplo são tarefas básicas e você não deve deixar isso de lado, mas fazer isso usando um plugin no editor (que seja o Sublime Text) ou um site, copiar o código minificado, colar em um novo arquivo renameado com .min no final e por fim salvar, e toda vez que alterar o código ter que repetir essa operação é um saco.</p>
+<p>Minificação e concatenação de arquivos por exemplo são tarefas básicas e você não deve deixar isso de lado, mas fazer isso usando um plugin no editor (que seja o Sublime Text) ou um site, copiar o código minificado, colar em um novo arquivo renomeado com .min no final e por fim salvar, e toda vez que alterar o código ter que repetir essa operação é um saco.</p>
 
-<p>E o deploy ? Se você utiliza FTP sabe o quão lento é fazer upload de arquivos, pricipalmente se forem muitos, e o pior de tudo, ele abre e fecha uma conexão para cada arquivo, é um sofrimento. E se você esquece de enviar um arquivo que alterou ? Melhor nem pensar&#8230;</p>
+<p>E o deploy ? Se você utiliza FTP sabe o quão lento é fazer upload de arquivos, principalmente se forem muitos, e o pior de tudo, ele abre e fecha uma conexão para cada arquivo, é um sofrimento. E se você esquece de enviar um arquivo que alterou ? Melhor nem pensar&#8230;</p>
 
 <h2 id='o_que__o_grunt'>O que é o Grunt?</h2>
 
-<p>Foi pensando nessas e várias outras atividades que o Ben Alman, conhecido como <a href='https://twitter.com//cowboy' target='_blank'>Cowboy</a> criou essa ferramenta íncrivel. O Grunt é uma aplicação de linha de comando que tem como objetivo automatizar tarefas, principalmente tarefas em aplicações JavaScript. Essas tarefas são como as descritas acima. E como isso é feito? Escrevendo as tarefas em JavaScript e rodando no Node.JS. <br /> Link oficial: <a href='http://gruntjs.com' target='_blank'>http://gruntjs.com</a></p>
+<p>Foi pensando nessas e várias outras atividades que o Ben Alman, conhecido como <a href='https://twitter.com//cowboy' target='_blank'>Cowboy</a> criou essa ferramenta incrível. O Grunt é uma aplicação de linha de comando que tem como objetivo automatizar tarefas, principalmente tarefas em aplicações JavaScript. Essas tarefas são como as descritas acima. E como isso é feito? Escrevendo as tarefas em JavaScript e rodando no Node.JS. <br /> Link oficial: <a href='http://gruntjs.com' target='_blank'>http://gruntjs.com</a></p>
 
 <h2 id='ok_quero_usar'>Ok, quero usar!</h2>
 
@@ -156,11 +156,11 @@
 <p>Agora para instalar:</p>
 <div class='highlight'><pre><code class='bash'>  sudo npm install -g grunt-cli
 </code></pre></div>
-<p>Isso irá deixar disponível o comando <code>grunt</code> em seu terminal. Perceba que instalamos o <code>grunt-cli</code> e não o <code>grunt</code> em si, a tarefa do grunt-cli é rodar qualquer versão do grunt, isso permite que você tenha diversas versões do grunt disponíveis em diferentes projetos, e você poderá rodar (inclusive simultaneamente) em sua máquina sem ter problemas.</p>
+<p>Isso irá deixar disponível o comando <code>grunt</code> em seu terminal. Perceba que instalamos o <code>grunt-cli</code> e não o <code>grunt</code> em si, a tarefa do grunt-cli é rodar qualquer versão do grunt, isso permite que você tenha diversas versões do grunt disponíveis em diferentes projetos, e você poderá rodar (inclusive simultâneamente) em sua máquina sem ter problemas.</p>
 
 <h2 id='mas_como_ele_funciona_'>Mas como ele funciona ?</h2>
 
-<p>Para utilizar o Grunt em um projeto, é nescessário que exista dois arquivos: o <code>Gruntfile.js</code> e o <code>package.json</code>. Eles devem estar na raiz (diretório principal, root) do projeto. Vou falar sobre esses arquivos logo mais. <br /> Se você estiver trabalhando em um projeto que já utiliza o Grunt (isto é, exista os arquivos Gruntfile.js e package.json), para rodar é simples.</p>
+<p>Para utilizar o Grunt em um projeto, é necessário que exista dois arquivos: o <code>Gruntfile.js</code> e o <code>package.json</code>. Eles devem estar na raiz (diretório principal, root) do projeto. Vou falar sobre esses arquivos logo mais. <br /> Se você estiver trabalhando em um projeto que já utiliza o Grunt (isto é, exista os arquivos Gruntfile.js e package.json), para rodar é simples.</p>
 <div class='highlight'><pre><code class='bash'>  // Acesse a pasta <span class='k'>do </span>projeto
   <span class='nb'>cd </span>project-folder
 
@@ -258,7 +258,7 @@
 
 <h3 id='e_o_deploy'>E o deploy?</h3>
 
-<p>É, eu disse lá no ínicio que é possível até fazer deploy com o Grunt, e sim, isso é perfeitamente possível. Agora que você já viu como ele funciona vou falar sobre esse plugin em específico.</p>
+<p>É, eu disse lá no início que é possível até fazer deploy com o Grunt, e sim, isso é perfeitamente possível. Agora que você já viu como ele funciona vou falar sobre esse plugin em específico.</p>
 
 <p>Para deploy estou utilizando o <code>grunt-rsync</code>. Esse plugin cria uma tarefa de sincronização, tanto local como para um servidor remoto, usando o <code>rsync</code> que já vem presente em sistemas operacionais &#8220;unix like&#8221;. O rsync é excelente pois mantém o diretório remoto sempre em sincronia com o diretório base, e só envia os arquivos que foram alterados, além de não enviar os arquivos um-a-um como faz o FTP. Outro ponto positivo é que ele utiliza SSH, portanto se você tiver uma chave publica adicionada as chaves autorizadas no servidor, você executa o deploy direto do Grunt e sem digitar senha.</p>
 
@@ -291,7 +291,7 @@
 
 <h2 id='grunt_boilerplate'>Grunt Boilerplate</h2>
 
-<p>Depois que comecei a utilizar o Grunt, percebi que sempre iria executar tarefas em comum para vários projetos, e isso me fez criar um padrão do Grunt com tudo que preciso em comum, e caso algum projeto nescessitar de outras tarefas, é só ir lá e adicionar. Nesse boilerplate defini (por enquanto): min, cssmin e rsync. Não adicionei o JSHint pois utilizo direto no Sublime. Dessa forma com esse boilerplate pronto, para iniciar um projeto eu apaenas clono o projeto grunt-boilerplate, mudo o nome da pasta, configuro o package.json, altero os caminhos e nomes de arquivos de acordo com o projeto, e pronto, é lindo =D</p>
+<p>Depois que comecei a utilizar o Grunt, percebi que sempre iria executar tarefas em comum para vários projetos, e isso me fez criar um padrão do Grunt com tudo que preciso em comum, e caso algum projeto necessitar de outras tarefas, é só ir lá e adicionar. Nesse boilerplate defini (por enquanto): min, cssmin e rsync. Não adicionei o JSHint pois utilizo direto no Sublime. Dessa forma com esse boilerplate pronto, para iniciar um projeto eu apenas clono o projeto grunt-boilerplate, mudo o nome da pasta, configuro o package.json, altero os caminhos e nomes de arquivos de acordo com o projeto, e pronto, é lindo =D</p>
 <br />
 <p>Ficou com vontade de utilizar também? É só ir lá repositório no meu github, clonar o projeto e alterar para suas necessidades. Sá basta ter o grunt-cli e o node instalados para tudo funcionar.</p>
 <br /><a alt='Demo no github' href='https://github.com/vagnervjs/grunt-boilerplate' target='_blank' title='Github'>
