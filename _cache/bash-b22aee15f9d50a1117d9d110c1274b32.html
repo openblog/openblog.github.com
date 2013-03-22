@@ -1,0 +1,30 @@
+<div class="highlight"><pre>module.exports <span class="o">=</span> <span class="k">function</span><span class="o">(</span>grunt<span class="o">)</span> <span class="o">{</span>
+  <span class="s1">&#39;use strict&#39;</span>;
+  //configuração <span class="k">do </span>projeto
+  var <span class="nv">gruntConfig</span> <span class="o">=</span> <span class="o">{</span>
+    pkg: grunt.file.readJSON<span class="o">(</span><span class="s1">&#39;package.json&#39;</span><span class="o">)</span>,
+    min: <span class="o">{</span>
+      dist: <span class="o">{</span>
+        src: <span class="o">[</span><span class="s1">&#39;src/assets/js/main.js&#39;</span><span class="o">]</span>,
+        dest: <span class="s1">&#39;src/assets/js/all.min.js&#39;</span>
+      <span class="o">}</span>
+    <span class="o">}</span>,
+    cssmin: <span class="o">{</span>
+      dist: <span class="o">{</span>
+        src: <span class="o">[</span><span class="s1">&#39;src/assets/css/main.css&#39;</span><span class="o">]</span>,
+        dest: <span class="s1">&#39;src/assets/css/all.min.css&#39;</span>
+      <span class="o">}</span>
+    <span class="o">}</span>,
+    jshint: <span class="o">{</span>
+      all: <span class="o">[</span><span class="s1">&#39;src/assets/**/*.js&#39;</span><span class="o">]</span>
+    <span class="o">}</span>
+  <span class="o">}</span>;
+  grunt.initConfig<span class="o">(</span>gruntConfig<span class="o">)</span>;
+
+  // carregando plugins
+    grunt.loadNpmTasks<span class="o">(</span><span class="s1">&#39;grunt-contrib-jshint&#39;</span><span class="o">)</span>;
+
+    // tarefas
+  grunt.registerTask<span class="o">(</span><span class="s1">&#39;test&#39;</span>, <span class="o">[</span><span class="s1">&#39;jshint&#39;</span><span class="o">])</span>;
+<span class="o">}</span>;
+</pre></div>

@@ -1,0 +1,17 @@
+<div class="highlight"><pre><span class="nx">rsync</span><span class="o">:</span> <span class="p">{</span>
+  <span class="nx">dist</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">src</span><span class="o">:</span> <span class="s1">&#39;./src/&#39;</span><span class="p">,</span>
+    <span class="nx">dest</span><span class="o">:</span> <span class="s1">&#39;./dist&#39;</span><span class="p">,</span>
+    <span class="nx">recursive</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nx">syncDest</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nx">exclude</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;main.*&#39;</span><span class="p">]</span>
+  <span class="p">},</span>
+  <span class="nx">deploy</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">src</span><span class="o">:</span> <span class="s1">&#39;./dist/&#39;</span><span class="p">,</span>
+    <span class="nx">dest</span><span class="o">:</span> <span class="s1">&#39;/var/www&#39;</span><span class="p">,</span>
+    <span class="nx">host</span><span class="o">:</span> <span class="s1">&#39;root@vagnersantana.com&#39;</span><span class="p">,</span>
+    <span class="nx">recursive</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nx">syncDest</span><span class="o">:</span> <span class="kc">true</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>

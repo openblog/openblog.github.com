@@ -3,9 +3,199 @@
   <id>http://openblog.github.com/</id>
   <title>Open Blog</title>
   <icon>http://openblog.github.com/img/favicon.png</icon>
-  <updated>2013-03-15T13:27:46-03:00</updated>
+  <updated>2013-03-22T10:32:24-03:00</updated>
   <link rel="self" href="http://openblog.github.com/feed/index.xml" />
   <link href="http://openblog.github.com/" />
+  
+  <entry>
+    <id>http://loopinfinito.com.br/2013/03/22/grunt</id>
+    <title>Grunt: você deveria estar usando!</title>
+    <updated>2013-03-22T00:00:00-03:00</updated>
+    <link href="http://openblog.github.com/2013/03/22/grunt/" />
+    <author>
+      <name>Vagner Santana</name>
+      <uri>http://twitter.com/vagnervjs</uri>
+    </author>
+    <content type="html">
+      
+      
+      &lt;p&gt;&lt;img itemprop=&quot;thumbnailUrl&quot; src=&quot;http://openblog.github.com/img/posts/2013-03-22-grunt.png&quot; alt=&quot;Grunt: você deveria estar usando!&quot; title=&quot;Grunt: você deveria estar usando!&quot; width=&quot;700&quot; height=&quot;432&quot; /&gt;&lt;/p&gt;
+      
+      &lt;p&gt;Todo programador é preguiçoso, e isso é fato, pois sempre estamos procurando ferramentas que automatizem o trabalho para nós. Mas isso nescessáriamente não é algo ruim, pelo contrário, automatizar tarefas implica em ganho de produção e isso é ótimo. O que não podemos deixar acontecer é a não realização de tarefas primordiais para que uma aplicação tenha qualidade.&lt;/p&gt;
+
+&lt;p&gt;Minificação e concatenação de arquivos por exemplo são tarefas básicas e você não deve deixar isso de lado, mas fazer isso usando um plugin no editor (que seja o Sublime Text) ou um site, copiar o código minificado, colar em um novo arquivo renameado com .min no final e por fim salvar, e toda vez que alterar o código ter que repetir essa operação é um saco.&lt;/p&gt;
+
+&lt;p&gt;E o deploy ? Se você utiliza FTP sabe o quão lento é fazer upload de arquivos, pricipalmente se forem muitos, e o pior de tudo, ele abre e fecha uma conexão para cada arquivo, é um sofrimento. E se você esquece de enviar um arquivo que alterou ? Melhor nem pensar&amp;#8230;&lt;/p&gt;
+
+&lt;h2 id='o_que__o_grunt'&gt;O que é o Grunt?&lt;/h2&gt;
+
+&lt;p&gt;Foi pensando nessas e várias outras atividades que o Ben Alman, conhecido como &lt;a href='https://twitter.com//cowboy' target='_blank'&gt;Cowboy&lt;/a&gt; criou essa ferramenta íncrivel. O Grunt é uma aplicação de linha de comando que tem como objetivo automatizar tarefas, principalmente tarefas em aplicações JavaScript. Essas tarefas são como as descritas acima. E como isso é feito? Escrevendo as tarefas em JavaScript e rodando no Node.JS. &lt;br /&gt; Link oficial: &lt;a href='http://gruntjs.com' target='_blank'&gt;http://gruntjs.com&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id='ok_quero_usar'&gt;Ok, quero usar!&lt;/h2&gt;
+
+&lt;p&gt;Bom, agora que você já entendeu para o que ele serve, vou mostrar como é simples utilizá-lo. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Como eu disse, ele roda no Node.JS, então antes de tudo você precisa ter o node e o npm instalados em sua máquina. Se isso estiver ok, você pode continuar.&lt;/p&gt;
+
+&lt;p&gt;Se você já instalou o Grunt alguma vez, certifique-se de remove-lo não ocorrer problemas futuros.&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='bash'&gt;  sudo npm uninstall -g grunt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Agora para instalar:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='bash'&gt;  sudo npm install -g grunt-cli
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Isso irá deixar disponível o comando &lt;code&gt;grunt&lt;/code&gt; em seu terminal. Perceba que instalamos o &lt;code&gt;grunt-cli&lt;/code&gt; e não o &lt;code&gt;grunt&lt;/code&gt; em si, a tarefa do grunt-cli é rodar qualquer versão do grunt, isso permite que você tenha diversas versões do grunt disponíveis em diferentes projetos, e você poderá rodar (inclusive simultaneamente) em sua máquina sem ter problemas.&lt;/p&gt;
+
+&lt;h2 id='mas_como_ele_funciona_'&gt;Mas como ele funciona ?&lt;/h2&gt;
+
+&lt;p&gt;Para utilizar o Grunt em um projeto, é nescessário que exista dois arquivos: o &lt;code&gt;Gruntfile.js&lt;/code&gt; e o &lt;code&gt;package.json&lt;/code&gt;. Eles devem estar na raiz (diretório principal, root) do projeto. Vou falar sobre esses arquivos logo mais. &lt;br /&gt; Se você estiver trabalhando em um projeto que já utiliza o Grunt (isto é, exista os arquivos Gruntfile.js e package.json), para rodar é simples.&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='bash'&gt;  // Acesse a pasta &lt;span class='k'&gt;do &lt;/span&gt;projeto
+  &lt;span class='nb'&gt;cd &lt;/span&gt;project-folder
+
+  // Instale as dependências 
+  sudo npm install
+
+  // Rode o Grunt
+  grunt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Simples não? &lt;br /&gt; Mas ok, vamos fazer isso do zero agora.&lt;/p&gt;
+
+&lt;h2 id='criando_um_projeto_com_grunt'&gt;Criando um projeto com Grunt&lt;/h2&gt;
+
+&lt;p&gt;Para iniciar um projeto com o Grunt existem algumas opções: você pode optar pelo &lt;code&gt;grunt-init&lt;/code&gt; que gera o scaffolding para alguns modelos de aplicações, como:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;→ jquery: cria um projeto para um plugin jQuery&lt;/li&gt;
+
+&lt;li&gt;→ commonjs: cria um projeto para um módulo commonjs&lt;/li&gt;
+
+&lt;li&gt;→ Gruntfile: cria um arquivo Gruntfile.js básico&lt;/li&gt;
+
+&lt;li&gt;→ gruntplugin: cria um plugin grunt&lt;/li&gt;
+
+&lt;li&gt;→ node: cria um módulo Node.JS&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Você também pode baixar outros templates, além dos oficiais. Para criar um projeto a partir de um dos template como os descritos acima basta usar o comando:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='bash'&gt;grunt-init &amp;lt;nome-do-template&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Ou então iniciar o Grunt sem um template, criando os arquivos &amp;#8220;na unha&amp;#8221;. &lt;br /&gt; Antes, é nescessário que você saiba para que serve aqueles dois arquivos. &lt;br /&gt; &lt;code&gt;Gruntfile.&lt;/code&gt;: Esse é um arquivo JavaScript que são definidas e configuradas as tarefas a serem executadas pelo Grunt. &lt;br /&gt; &lt;code&gt;package.json&lt;/code&gt;: Esse arquivo é usado pelo npm para armazenar as informações da aplicação, dados como nome, autor, repositório e dependências, e é por isso que o grunt precisa dele, para instalar as dependências e os plugins do grunt que seu projeto irá utilizar. Ao rodar o comando npm install, ele procura as dependências descritas nessa arquivo, e instala na pasta do projeto as mesmas com suas respectivas versões. Para criar um arquivo &lt;code&gt;package.json&lt;/code&gt; você pode utilizar o comando &lt;code&gt;npm init&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Exemplo:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;&lt;span class='p'&gt;{&lt;/span&gt;
+  &lt;span class='s2'&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;meu-projeto&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+  &lt;span class='s2'&gt;&amp;quot;version&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;0.0.1&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+  &lt;span class='s2'&gt;&amp;quot;description&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;Meu íncrivel projeto&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+  &lt;span class='s2'&gt;&amp;quot;homepage&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;http://vagnersantana.com/meuprojeto&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+  &lt;span class='s2'&gt;&amp;quot;repository&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='s2'&gt;&amp;quot;type&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;git&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+    &lt;span class='s2'&gt;&amp;quot;url&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;http://github.com/vagnervjs/meu-projeto&amp;quot;&lt;/span&gt;
+  &lt;span class='p'&gt;},&lt;/span&gt;
+  &lt;span class='s2'&gt;&amp;quot;engines&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='s2'&gt;&amp;quot;node&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;0.8.x&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+    &lt;span class='s2'&gt;&amp;quot;npm&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;1.1.x&amp;quot;&lt;/span&gt;
+  &lt;span class='p'&gt;},&lt;/span&gt;
+  &lt;span class='s2'&gt;&amp;quot;devDependencies&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='s2'&gt;&amp;quot;grunt-cli&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;0.1.6&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+    &lt;span class='s2'&gt;&amp;quot;grunt&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;~0.4.1&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+    &lt;span class='s2'&gt;&amp;quot;grunt-contrib-jshint&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;~0.1.1&amp;quot;&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+&lt;span class='p'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Para instalar o &lt;code&gt;grunt&lt;/code&gt; e plugins dele, você pode usar o comando &lt;code&gt;npm install &amp;lt;nome do modulo ou plugin&amp;gt; --save-dev&lt;/code&gt; que além de instalar localmente, adiciona a dependência e sua versão na sessão &lt;code&gt;devDependences&lt;/code&gt; do arquivo &lt;code&gt;package.json&lt;/code&gt;.&lt;/p&gt;
+&lt;br /&gt;
+&lt;p&gt;O arquivo &lt;code&gt;Gruntfile.js&lt;/code&gt; é compostos da função principal que engloba tudo, das configurações e tarefas da aplicação, do carregamento de grunt plugins, e de tarefas personalizadas.&lt;/p&gt;
+
+&lt;p&gt;Exemplo:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;&lt;span class='nx'&gt;module&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;exports&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='kd'&gt;function&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;grunt&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+  &lt;span class='s1'&gt;&amp;#39;use strict&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+
+  &lt;span class='c1'&gt;// configuração do projeto&lt;/span&gt;
+  &lt;span class='kd'&gt;var&lt;/span&gt; &lt;span class='nx'&gt;gruntConfig&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='nx'&gt;pkg&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='nx'&gt;grunt&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;file&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;readJSON&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;package.json&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;),&lt;/span&gt;
+    &lt;span class='nx'&gt;min&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+      &lt;span class='nx'&gt;dist&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+        &lt;span class='nx'&gt;src&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;src/assets/js/main.js&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;],&lt;/span&gt;
+        &lt;span class='nx'&gt;dest&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;src/assets/js/all.min.js&amp;#39;&lt;/span&gt;
+      &lt;span class='p'&gt;}&lt;/span&gt;
+    &lt;span class='p'&gt;},&lt;/span&gt;
+    &lt;span class='nx'&gt;cssmin&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+      &lt;span class='nx'&gt;dist&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+        &lt;span class='nx'&gt;src&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;src/assets/css/main.css&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;],&lt;/span&gt;
+        &lt;span class='nx'&gt;dest&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;src/assets/css/all.min.css&amp;#39;&lt;/span&gt;
+      &lt;span class='p'&gt;}&lt;/span&gt;
+    &lt;span class='p'&gt;},&lt;/span&gt;
+    &lt;span class='nx'&gt;jshint&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+      &lt;span class='nx'&gt;all&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;src/assets/**/*.js&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt;
+    &lt;span class='p'&gt;}&lt;/span&gt;
+  &lt;span class='p'&gt;};&lt;/span&gt;
+  &lt;span class='nx'&gt;grunt&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;initConfig&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;gruntConfig&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+
+  &lt;span class='c1'&gt;// carregando plugins&lt;/span&gt;
+  &lt;span class='nx'&gt;grunt&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;loadNpmTasks&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;grunt-contrib-jshint&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+
+  &lt;span class='c1'&gt;// tarefas&lt;/span&gt;
+  &lt;span class='nx'&gt;grunt&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;registerTask&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;default&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;jshint&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;]);&lt;/span&gt;
+&lt;span class='p'&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Bom, pra quem não entendeu direito o que acontece acima vou explicar: dentro da função foram declaradas várias tarefas, e suas configurações, por exemplo: &lt;code&gt;min&lt;/code&gt; é responsável por minificar os arquvios da pasta descrita na propriedade &lt;code&gt;src&lt;/code&gt; e enviar para o arquivo de destino em &lt;code&gt;desc&lt;/code&gt;. Depois de definir as tarefas e configurações em &lt;code&gt;initConfig()&lt;/code&gt;, é nescessário carregar os plugins grunt de terceitos, caso esteja utilizando algum. Feito isso, basta registrar as tarefas a serem executadas, usando &lt;code&gt;registerTask()&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id='plugins_do_grunt'&gt;Plugins do Grunt&lt;/h2&gt;
+
+&lt;p&gt;Talvez a melhor parte do Grunt seja essa: seus plugins que estão disponíveis. O Grunt vem com algumas tarefas padrões como &lt;code&gt;min&lt;/code&gt; e &lt;code&gt;concat&lt;/code&gt;, e você chamas elas definindo suas configurações e adicionando o parâmetro &lt;code&gt;&amp;#39;default&amp;#39;&lt;/code&gt; em &lt;code&gt;registerTask()&lt;/code&gt;. Porém, a comunidade já criou e vem criando novas tarefas para o Grunt, e a lista não para de crescer. Provavelmente tudo o que você precisa já deve ter pronto. Você pode ver essas tarefas em: &lt;a href='http://gruntjs.com/plugins' target='_blank'&gt;http://gruntjs.com/plugins&lt;/a&gt;, lá tem o link para o npm, onde você vê como instalar, e qual configuração utilizar.&lt;/p&gt;
+
+&lt;h3 id='e_o_deploy'&gt;E o deploy?&lt;/h3&gt;
+
+&lt;p&gt;É, eu disse lá no ínicio que é possível até fazer deploy com o Grunt, e sim, isso é perfeitamente possível. Agora que você já viu como ele funciona vou falar sobre esse plugin em específico.&lt;/p&gt;
+
+&lt;p&gt;Para deploy estou utilizando o &lt;code&gt;grunt-rsync&lt;/code&gt;. Esse plugin cria uma tarefa de sincronização, tanto local como para um servidor remoto, usando o &lt;code&gt;rsync&lt;/code&gt; que já vem presente em sistemas operacionais &amp;#8220;unix like&amp;#8221;. O rsync é excelente pois mantém o diretório remoto sempre em sincronia com o diretório base, e só envia os arquivos que foram alterados, além de não enviar os arquivos um-a-um como faz o FTP. Outro ponto positivo é que ele utiliza SSH, portanto se você tiver uma chave publica adicionada as chaves autorizadas no servidor, você executa o deploy direto do Grunt e sem digitar senha.&lt;/p&gt;
+
+&lt;p&gt;Veja a configuração da tarefa:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;&lt;span class='nx'&gt;rsync&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+  &lt;span class='nx'&gt;dist&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='nx'&gt;src&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;./src/&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+    &lt;span class='nx'&gt;dest&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;./dist&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+    &lt;span class='nx'&gt;recursive&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='kc'&gt;true&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+    &lt;span class='nx'&gt;syncDest&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='kc'&gt;true&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+    &lt;span class='nx'&gt;exclude&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;main.*&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt;
+  &lt;span class='p'&gt;},&lt;/span&gt;
+  &lt;span class='nx'&gt;deploy&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='nx'&gt;src&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;./dist/&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+    &lt;span class='nx'&gt;dest&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;/var/www&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+    &lt;span class='nx'&gt;host&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;root@vagnersantana.com&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+    &lt;span class='nx'&gt;recursive&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='kc'&gt;true&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+    &lt;span class='nx'&gt;syncDest&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='kc'&gt;true&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+&lt;span class='p'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Explicando: em dist eu estou fazendo uma sincronização local, preparando a aplicação para deploy, nela eu removo os arquivos que tem nome &amp;#8220;main&amp;#8221; pois estes foram minificados e concatenados em tarefas anteriores. Depois disso, defino a tarefa de deploy, que pega a pasta &amp;#8216;./dist&amp;#8217; que acabou de ser criada ou atualizada, e envio ela para meu servidor. A propriedade &amp;#8220;dest&amp;#8221; agora é é o diretório remoto e a propriedade &amp;#8220;host&amp;#8221; é o usuário e endereço do meu servidor remoto.&lt;/p&gt;
+
+&lt;h2 id='como_rodar'&gt;Como rodar?&lt;/h2&gt;
+
+&lt;p&gt;Mais simples impossível, depois de tudo configurado, você pode executar todas as tarefas descritas no &lt;code&gt;Gruntfile.js&lt;/code&gt; com o comando:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;&lt;span class='nx'&gt;grunt&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Talvez você precise utilizar sudo caso alguma tarefa nescessite de privilégios.&lt;/p&gt;
+
+&lt;h2 id='grunt_boilerplate'&gt;Grunt Boilerplate&lt;/h2&gt;
+
+&lt;p&gt;Depois que comecei a utilizar o Grunt, percebi que sempre iria executar tarefas em comum para vários projetos, e isso me fez criar um padrão do Grunt com tudo que preciso em comum, e caso algum projeto nescessitar de outras tarefas, é só ir lá e adicionar. Nesse boilerplate defini (por enquanto): min, cssmin e rsync. Não adicionei o JSHint pois utilizo direto no Sublime. Dessa forma com esse boilerplate pronto, para iniciar um projeto eu apaenas clono o projeto grunt-boilerplate, mudo o nome da pasta, configuro o package.json, altero os caminhos e nomes de arquivos de acordo com o projeto, e pronto, é lindo =D&lt;/p&gt;
+&lt;br /&gt;
+&lt;p&gt;Ficou com vontade de utilizar também? É só ir lá repositório no meu github, clonar o projeto e alterar para suas necessidades. Sá basta ter o grunt-cli e o node instalados para tudo funcionar.&lt;/p&gt;
+&lt;br /&gt;&lt;a alt='Demo no github' href='https://github.com/vagnervjs/grunt-boilerplate' target='_blank' title='Github'&gt;
+  &lt;button class='btn'&gt;Github&lt;/button&gt;
+&lt;/a&gt;
+&lt;p&gt;Se quiser realizar um fork, ou reportar um problema fique totalmente à vontade.&lt;/p&gt;
+
+&lt;h2 id='concluso'&gt;Conclusão&lt;/h2&gt;
+
+&lt;p&gt;Ferramentas como Grunt, Yeoman, Bower estão ai disponíveis e abertas para todos nós, basta sair da sua zona de conformo, perder o medo de sair do tradicional. Essas ferramentas só existem para melhorar e ajudar nosso trabalho, e se usadas de forma correta, você só irá evoluir, tanto em produção como em profissionalismo. Esperto ter ajudado um pouquinho com o Grunt nesse post. Divirtam-se!&lt;/p&gt;
+&lt;h3&gt;Referências&lt;/h3&gt;&lt;ul&gt;
+    &lt;li&gt;→&lt;a alt='Grunt' href='http://gruntjs.com/getting-started' target='_blank' title='Grunt'&gt; Grunt - Getting Started&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;→&lt;a alt='Meeting Grunt' href='http://net.tutsplus.com/tutorials/javascript-ajax/meeting-grunt-the-build-tool-for-javascript/' target='_blank' title='Meeting Grunt'&gt; Meet Grunt: The Build Tool for JavaScript&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;→&lt;a alt='Introducing Grunt' href='http://weblog.bocoup.com/introducing-grunt/' target='_blank' title='Introducing Grunt'&gt; Bocoup - Introducing Grunt&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;&lt;div class='fb-like' data-font='verdana' data-href='http://openblog.github.com/2013/03/22/grunt/' data-layout='button_count' data-send='true' data-show-faces='true' data-width='450' /&gt;
+    </content>
+  </entry>
   
   <entry>
     <id>http://loopinfinito.com.br/2013/03/15/player.io</id>
